@@ -1,0 +1,46 @@
+<!--<button class="color-boton-menu text-center" mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon class="text-center">more_vert</mat-icon>
+
+</button>
+ <mat-menu #menu="matMenu">
+
+    <button mat-menu-item  *ngFor="let nav of fillerNav">
+
+        <a class="nav-item nav-link"  routerLink='{{ nav.route }}' [routerLinkActive]="['active-link']">
+          <mat-icon *ngIf="nav.icon!=''">{{nav.icon}}</mat-icon>
+          <span *ngIf="nav.icon==''">{{nav.name}}</span>
+        </a>
+
+    </button>
+
+
+    <mat-sidenav #appDrawer mode="over" opened="false">
+      <mat-nav-list>
+        <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+
+ </mat-menu>
+-->
+  <span *ngFor="let item of menuItems">
+    <!-- Handle branch node buttons here -->
+    <span *ngIf="item.children && item.children.length > 0 && item.displayName !='Cerrar'">
+      <button mat-raised-button color="primary" [matMenuTriggerFor]="menu.childMenu">
+        {{item.displayName}}
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <app-menu-list-item #menu [items]="item.children"></app-menu-list-item>
+    </span>
+    <!-- Leaf node buttons here -->
+    <span *ngIf="(!item.children || item.children.length === 0) && item.displayName !='Cerrar'">
+      <button mat-button color="primary" [routerLink]="item.route">
+        {{item.displayName}}
+      </button>
+    </span>
+
+  </span>
+

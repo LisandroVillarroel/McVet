@@ -1,0 +1,112 @@
+div.main{
+    background: #0264d6; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  #0264d6 1%, #1c2b5a 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#0264d6), color-stop(100%,#1c2b5a)); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  #0264d6 1%,#1c2b5a 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  #0264d6 1%,#1c2b5a 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  #0264d6 1%,#1c2b5a 100%); /* IE10+ */
+background: radial-gradient(ellipse at center,  #0264d6 1%,#1c2b5a 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0264d6', endColorstr='#1c2b5a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+height:calc(100vh);
+width:100%;
+}
+
+/* ---------- GENERAL ---------- */
+
+.invalid-feedback {
+  font-size: 100%;
+  color: #ffffff;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* ---------- LOGIN ---------- */
+
+#login form span.fa {
+	background-color: #fff;
+	border-radius: 3px 0px 0px 3px;
+	color: #000;
+	display: block;
+	float: left;
+	height: 50px;
+    font-size:24px;
+	line-height: 50px;
+	text-align: center;
+	width: 50px;
+}
+
+
+.container{
+    height: 100%;
+    align-content: center;
+    }
+
+    .card{
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: transparent !important;
+    border: none !important;
+
+    }
+
+    .input-group-prepend span{
+    width: 50px;
+    background-color: #fff;
+    color: black;
+    border:0 !important;
+    }
+
+    input:focus{
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+
+    }
+
+    .remember{
+    color: #fff;
+    }
+
+    .remember input
+    {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+    }
+
+    .login_btn{
+    color: rgb(255, 113, 18);
+    width: 100px;
+    background-color: black;
+    }
+
+    .login_btn:hover{
+    color:black;
+    background-color:  rgb(255, 113, 18);
+    }
+
+    .links{
+    color: #fff;
+    }
+
+    .links a{
+    margin-left: 4px;
+    }
+
+    .card-footer {
+    background-color: transparent !important;
+    border-top: none !important;
+    }
+
+    .form-control {
+        height: calc(.5em + .75rem + 20px) !important;
+    }

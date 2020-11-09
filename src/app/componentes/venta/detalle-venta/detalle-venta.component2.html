@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <!--Tabla-->
+        <div class="example-container mat-elevation-z8">
+          <div class="example-header">
+            <!-- <mat-form-field>-->
+              <!-- (keyup)="buscaAgregaCodigoBarra($event.target.value)"-->
+              <!--<input matInput appAutoFocus [(ngModel)]="lectorCodBarra" placeholder="Código Barra" (change)="buscaAgregaCodigoBarra()"  autocomplete="off">-->
+              <!--</mat-form-field>-->
+          </div>
+        
+          <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows matSort>
+              
+            <!-- Position Column -->
+            <ng-container matColumnDef="index">
+                <mat-header-cell *matHeaderCellDef> Nº </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i = dataIndex;"> {{i+1}} </mat-cell>
+            </ng-container>
+        
+  
+            <!-- Name Column -->
+            <ng-container matColumnDef="cantidad">
+              <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
+              <section class="example-section">
+                  <mat-cell *matCellDef="let element">
+                    <input matInput type="number" [min]="0"
+                    [formControl]="cantidad" (change)="onCantidadChange(element.codigoBarra)"
+                    >
+                  </mat-cell>
+              </section>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="detalleProd">
+              <mat-header-cell *matHeaderCellDef> Detalle Producto </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.detalleProd}} </mat-cell>
+            </ng-container>
+        
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="descuento">
+              <mat-header-cell *matHeaderCellDef> %Dsto. </mat-header-cell>
+              <section class="example-section">
+                  <mat-cell *matCellDef="let element">
+                    <input matInput type="number" [min]="0" [max]="100" 
+                    [formControl]="descuento" (change)="onDescuentoChange(element.codigoBarra)"
+                    [(ngModel)]="element.descuento">
+                  </mat-cell>
+              </section>
+             <!-- <mat-cell *matCellDef="let element"> {{element.descuento}} </mat-cell>-->
+            </ng-container>
+            <!--${{element.precio | number:'1.0-0'}}-->
+            <ng-container matColumnDef="precio">
+              <mat-header-cell *matHeaderCellDef> Precio $ </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.precio}} </mat-cell>
+            </ng-container>
+            <!--${{(element.cantidad*element.precio) - (element.precio*(element.descuento/100)) | number:'1.0-0'}}-->
+            <ng-container matColumnDef="subTotal">
+              <mat-header-cell *matHeaderCellDef> Sub Total </mat-header-cell>
+              <mat-cell *matCellDef="let element">  </mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="eliminar" >
+              <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
+  
+  
+              <mat-cell *matCellDef="let element">
+                <button mat-icon-button color="accent" (click)="eliminar(element.codigoBarra, element.detalleProd)" >
+                  <mat-icon matTooltip='Click para eliminar' matTooltipClass="color-tooltip-red">delete</mat-icon>
+                </button>
+            </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+        <!--Fin Tabla-->
+        <div>
+          valor: {{precioInput}},{{productoInput}}
+        </div>
+      </div>
+    </div>
+  </div>

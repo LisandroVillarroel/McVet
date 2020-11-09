@@ -1,0 +1,104 @@
+<div class="pt-1" >
+  <div class="col-md-12">
+    <h4 class="text-center">Mantenedor Inventario</h4>
+  </div>
+</div>
+
+<div class="content ml-2 mr-2">
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+
+     <!-- ID Index -->
+     <ng-container matColumnDef="index">
+        <th id='indexI' mat-header-cell *matHeaderCellDef mat-sort-header style=' width: 3%;'> N° </th>
+        <td mat-cell *matCellDef="let row; let i = dataIndex;"style=' width: 3%;'> {{i+1}} </td>
+      </ng-container>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="_id">
+      <th id='_idI' mat-header-cell *matHeaderCellDef mat-sort-header style=' width: 4%;'> ID </th>
+      <td mat-cell *matCellDef="let row"style=' width: 4%;'> {{row._id}} </td>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="codigoInterno">
+      <th id='codigoInternoI' mat-header-cell *matHeaderCellDef mat-sort-header style=' width: 3%;'> Codigo Interno </th>
+      <td mat-cell *matCellDef="let row"  style=' width: 3%;'> {{row.codigoInterno}} </td>
+    </ng-container>
+
+    <!-- Titulo Column -->
+    <ng-container matColumnDef="codigoExterno">
+      <th id='codigoExternoI' mat-header-cell *matHeaderCellDef mat-sort-header style=' width: 10%;'> codigo Externo </th>
+      <td mat-cell *matCellDef="let row" style=' width: 10%;'> {{row.codigoExterno}} </td>
+    </ng-container>
+
+    <!-- Descripción Column -->
+    <ng-container matColumnDef="nombre">
+      <th id='nombreI' mat-header-cell *matHeaderCellDef mat-sort-header style=' width: 10%;'> Descripción </th>
+      <td mat-cell *matCellDef="let row" style=' width: 10%;'> {{row.nombre | slice:0:50}}... </td>
+    </ng-container>
+
+    <!-- Nombre Foto Column -->
+    <ng-container matColumnDef="descripcion">
+      <th id='descripcionI' mat-header-cell *matHeaderCellDef mat-sort-header style=' width: 20%;'> descripcion </th>
+      <td mat-cell *matCellDef="let row" style=' width: 20%;'> {{row.descripcion}} </td>
+    </ng-container>
+
+    <!--  Foto Column -->
+    <ng-container matColumnDef="precioCompra">
+      <th id='precioCompraI' mat-header-cell *matHeaderCellDef mat-sort-header style=' width: 10%;'> precioCompra </th>
+      <td mat-cell *matCellDef="let row" style=' width: 10%;'>{{row.precioCompra}}   </td>
+    </ng-container>
+
+    <!-- orden Foto Column -->
+    <ng-container matColumnDef="precioVentaNeto">
+      <th id='precioVentaNetoI' mat-header-cell *matHeaderCellDef mat-sort-header style=' width: 10%;'> precioVentaNeto </th>
+      <td mat-cell *matCellDef="let row" style=' width: 10%;'> {{row.precioVentaNeto}} </td>
+    </ng-container>
+
+    <!-- orden Foto Column -->
+    <ng-container matColumnDef="precioVenta">
+      <th id='precioVentaI' mat-header-cell *matHeaderCellDef mat-sort-header style=' width: 10%;'> precioVenta </th>
+      <td mat-cell *matCellDef="let row" style=' width: 10%;'> {{row.precioVenta}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="stockMinimo">
+      <th scope="col" id='stockMinimoI' flex layout="column" layout-align="center center" mat-header-cell *matHeaderCellDef mat-sort-header style=' width: 10%;'> stockMinimo </th>
+      <td mat-cell *matCellDef="let row" style=' width: 10%;'> {{row.stockMinimo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="opciones">
+      <th id='opcionesI'  mat-header-cell *matHeaderCellDef  style=' width: 10%; text-align: center'>
+        <button mat-icon-button color="accent" class="nuevo" (click)="agregaNuevo()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </th>
+
+      <td mat-cell *matCellDef="let row; let i=index;" style=' width: 10%; text-align: center'>
+
+        <button mat-icon-button color="accent" style="size:5px" (click)="startEdit(i, row._id, row.codigoInterno, row.codigoExterno, row.nombre, row.descripcion, row.precioCompra, row.precioVentaNeto, row.precioVenta, row.stockMinimo)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" (click)="consultaInventario(i, row._id, row.codigoInterno, row.codigoExterno, row.nombre, row.descripcion, row.precioCompra, row.precioVentaNeto, row.precioVenta, row.stockMinimo)">
+          <mat-icon>search</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" (click)="eliminaInventario(i, row._id, row.codigoInterno, row.codigoExterno, row.nombre, row.descripcion, row.precioCompra, row.precioVentaNeto, row.precioVenta, row.stockMinimo)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+</div>

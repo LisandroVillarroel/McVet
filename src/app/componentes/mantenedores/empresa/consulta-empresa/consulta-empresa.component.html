@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>CONSULTA EMPRESA</h2>
+
+<mat-dialog-content  name="consultaEmpresa" class="consulta-container">
+
+  <mat-form-field color="accent">
+    <input matInput placeholder="Rut"  value="{{datoEmpresaPar.rutEmpresa}}" disabled='true' >
+  </mat-form-field>
+
+  <mat-form-field color="accent">
+    <input matInput placeholder="Razón Social"  value="{{datoEmpresaPar.razonSocial}}" disabled='true' >
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput placeholder="Nombre de Fantasía" value="{{datoEmpresaPar.nombreFantasia}}" disabled='true'>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Ingrese Dirección " value="{{datoEmpresaPar.direccion}}" disabled='true'>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions class="justify-content-center">
+    <div class="col-md-6">
+      <button mat-raised-button color="warn" (click)="cerrar()" mat-dialog-close  [disabled]=false>Cerrar</button>
+    </div>
+</mat-dialog-actions>

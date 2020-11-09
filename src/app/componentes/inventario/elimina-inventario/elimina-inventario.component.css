@@ -1,0 +1,20 @@
+example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .colorNombre{
+   background-color: #74ac7d;
+  }
+  
+  .colorCampo{
+    background-color: #c8cac9;
+   }
+  
+  div.row.borde{
+    border-bottom: 1px solid;
+  border-bottom-color:#9b9999 !important;
+  
+  
+  }

@@ -1,0 +1,45 @@
+/* Structure */
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+.mat-header-row {
+  min-height: 30px;
+}
+
+tr.mat-header-row {
+  height: 15px;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: 2px !important;
+  padding-left: 2px !important;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+::ng-deep  .color-tooltip-red {
+  background: #b71c1c94;
+}
+
+.mat-input-element {
+  width: 50%;
+}
+
+th.mat-header-cell {
+  text-align: center;
+}
+td.mat-cell{
+  padding-left: 10px !important;
+}
