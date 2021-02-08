@@ -12,9 +12,9 @@
         <mat-form-field>
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
           </mat-form-field>
-          
+
           <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          
+
             <!-- Position Column -->
             <ng-container matColumnDef="nombre">
               <th mat-header-cell *matHeaderCellDef class="text-center"> PRODUCTOS </th>
@@ -23,12 +23,12 @@
                 </td>
               </tr>
             </ng-container>
-          
+
             <ng-container matColumnDef="precio" hidden>
               <th mat-header-cell *matHeaderCellDef class="text-center"> PRECIO </th>
               <td mat-cell *matCellDef="let element"></td>
-            </ng-container>            
-          
+            </ng-container>
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row (click)="selectRow(row)" *matRowDef="let row; columns: displayedColumns;" class="busca-articulo-row"></tr>
           </table>

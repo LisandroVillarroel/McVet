@@ -45,23 +45,18 @@ import { HomeComponent } from './home';
 import { MenuMatComponent } from './componentes/menu-mat/menu-mat.component';
 import { MenuListItemComponent } from './componentes/menu-list-item/menu-list-item.component';
 import { PortadaComponent } from './componentes/portada/portada.component';
-import { InventarioComponent } from './componentes/inventario/inventario.component';
-import { AgregaInventarioComponent } from './componentes/inventario/agrega-inventario/agrega-inventario.component';
-import { ModificaInventarioComponent } from './componentes/inventario/modifica-inventario/modifica-inventario.component';
-import { ConsultaInventarioComponent } from './componentes/inventario/consulta-inventario/consulta-inventario.component';
-import { EliminaInventarioComponent } from './componentes/inventario/elimina-inventario/elimina-inventario.component';
+
 import { PuntoVentaComponent } from './componentes/venta/punto-venta/punto-venta.component';
 import { DetalleVentaComponent } from './componentes/venta/detalle-venta/detalle-venta.component';
 import { EditableComponent } from './componentes/venta/editable/editable.component';
 
-import { PerfilComponent } from './componentes/mantenedores/perfil/perfil.component';
-import { AgregaPerfilComponent } from './componentes/mantenedores/perfil/agrega-perfil/agrega-perfil.component';
-import { ModificaPerfilComponent } from './componentes/mantenedores/perfil/modifica-perfil/modifica-perfil.component' ;
-import { EliminaPerfilComponent } from './componentes/mantenedores/perfil/elimina-perfil/elimina-perfil.component';
-import { ConsultaPerfilComponent } from './componentes/mantenedores/perfil/consulta-perfil/consulta-perfil.component';
+import { PropietarioComponent } from './componentes/mantenedores/propietario/propietario.component' ;
+import { ModificaPropietarioComponent } from './componentes/mantenedores/propietario/modifica-propietario/modifica-propietario.component';
+import { AgregaPropietarioComponent } from './componentes/mantenedores/propietario/agrega-propietario/agrega-propietario.component';
+import { EliminaPropietarioComponent } from './componentes/mantenedores/propietario/elimina-propietario/elimina-propietario.component';
+import { ConsultaPropietarioComponent } from './componentes/mantenedores/propietario/consulta-propietario/consulta-propietario.component';
 
 // Servicios
-import { InventarioService } from './servicios/inventario.service';
 import { MenuService } from './servicios/menu.service';
 
 import { registerLocaleData } from '@angular/common';
@@ -73,11 +68,19 @@ import { ViewModeDirective } from './directivas/view-mode.directive';
 import { FocusableDirective } from './directivas/focusable.directive';
 import { EditableOnEnterDirective } from './directivas/edit-on-enter.directive';
 
-import { EmpresaComponent } from './componentes/mantenedores/empresa/empresa.component';
-import { AgregaEmpresaComponent } from './componentes/mantenedores/empresa/agrega-empresa/agrega-empresa.component';
-import { ModificaEmpresaComponent } from './componentes/mantenedores/empresa/modifica-empresa/modifica-empresa.component';
-import { ConsultaEmpresaComponent } from './componentes/mantenedores/empresa/consulta-empresa/consulta-empresa.component';
-import { EliminaEmpresaComponent } from './componentes/mantenedores/empresa/elimina-empresa/elimina-empresa.component';
+import { ClienteComponent } from './componentes/mantenedores/cliente/cliente.component';
+import { AgregaClienteComponent } from './componentes/mantenedores/cliente/agrega-cliente/agrega-cliente.component';
+import { ModificaClienteComponent } from './componentes/mantenedores/cliente/modifica-cliente/modifica-cliente.component';
+import { ConsultaClienteComponent } from './componentes/mantenedores/cliente/consulta-cliente/consulta-cliente.component';
+import { EliminaClienteComponent } from './componentes/mantenedores/cliente/elimina-cliente/elimina-cliente.component';
+import { ExamenComponent } from './componentes/mantenedores/examen/examen.component';
+import { ModificaExamenComponent } from './componentes/mantenedores/examen/modifica-examen/modifica-examen.component';
+import { ConsultaExamenComponent } from './componentes/mantenedores/examen/consulta-examen/consulta-examen.component';
+import { EliminaExamenComponent } from './componentes/mantenedores/examen/elimina-examen/elimina-examen.component';
+import { IngresoExamenComponent } from './componentes/ingresos/ingreso-examen/ingreso-examen.component';
+
+import { AgregaExamenComponent } from './componentes/mantenedores/examen/agrega-examen/agrega-examen.component';
+
 registerLocaleData(localeFr, 'es', localeFrExtra);
 
 @NgModule({
@@ -87,11 +90,6 @@ registerLocaleData(localeFr, 'es', localeFrExtra);
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    InventarioComponent ,
-    AgregaInventarioComponent,
-    ModificaInventarioComponent,
-    ConsultaInventarioComponent,
-    EliminaInventarioComponent,
     MenuMatComponent ,
     PortadaComponent,
     PuntoVentaComponent,
@@ -102,17 +100,27 @@ registerLocaleData(localeFr, 'es', localeFrExtra);
     ViewModeDirective,
     FocusableDirective,
     EditableOnEnterDirective,
-    PerfilComponent ,
-    AgregaPerfilComponent ,
-    ModificaPerfilComponent ,
-    EliminaPerfilComponent ,
-    ConsultaPerfilComponent ,
+    PropietarioComponent ,
+    AgregaPropietarioComponent ,
+    ModificaPropietarioComponent ,
+    EliminaPropietarioComponent ,
+    ConsultaPropietarioComponent ,
     MenuListItemComponent ,
-    EmpresaComponent,
-    EliminaEmpresaComponent,
-    ConsultaEmpresaComponent,
-    ModificaEmpresaComponent,
-    AgregaEmpresaComponent
+    ClienteComponent,
+    EliminaClienteComponent,
+    ConsultaClienteComponent,
+    ModificaClienteComponent,
+    AgregaClienteComponent,
+    ExamenComponent,
+
+    AgregaExamenComponent,
+    ModificaExamenComponent,
+    ConsultaExamenComponent,
+    EliminaExamenComponent,
+
+    IngresoExamenComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -151,20 +159,20 @@ registerLocaleData(localeFr, 'es', localeFrExtra);
     RutValidator
   ],
    entryComponents: [
-    AgregaInventarioComponent,
-    ModificaInventarioComponent,
-    ConsultaInventarioComponent,
-    EliminaInventarioComponent,
+    AgregaPropietarioComponent,
+    ModificaPropietarioComponent,
+    ConsultaPropietarioComponent,
+    EliminaPropietarioComponent,
 
-    AgregaPerfilComponent,
-    ModificaPerfilComponent,
-    ConsultaPerfilComponent,
-    EliminaPerfilComponent,
+    AgregaClienteComponent,
+    ModificaClienteComponent,
+    ConsultaClienteComponent,
+    EliminaClienteComponent,
 
-    AgregaEmpresaComponent,
-    ModificaEmpresaComponent,
-    ConsultaEmpresaComponent,
-    EliminaEmpresaComponent
+    AgregaExamenComponent,
+    ModificaExamenComponent,
+    ConsultaExamenComponent,
+    EliminaExamenComponent,
     ],
   bootstrap: [AppComponent]
 })

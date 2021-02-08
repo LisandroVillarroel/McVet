@@ -4,11 +4,11 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './autentica/login/login.component';
 import { RegisterComponent } from './autentica/register';
 import { AuthGuard } from './autentica/_guards';
-import { InventarioComponent } from './componentes/inventario/inventario.component';
 import { PortadaComponent } from './componentes/portada/portada.component';
 import { PuntoVentaComponent } from './componentes/venta/punto-venta/punto-venta.component';
-import { PerfilComponent } from './componentes/mantenedores/perfil/perfil.component';
-import { EmpresaComponent } from './componentes/mantenedores/empresa/empresa.component';
+import { PropietarioComponent } from './componentes/mantenedores/propietario/propietario.component';
+import { ClienteComponent } from './componentes/mantenedores/cliente/cliente.component';
+import { IngresoExamenComponent } from './componentes/ingresos/ingreso-examen/ingreso-examen.component';
 
 const appRoutes: Routes = [
 
@@ -16,9 +16,8 @@ const appRoutes: Routes = [
     { path: 'inicio', component: PortadaComponent, },
     { path: 'home', component: HomeComponent , canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent },
-    { path: 'inventario', component: InventarioComponent, canActivate: [AuthGuard] },
     { path: 'PuntoVenta', component: PuntoVentaComponent, canActivate: [AuthGuard] },
-    { path: 'perfiles', component: PerfilComponent, canActivate: [AuthGuard]},
+    { path: 'propietario', component: PropietarioComponent, canActivate: [AuthGuard]},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
@@ -26,13 +25,14 @@ const appRoutes: Routes = [
 const routes: Routes = [
     {path: '', component: PortadaComponent, canActivate: [AuthGuard]},
     { path: 'inicio', component: PortadaComponent, },
-    { path: 'home', component: HomeComponent , canActivate: [AuthGuard]},
+    {path: 'mantenedorCliente', component: ClienteComponent, canActivate: [AuthGuard]},
+    { path: 'mantenedorPaciente', component: HomeComponent , canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent },
-    { path: 'inventario', component: InventarioComponent, canActivate: [AuthGuard] },
-    { path: 'PuntoVenta', component: PuntoVentaComponent, canActivate: [AuthGuard] },
 
-    {path: 'perfiles', component: PerfilComponent, canActivate: [AuthGuard]},
-    {path: 'empresa', component: EmpresaComponent, canActivate: [AuthGuard]},
+    { path: 'IngresoExamen', component: IngresoExamenComponent, canActivate: [AuthGuard] },
+
+    {path: 'propietario', component: PropietarioComponent, canActivate: [AuthGuard]},
+
 
     { path: '**', redirectTo: '' }
 ];

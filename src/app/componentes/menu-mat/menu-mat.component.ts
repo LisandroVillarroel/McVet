@@ -111,35 +111,46 @@ menuItems: MenuItem[] = [
         route: 'inicio'
       },
       {
-        displayName: 'Ficha',
-        iconName: 'feedback',
-        route: 'inventario'
-      },
-      {
         displayName: 'Ingreso Resultados',
         iconName: 'feedback',
-        route: 'PuntoVenta'
+        route: ''
       },
       {
         displayName: 'Mantenedores',
         iconName: 'speaker_notes',
         children: [
         {
-            displayName: 'Usuarios',
+            displayName: 'Cliente',
             iconName: 'star_rate',
-            route: 'usu'
+            route: 'mantenedorCliente'
         },
         {
-          displayName: 'Perfiles',
+          displayName: 'Propietario',
           iconName: 'star_rate',
-          route: 'perfiles'
+          route: 'propietario'
         },
         {
-          displayName: 'Empresas',
-          iconName: 'star_rate',
-          route: 'empresa'
+          displayName: 'Formatos',
+          iconName: 'speaker_notes',
+          children: [
+          {
+              displayName: 'Exámen',
+              iconName: 'star_rate',
+              route: ''
+          },
+          {
+            displayName: 'Detalle Exámen',
+            iconName: 'star_rate',
+            route: ''
+          },
+          {
+            displayName: 'Formáto Exámen',
+            iconName: 'star_rate',
+            route: ''
+          },
+          ]
         }
-      ]
+        ]
       },
       {
         displayName: 'Cerrar',
