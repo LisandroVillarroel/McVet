@@ -76,8 +76,8 @@ export class ModificaExamenComponent implements OnInit {
     this._dato = {
       _id: this.datoPar._id,
       codigoExamen: this.modifica.get('codigoExamen').value,
-      descripcion: this.modifica.get('descripcion').value,
-      sigla: this.modifica.get('sigla').value,
+      nombre: this.modifica.get('descrinombrepcion').value,
+      Sigla: this.modifica.get('Sigla').value,
       precio: this.modifica.get('precio').value,
       usuarioModifica_id: this.datoPar.usuarioModifica_id
     };

@@ -1,34 +1,12 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 import { AppComponent } from './app.component';
-
-// Material Angular
-
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatExpansionModule, MatExpansionPanel} from '@angular/material/expansion';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-// import {MAT_DIALOG_DATA, MatSnackBarModule} from '@angular/material';
-import {MatDialogModule, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatInputModule} from '@angular/material/input';
-import {MatTableModule} from '@angular/material/table';
-import {MatSortModule} from '@angular/material/sort';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatTooltipModule} from '@angular/material/tooltip';
-// Fin Angular
 
 // used to create fake backend
 import { fakeBackendProvider } from './autentica/_helpers';
@@ -74,12 +52,21 @@ import { ModificaClienteComponent } from './componentes/mantenedores/cliente/mod
 import { ConsultaClienteComponent } from './componentes/mantenedores/cliente/consulta-cliente/consulta-cliente.component';
 import { EliminaClienteComponent } from './componentes/mantenedores/cliente/elimina-cliente/elimina-cliente.component';
 import { ExamenComponent } from './componentes/mantenedores/examen/examen.component';
+
+import { AgregaExamenComponent } from './componentes/mantenedores/examen/agrega-examen/agrega-examen.component';
 import { ModificaExamenComponent } from './componentes/mantenedores/examen/modifica-examen/modifica-examen.component';
 import { ConsultaExamenComponent } from './componentes/mantenedores/examen/consulta-examen/consulta-examen.component';
 import { EliminaExamenComponent } from './componentes/mantenedores/examen/elimina-examen/elimina-examen.component';
-import { IngresoExamenComponent } from './componentes/ingresos/ingreso-examen/ingreso-examen.component';
 
-import { AgregaExamenComponent } from './componentes/mantenedores/examen/agrega-examen/agrega-examen.component';
+import { AgregaExamenesFichasComponent } from './componentes/ingresosExamenFicha/agrega-examen-ficha/agrega-examenes-fichas.component';
+
+import { ExamenesIngresadosComponent } from './componentes/ingresosExamenFicha/examenes-ingresados.component';
+import { MaterialModule } from './material.module';
+import { Formato1Component } from './componentes/mantenedores/formato1/formato1.component';
+import { AgregaFormato1Component } from './componentes/mantenedores/formato1/agrega-formato1/agrega-formato1.component';
+import { ConsultaFormato1Component } from './componentes/mantenedores/formato1/consulta-formato1/consulta-formato1.component';
+import { EliminaFormato1Component } from './componentes/mantenedores/formato1/elimina-formato1/elimina-formato1.component';
+import { ModificaFormato1Component } from './componentes/mantenedores/formato1/modifica-formato1/modifica-formato1.component';
 
 registerLocaleData(localeFr, 'es', localeFrExtra);
 
@@ -118,7 +105,19 @@ registerLocaleData(localeFr, 'es', localeFrExtra);
     ConsultaExamenComponent,
     EliminaExamenComponent,
 
-    IngresoExamenComponent,
+    AgregaExamenesFichasComponent,
+
+    ExamenesIngresadosComponent,
+
+    Formato1Component,
+
+    AgregaFormato1Component,
+
+    ConsultaFormato1Component,
+
+    EliminaFormato1Component,
+
+    ModificaFormato1Component,
 
 
   ],
@@ -132,25 +131,9 @@ registerLocaleData(localeFr, 'es', localeFrExtra);
     Ng2Rut,
     routing,
     //
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatInputModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatRadioModule,
-    MatSnackBarModule,
-    MatMenuModule,
-    MatSidenavModule,
-    MatListModule,
-    MatTooltipModule,
+    MaterialModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

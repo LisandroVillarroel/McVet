@@ -32,15 +32,17 @@ export class AgregaExamenComponent implements OnInit {
     }
 
     codigoExamen = new FormControl('', );
-    descripcion = new FormControl('', [Validators.required]);
-    sigla = new FormControl('', [Validators.required]);
+    nombre = new FormControl('', [Validators.required]);
+    Sigla = new FormControl('', [Validators.required]);
     precio = new FormControl('', [Validators.required]);
+    nombreFormato= new FormControl('', [Validators.required]);
 
     agregaExamen: FormGroup = new FormGroup({
       codigoExamen: this.codigoExamen,
-      descripcion: this.descripcion,
-      sigla: this.sigla,
+      nombre: this.nombre,
+      Sigla: this.Sigla,
       precio: this.precio,
+      nombreFormato: this.nombreFormato,
 
       // address: this.addressFormControl
     });
@@ -51,14 +53,18 @@ export class AgregaExamenComponent implements OnInit {
           return this.codigoExamen.hasError('required') ? 'Debes ingresar Exámen' : '';
       }
       */
-      if (campo === 'descripcion'){
-          return this.descripcion.hasError('required') ? 'Debes ingresar Descripción'  : '';
+      if (campo === 'nombre'){
+          return this.nombre.hasError('required') ? 'Debes ingresar Nombre'  : '';
       }
-      if (campo === 'sigla'){
-          return this.sigla.hasError('required') ? 'Debes ingresar Sigla' : '';
+      if (campo === 'Sigla'){
+          return this.Sigla.hasError('required') ? 'Debes ingresar Sigla' : '';
       }
       if (campo === 'precio'){
         return this.precio.hasError('required') ? 'Debes ingresar Precio' : '';
+      }
+
+      if (campo === 'nombreFormato'){
+        return this.nombreFormato.hasError('required') ? 'Debes Seleccionar Formato' : '';
       }
 
       return '';
@@ -71,8 +77,8 @@ export class AgregaExamenComponent implements OnInit {
   enviar() {
     this.dato = {
       codigoExamen: this.agregaExamen.get('codigoExamen').value,
-      descripcion: this.agregaExamen.get('descripcion').value,
-      sigla: this.agregaExamen.get('sigla').value,
+      nombre: this.agregaExamen.get('nombre').value,
+      Sigla: this.agregaExamen.get('Sigla').value,
       precio: this.agregaExamen.get('precio').value,
       usuarioCrea_id: this.usuario,
       usuarioModifica_id: this.usuario

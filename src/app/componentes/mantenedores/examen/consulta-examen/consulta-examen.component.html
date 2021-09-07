@@ -7,11 +7,19 @@
   </mat-form-field>
 
   <mat-form-field color="accent">
-    <input matInput placeholder="Descripción"  value="{{datoPar.descripcion}}" disabled='true' >
+    <input matInput placeholder="Nombre"  value="{{datoPar.nombre}}" disabled='true' >
   </mat-form-field>
 
   <mat-form-field>
-      <input matInput placeholder="Sigla" value="{{datoPar.sigla}}" disabled='true'>
+      <input matInput placeholder="Sigla" value="{{datoPar.Sigla}}" disabled='true'>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Precio" value="{{datoPar.precio}}" disabled='true'>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Formato" value="{{datoPar.formato.nombreFormato}}" disabled='true'>
   </mat-form-field>
 
 </mat-dialog-content>

@@ -10,14 +10,17 @@ export class UsuarioService {
     constructor(private http: HttpClient) { }
 
     getAll() {
+      console.log('url: ',environment.apiUrl);
         return this.http.get<JwtResponseI[]>(`${environment.apiUrl}/users`);
     }
 
     getById(id: number) {
+      console.log('url: ',environment.apiUrl);
         return this.http.get(`${environment.apiUrl}/users/${id}`);
     }
 
     register(user: JwtResponseI) {
+      console.log('url: ',environment.apiUrl);
         return this.http.post(`${environment.apiUrl}/users/register`, user);
     }
 

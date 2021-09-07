@@ -10,46 +10,46 @@ import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog
 import { JwtResponseI } from '../../../autentica/_models';
 import { AuthenticationService } from '../../../autentica/_services';
 
-import { AgregaExamenComponent } from './agrega-examen/agrega-examen.component';
-import { ModificaExamenComponent } from './modifica-examen/modifica-examen.component';
-import { ConsultaExamenComponent } from './consulta-examen/consulta-examen.component';
-import { EliminaExamenComponent } from './elimina-examen/elimina-examen.component';
+import { AgregaFormato1Component } from './agrega-formato1/agrega-formato1.component';
+import { ModificaFormato1Component } from './modifica-formato1/modifica-formato1.component';
+import { ConsultaFormato1Component } from './consulta-formato1/consulta-formato1.component';
+import { EliminaFormato1Component } from './elimina-formato1/elimina-formato1.component';
 import Swal from 'sweetalert2';
-import { IExamen } from '@app/modelo/examen-interface';
-import { ExamenService } from '@app/servicios/examen.service';
+import { IFormato1 } from '@app/modelo/formato1-interface';
+import { Formato1Service } from '@app/servicios/formato1.service';
 
 @Component({
-  selector: 'app-examen',
-  templateUrl: './examen.component.html',
-  styleUrls: ['./examen.component.css']
+  selector: 'app-formato1',
+  templateUrl: './formato1.component.html',
+  styleUrls: ['./formato1.component.css']
 })
-export class ExamenComponent implements OnInit {
+export class Formato1Component implements OnInit {
 
-  datoPar: IExamen;
+  datoPar: IFormato1;
   currentUsuario: JwtResponseI;
  // id: string;
 
   // tslint:disable-next-line:max-line-length
-  displayedColumns: string[] = ['index', 'codigoExamen', 'nombre', 'Sigla', 'precio', 'formato:{nombreFormato}','opciones'];
-  dataSource: MatTableDataSource<IExamen>;
+  displayedColumns: string[] = ['index', 'nombreFormato', 'estado','opciones'];
+  dataSource: MatTableDataSource<IFormato1>;
 
   @ViewChild(MatPaginator ) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
 
-constructor(private servicioService: ExamenService,
+constructor(private servicioService: Formato1Service,
             public httpClient: HttpClient,
             public dialog: MatDialog,
             private snackBar: MatSnackBar,
             private authenticationService: AuthenticationService
     ) {
       this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
-      this.dataSource = new MatTableDataSource<IExamen>();
+      this.dataSource = new MatTableDataSource<IFormato1>();
 
   }
 
 ngOnInit() {
-    console.log('pasa emp 1');
+    console.log('pasa formato 1');
     if (this.authenticationService.getCurrentUser() != null) {
       this.currentUsuario.usuarioDato = this.authenticationService.getCurrentUser() ;
     }
@@ -57,12 +57,11 @@ ngOnInit() {
   }
 
 getList(): void {
-    console.log('pasa exámen 1');
     this.servicioService
-      .getDataExamen()
+      .getDataFormato1()
       .subscribe(res => {
-        console.log('pasa exámen 2', res);
-        this.dataSource.data = res['data'] as IExamen[];
+        console.log('pasa formato 2', res);
+        this.dataSource.data = res['data'] as IFormato1[];
       },
       // console.log('yo:', res as PerfilI[]),
       error => {
@@ -98,9 +97,9 @@ agregaNuevo() {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '50%';
-    dialogConfig.height = '70%';
-    dialogConfig.position = { top : '5%'};
+    dialogConfig.width = '90%';
+    dialogConfig.height = '95%';
+    dialogConfig.position = { top : '1%'};
     dialogConfig.data = {usuario: this.currentUsuario.usuarioDato._id};
   //  dialogConfig.data = {
   //    idProducto: idProdP,
@@ -108,7 +107,7 @@ agregaNuevo() {
   //  };
 
 
-    this.dialog.open(AgregaExamenComponent, dialogConfig)
+    this.dialog.open(AgregaFormato1Component, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Dialog output3333:', data);
               if (data !== undefined) {
@@ -118,14 +117,11 @@ agregaNuevo() {
     );
   }
 
-actualiza(id: string, codigoExamen: string, nombre: string, Sigla: string, precio: number, nombreFormato:string) {
+actualiza(id: string, nombreFormato: string, estado: string) {
     this.datoPar = {
       _id: id,
-      codigoExamen,
-      nombre,
-      Sigla,
-      precio,
-      formato:{nombreFormato},
+      nombreFormato,
+      estado,
      // usuarioCrea_id: this.currentUsuario.usuarioDato.id,
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
     };
@@ -137,10 +133,9 @@ actualiza(id: string, codigoExamen: string, nombre: string, Sigla: string, preci
     dialogConfig.width = '50%';
     dialogConfig.height = '70%';
     dialogConfig.position = { top : '5%'};
-    // dialogConfig.data =
-    // {id, rutEmpresa, razonSocial, nombreFantasia, direccion, usuarioCrea_id: this.currentUsuario.usuarioDato.usuario};
+
     dialogConfig.data = this.datoPar;
-    this.dialog.open(ModificaExamenComponent, dialogConfig)
+    this.dialog.open(ModificaFormato1Component, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Dialog output3333:', data);
               if (data !== undefined) {
@@ -150,14 +145,11 @@ actualiza(id: string, codigoExamen: string, nombre: string, Sigla: string, preci
     );
   }
 
-consulta(id: string, codigoExamen: string, nombre: string, Sigla: string, precio: number, nombreFormato: string) {
+consulta(id: string, nombreFormato: string, estado: string) {
     this.datoPar = {
       _id: id,
-      codigoExamen,
-      nombre,
-      Sigla,
-      precio,
-      formato:{nombreFormato},
+      nombreFormato,
+      estado,
       usuarioCrea_id: this.currentUsuario.usuarioDato._id,
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
     };
@@ -171,7 +163,7 @@ consulta(id: string, codigoExamen: string, nombre: string, Sigla: string, precio
     dialogConfig.position = { top : '5%'};
 
     dialogConfig.data = this.datoPar;
-    this.dialog.open(ConsultaExamenComponent, dialogConfig)
+    this.dialog.open(ConsultaFormato1Component, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Datoas Consulta:', data);
               if (data !== undefined) {
@@ -181,15 +173,11 @@ consulta(id: string, codigoExamen: string, nombre: string, Sigla: string, precio
     );
  }
 
-elimina(id: string,  codigoExamen: string, nombre: string, Sigla: string, precio: number, nombreFormato: string) {
+elimina(id: string,  nombreFormato: string, estado: string) {
     this.datoPar = {
       _id: id,
-      codigoExamen,
-      nombre,
-      Sigla,
-      precio,
-      formato:{nombreFormato},
-     // usuarioCrea_id: this.currentUsuario.usuarioDato.id
+      nombreFormato,
+      estado,
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
     };
 
@@ -202,7 +190,7 @@ elimina(id: string,  codigoExamen: string, nombre: string, Sigla: string, precio
     dialogConfig.position = { top : '5%'};
 
     dialogConfig.data = this.datoPar;
-    this.dialog.open(EliminaExamenComponent, dialogConfig)
+    this.dialog.open(EliminaFormato1Component, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Datoas Consulta:', data);
               if (data !== undefined) {

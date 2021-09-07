@@ -113,7 +113,7 @@ menuItems: MenuItem[] = [
       {
         displayName: 'Ingreso Resultados',
         iconName: 'feedback',
-        route: ''
+        route: 'IngresoExamen'
       },
       {
         displayName: 'Mantenedores',
@@ -130,25 +130,14 @@ menuItems: MenuItem[] = [
           route: 'propietario'
         },
         {
+          displayName: 'Exámen',
+          iconName: 'star_rate',
+          route: 'propietario'
+        },
+        {
           displayName: 'Formatos',
-          iconName: 'speaker_notes',
-          children: [
-          {
-              displayName: 'Exámen',
-              iconName: 'star_rate',
-              route: ''
-          },
-          {
-            displayName: 'Detalle Exámen',
-            iconName: 'star_rate',
-            route: ''
-          },
-          {
-            displayName: 'Formáto Exámen',
-            iconName: 'star_rate',
-            route: ''
-          },
-          ]
+          iconName: 'star_rate',
+          route: 'mantenedorFormato1'
         }
         ]
       },

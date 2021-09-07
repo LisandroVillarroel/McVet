@@ -8,7 +8,10 @@ import { PortadaComponent } from './componentes/portada/portada.component';
 import { PuntoVentaComponent } from './componentes/venta/punto-venta/punto-venta.component';
 import { PropietarioComponent } from './componentes/mantenedores/propietario/propietario.component';
 import { ClienteComponent } from './componentes/mantenedores/cliente/cliente.component';
-import { IngresoExamenComponent } from './componentes/ingresos/ingreso-examen/ingreso-examen.component';
+import { ExamenComponent } from './componentes/mantenedores/examen/examen.component';
+import { Formato1Component } from './componentes/mantenedores/formato1/formato1.component';
+//import { IngresoExamenComponent } from './componentes/ingresos/ingreso-examen/ingreso-examen.component';
+//import { SeleccionExamenComponent } from './componentes/ingresos/seleccion-examen/seleccion-examen.component';
 
 const appRoutes: Routes = [
 
@@ -29,7 +32,9 @@ const routes: Routes = [
     { path: 'mantenedorPaciente', component: HomeComponent , canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent },
 
-    { path: 'IngresoExamen', component: IngresoExamenComponent, canActivate: [AuthGuard] },
+
+    { path: 'mantenedorExamen', component: ExamenComponent, canActivate: [AuthGuard] },
+    { path: 'mantenedorFormato1', component: Formato1Component, canActivate: [AuthGuard] },
 
     {path: 'propietario', component: PropietarioComponent, canActivate: [AuthGuard]},
 

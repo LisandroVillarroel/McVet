@@ -7,13 +7,13 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Ingrese Descripcion" [formControl]="descripcion"  required>
-    <mat-error *ngIf="descripcion.invalid">{{getErrorMessage('descripcion')}}</mat-error>
+    <input matInput placeholder="Ingrese Nombre" [formControl]="nombre"  required>
+    <mat-error *ngIf="nombre.invalid">{{getErrorMessage('nombre')}}</mat-error>
   </mat-form-field>
 
   <mat-form-field>
-      <input matInput placeholder="Ingrese Sigla" [formControl]="sigla" required>
-      <mat-error *ngIf="sigla.invalid">{{getErrorMessage('sigla')}}</mat-error>
+      <input matInput placeholder="Ingrese Sigla" [formControl]="Sigla" required>
+      <mat-error *ngIf="Sigla.invalid">{{getErrorMessage('Sigla')}}</mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -21,6 +21,15 @@
     <mat-error *ngIf="precio.invalid">{{getErrorMessage('precio')}}</mat-error>
   </mat-form-field>
 
+  <mat-form-field>
+    <mat-select [formControl]="nombreFormato" placeholder="Formato" required>
+    <!--  <mat-option  *ngFor="let obj of selectNombreFormato" [value]="obj.id">
+        {{ obj.nombre }}
+     </mat-option>
+     -->
+    </mat-select>
+    <mat-error *ngIf="nombreFormato.invalid">{{getErrorMessage('nombreFormato')}}</mat-error>
+  </mat-form-field>
 
 </mat-dialog-content>
 

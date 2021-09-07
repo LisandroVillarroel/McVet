@@ -1,3 +1,4 @@
+
 import { catchError } from 'rxjs/operators';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
@@ -7,62 +8,64 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSnackBar} from '@angular/material//snack-bar';
 import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
 
-import { JwtResponseI } from '../../../autentica/_models';
-import { AuthenticationService } from '../../../autentica/_services';
-
-import { AgregaExamenComponent } from './agrega-examen/agrega-examen.component';
-import { ModificaExamenComponent } from './modifica-examen/modifica-examen.component';
-import { ConsultaExamenComponent } from './consulta-examen/consulta-examen.component';
-import { EliminaExamenComponent } from './elimina-examen/elimina-examen.component';
 import Swal from 'sweetalert2';
-import { IExamen } from '@app/modelo/examen-interface';
-import { ExamenService } from '@app/servicios/examen.service';
+
+import { ICliente } from '@app/modelo/cliente-interface';
+import { AuthenticationService } from '@app/autentica/_services';
+import { JwtResponseI } from '@app/autentica/_models';
+import { ClienteService } from '@app/servicios/cliente.service';
+import { AgregaClienteComponent } from '../mantenedores/cliente/agrega-cliente/agrega-cliente.component';
+import { ModificaClienteComponent } from '../mantenedores/cliente/modifica-cliente/modifica-cliente.component';
+import { ConsultaClienteComponent } from '../mantenedores/cliente/consulta-cliente/consulta-cliente.component';
+import { EliminaClienteComponent } from '../mantenedores/cliente/elimina-cliente/elimina-cliente.component';
 
 @Component({
-  selector: 'app-examen',
-  templateUrl: './examen.component.html',
-  styleUrls: ['./examen.component.css']
+  selector: 'app-examenes-ingresados',
+  templateUrl: './examenes-ingresados.component.html',
+  styleUrls: ['./examenes-ingresados.component.css']
 })
-export class ExamenComponent implements OnInit {
+export class ExamenesIngresadosComponent implements OnInit {
 
-  datoPar: IExamen;
+  datoClientePar: ICliente;
   currentUsuario: JwtResponseI;
+  exampleDatabase: ClienteService;
  // id: string;
 
   // tslint:disable-next-line:max-line-length
-  displayedColumns: string[] = ['index', 'codigoExamen', 'nombre', 'Sigla', 'precio', 'formato:{nombreFormato}','opciones'];
-  dataSource: MatTableDataSource<IExamen>;
+  displayedColumns: string[] = ['index', 'rutCliente', 'razonSocial', 'nombreFantasia', 'direccion', 'telefono', 'email', 'nombreContacto', 'opciones'];
+  dataSource: MatTableDataSource<ICliente>;
 
   @ViewChild(MatPaginator ) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
 
-constructor(private servicioService: ExamenService,
+constructor(private clienteService: ClienteService,
             public httpClient: HttpClient,
             public dialog: MatDialog,
             private snackBar: MatSnackBar,
             private authenticationService: AuthenticationService
     ) {
       this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
-      this.dataSource = new MatTableDataSource<IExamen>();
+      this.dataSource = new MatTableDataSource<ICliente>();
 
   }
+
 
 ngOnInit() {
     console.log('pasa emp 1');
     if (this.authenticationService.getCurrentUser() != null) {
       this.currentUsuario.usuarioDato = this.authenticationService.getCurrentUser() ;
     }
-    this.getList();
+    this.getListCliente();
   }
 
-getList(): void {
-    console.log('pasa exámen 1');
-    this.servicioService
-      .getDataExamen()
+getListCliente(): void {
+    console.log('pasa emp 2');
+    this.clienteService
+      .getDataCliente()
       .subscribe(res => {
-        console.log('pasa exámen 2', res);
-        this.dataSource.data = res['data'] as IExamen[];
+        console.log('cliente: ', res['data']);
+        this.dataSource.data = res['data'] as ICliente[];
       },
       // console.log('yo:', res as PerfilI[]),
       error => {
@@ -108,7 +111,7 @@ agregaNuevo() {
   //  };
 
 
-    this.dialog.open(AgregaExamenComponent, dialogConfig)
+    this.dialog.open(AgregaClienteComponent, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Dialog output3333:', data);
               if (data !== undefined) {
@@ -118,14 +121,17 @@ agregaNuevo() {
     );
   }
 
-actualiza(id: string, codigoExamen: string, nombre: string, Sigla: string, precio: number, nombreFormato:string) {
-    this.datoPar = {
+actualizaCliente(id: string, rutCliente: string, razonSocial: string, nombreFantasia: string, direccion: string,
+                 telefono: string, email: string, nombreContacto: string) {
+    this.datoClientePar = {
       _id: id,
-      codigoExamen,
-      nombre,
-      Sigla,
-      precio,
-      formato:{nombreFormato},
+      rutCliente,
+      razonSocial,
+      nombreFantasia,
+      direccion,
+      telefono,
+      email,
+      nombreContacto,
      // usuarioCrea_id: this.currentUsuario.usuarioDato.id,
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
     };
@@ -139,8 +145,8 @@ actualiza(id: string, codigoExamen: string, nombre: string, Sigla: string, preci
     dialogConfig.position = { top : '5%'};
     // dialogConfig.data =
     // {id, rutEmpresa, razonSocial, nombreFantasia, direccion, usuarioCrea_id: this.currentUsuario.usuarioDato.usuario};
-    dialogConfig.data = this.datoPar;
-    this.dialog.open(ModificaExamenComponent, dialogConfig)
+    dialogConfig.data = this.datoClientePar;
+    this.dialog.open(ModificaClienteComponent, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Dialog output3333:', data);
               if (data !== undefined) {
@@ -148,16 +154,20 @@ actualiza(id: string, codigoExamen: string, nombre: string, Sigla: string, preci
               }
       }
     );
+
   }
 
-consulta(id: string, codigoExamen: string, nombre: string, Sigla: string, precio: number, nombreFormato: string) {
-    this.datoPar = {
+consultaCliente(id: string, rutCliente: string, razonSocial: string, nombreFantasia: string, direccion: string,
+                telefono: string, email: string, nombreContacto: string) {
+    this.datoClientePar = {
       _id: id,
-      codigoExamen,
-      nombre,
-      Sigla,
-      precio,
-      formato:{nombreFormato},
+      rutCliente,
+      razonSocial,
+      nombreFantasia,
+      direccion,
+      telefono,
+      email,
+      nombreContacto,
       usuarioCrea_id: this.currentUsuario.usuarioDato._id,
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
     };
@@ -170,8 +180,8 @@ consulta(id: string, codigoExamen: string, nombre: string, Sigla: string, precio
     dialogConfig.height = '70%';
     dialogConfig.position = { top : '5%'};
 
-    dialogConfig.data = this.datoPar;
-    this.dialog.open(ConsultaExamenComponent, dialogConfig)
+    dialogConfig.data = this.datoClientePar;
+    this.dialog.open(ConsultaClienteComponent, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Datoas Consulta:', data);
               if (data !== undefined) {
@@ -181,14 +191,17 @@ consulta(id: string, codigoExamen: string, nombre: string, Sigla: string, precio
     );
  }
 
-elimina(id: string,  codigoExamen: string, nombre: string, Sigla: string, precio: number, nombreFormato: string) {
-    this.datoPar = {
+eliminaCliente(id: string, rutCliente: string, razonSocial: string, nombreFantasia: string, direccion: string,
+               telefono: string, email: string, nombreContacto: string) {
+    this.datoClientePar = {
       _id: id,
-      codigoExamen,
-      nombre,
-      Sigla,
-      precio,
-      formato:{nombreFormato},
+      rutCliente,
+      razonSocial,
+      nombreFantasia,
+      direccion,
+      telefono,
+      email,
+      nombreContacto,
      // usuarioCrea_id: this.currentUsuario.usuarioDato.id
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
     };
@@ -201,8 +214,8 @@ elimina(id: string,  codigoExamen: string, nombre: string, Sigla: string, precio
     dialogConfig.height = '70%';
     dialogConfig.position = { top : '5%'};
 
-    dialogConfig.data = this.datoPar;
-    this.dialog.open(EliminaExamenComponent, dialogConfig)
+    dialogConfig.data = this.datoClientePar;
+    this.dialog.open(EliminaClienteComponent, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Datoas Consulta:', data);
               if (data !== undefined) {
@@ -210,6 +223,7 @@ elimina(id: string,  codigoExamen: string, nombre: string, Sigla: string, precio
               }
       }
     );
+
   }
 
     private refreshTable() {
@@ -219,7 +233,7 @@ elimina(id: string,  codigoExamen: string, nombre: string, Sigla: string, precio
    // this.dataSource.paginator._changePageSize(this.paginator.pageSize);
    // this.noticia=this.servicio.getNoticias();
 
-   this.getList();
+   this.getListCliente();
    this.dataSource.paginator._changePageSize(this.paginator.pageSize);
   }
 }
