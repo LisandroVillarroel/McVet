@@ -76,102 +76,71 @@ import { AgregaFormatosComponent } from './componentes/mantenedores/formatos/agr
 registerLocaleData(localeFr, 'es', localeFrExtra);
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AlertComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    MenuMatComponent ,
-    PortadaComponent,
-    PuntoVentaComponent,
-    DetalleVentaComponent,
-    EditableComponent,
-    AutoFocusDirective,
-    EditModeDirective ,
-    ViewModeDirective,
-    FocusableDirective,
-    EditableOnEnterDirective,
-    PropietarioComponent ,
-    AgregaPropietarioComponent ,
-    ModificaPropietarioComponent ,
-    EliminaPropietarioComponent ,
-    ConsultaPropietarioComponent ,
-    MenuListItemComponent ,
-    ClienteComponent,
-    EliminaClienteComponent,
-    ConsultaClienteComponent,
-    ModificaClienteComponent,
-    AgregaClienteComponent,
-    ExamenComponent,
-
-    AgregaExamenComponent,
-    ModificaExamenComponent,
-    ConsultaExamenComponent,
-    EliminaExamenComponent,
-
-    AgregaExamenesFichasComponent,
-
-    ExamenesIngresadosComponent,
-
-    Formato1Component,
-
-    AgregaFormato1Component,
-
-    ConsultaFormato1Component,
-
-    EliminaFormato1Component,
-
-    ModificaFormato1Component,
-
-    FormatosComponent,
-
-    ModificaFormatosComponent,
-
-    EliminaFormatosComponent,
-
-    ConsultaFormatosComponent,
-
-    AgregaFormatosComponent,
-
-
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    RutModule, // // <- aqui debes importarlo
-    Ng2Rut,
-    routing,
-    //
-    MaterialModule
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: LOCALE_ID, useValue: 'es'},
-    fakeBackendProvider,
-    RutValidator
-  ],
-   entryComponents: [
-    AgregaPropietarioComponent,
-    ModificaPropietarioComponent,
-    ConsultaPropietarioComponent,
-    EliminaPropietarioComponent,
-
-    AgregaClienteComponent,
-    ModificaClienteComponent,
-    ConsultaClienteComponent,
-    EliminaClienteComponent,
-
-    AgregaExamenComponent,
-    ModificaExamenComponent,
-    ConsultaExamenComponent,
-    EliminaExamenComponent,
+    declarations: [
+        AppComponent,
+        AlertComponent,
+        HomeComponent,
+        LoginComponent,
+        RegisterComponent,
+        MenuMatComponent,
+        PortadaComponent,
+        PuntoVentaComponent,
+        DetalleVentaComponent,
+        EditableComponent,
+        AutoFocusDirective,
+        EditModeDirective,
+        ViewModeDirective,
+        FocusableDirective,
+        EditableOnEnterDirective,
+        PropietarioComponent,
+        AgregaPropietarioComponent,
+        ModificaPropietarioComponent,
+        EliminaPropietarioComponent,
+        ConsultaPropietarioComponent,
+        MenuListItemComponent,
+        ClienteComponent,
+        EliminaClienteComponent,
+        ConsultaClienteComponent,
+        ModificaClienteComponent,
+        AgregaClienteComponent,
+        ExamenComponent,
+        AgregaExamenComponent,
+        ModificaExamenComponent,
+        ConsultaExamenComponent,
+        EliminaExamenComponent,
+        AgregaExamenesFichasComponent,
+        ExamenesIngresadosComponent,
+        Formato1Component,
+        AgregaFormato1Component,
+        ConsultaFormato1Component,
+        EliminaFormato1Component,
+        ModificaFormato1Component,
+        FormatosComponent,
+        ModificaFormatosComponent,
+        EliminaFormatosComponent,
+        ConsultaFormatosComponent,
+        AgregaFormatosComponent,
     ],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        RutModule,
+        Ng2Rut,
+        routing,
+        //
+        MaterialModule
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        { provide: LOCALE_ID, useValue: 'es' },
+        fakeBackendProvider,
+        RutValidator
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
