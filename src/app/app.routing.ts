@@ -9,7 +9,8 @@ import { PuntoVentaComponent } from './componentes/venta/punto-venta/punto-venta
 import { PropietarioComponent } from './componentes/mantenedores/propietario/propietario.component';
 import { ClienteComponent } from './componentes/mantenedores/cliente/cliente.component';
 import { ExamenComponent } from './componentes/mantenedores/examen/examen.component';
-import { Formato1Component } from './componentes/mantenedores/formato1/formato1.component';
+//import { FormatoComponent } from './componentes/mantenedores/formato1/formato1.component';
+import { FormatosComponent } from './componentes/mantenedores/formatos/formatos.component';
 //import { IngresoExamenComponent } from './componentes/ingresos/ingreso-examen/ingreso-examen.component';
 //import { SeleccionExamenComponent } from './componentes/ingresos/seleccion-examen/seleccion-examen.component';
 
@@ -34,7 +35,7 @@ const routes: Routes = [
 
 
     { path: 'mantenedorExamen', component: ExamenComponent, canActivate: [AuthGuard] },
-    { path: 'mantenedorFormato1', component: Formato1Component, canActivate: [AuthGuard] },
+    { path: 'mantenedorFormatos', component: FormatosComponent, canActivate: [AuthGuard] },
 
     {path: 'propietario', component: PropietarioComponent, canActivate: [AuthGuard]},
 

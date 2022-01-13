@@ -1,55 +1,52 @@
-import { catchError } from 'rxjs/operators';
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSnackBar} from '@angular/material//snack-bar';
-import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
-
-import { JwtResponseI } from '../../../autentica/_models';
-import { AuthenticationService } from '../../../autentica/_services';
-
-import { AgregaFormato1Component } from './agrega-formato1/agrega-formato1.component';
-import { ModificaFormato1Component } from './modifica-formato1/modifica-formato1.component';
-import { ConsultaFormato1Component } from './consulta-formato1/consulta-formato1.component';
-import { EliminaFormato1Component } from './elimina-formato1/elimina-formato1.component';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { JwtResponseI } from '@app/autentica/_models';
+import { AuthenticationService } from '@app/autentica/_services';
+import { IFormatos } from '@app/modelo/formatos-interface';
+import { FormatosService } from '@app/servicios/formatos.service';
 import Swal from 'sweetalert2';
-import { IFormato1 } from '@app/modelo/formato1-interface';
-import { Formato1Service } from '@app/servicios/formato1.service';
+import { AgregaFormatosComponent } from './agrega-formatos/agrega-formatos.component';
+import { ConsultaFormatosComponent } from './consulta-formatos/consulta-formatos.component';
+import { EliminaFormatosComponent } from './elimina-formatos/elimina-formatos.component';
+import { ModificaFormatosComponent } from './modifica-formatos/modifica-formatos.component';
 
 @Component({
-  selector: 'app-formato1',
-  templateUrl: './formato1.component.html',
-  styleUrls: ['./formato1.component.css']
+  selector: 'app-formatos',
+  templateUrl: './formatos.component.html',
+  styleUrls: ['./formatos.component.css']
 })
-export class Formato1Component implements OnInit {
+export class FormatosComponent implements OnInit {
 
-  datoPar: IFormato1;
+  datoPar: IFormatos;
   currentUsuario: JwtResponseI;
  // id: string;
 
   // tslint:disable-next-line:max-line-length
-  displayedColumns: string[] = ['index', 'nombreFormato', 'estado','opciones'];
-  dataSource: MatTableDataSource<IFormato1>;
+  displayedColumns: string[] = ['index', 'nombreFormato', 'descripcion', 'estado','opciones'];
+  dataSource: MatTableDataSource<IFormatos>;
 
   @ViewChild(MatPaginator ) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
 
-constructor(private servicioService: Formato1Service,
+constructor(private servicioService: FormatosService,
             public httpClient: HttpClient,
             public dialog: MatDialog,
             private snackBar: MatSnackBar,
             private authenticationService: AuthenticationService
     ) {
       this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
-      this.dataSource = new MatTableDataSource<IFormato1>();
+      this.dataSource = new MatTableDataSource<IFormatos>();
 
   }
 
 ngOnInit() {
-    console.log('pasa formato 1');
+    console.log('pasa formatos');
     if (this.authenticationService.getCurrentUser() != null) {
       this.currentUsuario.usuarioDato = this.authenticationService.getCurrentUser() ;
     }
@@ -58,10 +55,10 @@ ngOnInit() {
 
 getList(): void {
     this.servicioService
-      .getDataFormato1()
+      .getDataFormatos()
       .subscribe(res => {
-        console.log('pasa formato 2', res);
-        this.dataSource.data = res['data'] as IFormato1[];
+        console.log('pasa formatos 2', res);
+        this.dataSource.data = res['data'] as IFormatos[];
       },
       // console.log('yo:', res as PerfilI[]),
       error => {
@@ -107,7 +104,7 @@ agregaNuevo() {
   //  };
 
 
-    this.dialog.open(AgregaFormato1Component, dialogConfig)
+    this.dialog.open(AgregaFormatosComponent, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Dialog output3333:', data);
               if (data !== undefined) {
@@ -117,10 +114,11 @@ agregaNuevo() {
     );
   }
 
-actualiza(id: string, nombreFormato: string, estado: string) {
+actualiza(id: string, nombreFormato: string, descripcion: string, estado: string) {
     this.datoPar = {
       _id: id,
       nombreFormato,
+      descripcion,
       estado,
      // usuarioCrea_id: this.currentUsuario.usuarioDato.id,
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
@@ -135,7 +133,7 @@ actualiza(id: string, nombreFormato: string, estado: string) {
     dialogConfig.position = { top : '5%'};
 
     dialogConfig.data = this.datoPar;
-    this.dialog.open(ModificaFormato1Component, dialogConfig)
+    this.dialog.open(ModificaFormatosComponent, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Dialog output3333:', data);
               if (data !== undefined) {
@@ -145,10 +143,11 @@ actualiza(id: string, nombreFormato: string, estado: string) {
     );
   }
 
-consulta(id: string, nombreFormato: string, estado: string) {
+consulta(id: string, nombreFormato: string, descripcion: string, estado: string) {
     this.datoPar = {
       _id: id,
       nombreFormato,
+      descripcion,
       estado,
       usuarioCrea_id: this.currentUsuario.usuarioDato._id,
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
@@ -163,7 +162,7 @@ consulta(id: string, nombreFormato: string, estado: string) {
     dialogConfig.position = { top : '5%'};
 
     dialogConfig.data = this.datoPar;
-    this.dialog.open(ConsultaFormato1Component, dialogConfig)
+    this.dialog.open(ConsultaFormatosComponent, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Datoas Consulta:', data);
               if (data !== undefined) {
@@ -173,10 +172,11 @@ consulta(id: string, nombreFormato: string, estado: string) {
     );
  }
 
-elimina(id: string,  nombreFormato: string, estado: string) {
+elimina(id: string,  nombreFormato: string, descripcion: string, estado: string) {
     this.datoPar = {
       _id: id,
       nombreFormato,
+      descripcion,
       estado,
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
     };
@@ -190,7 +190,7 @@ elimina(id: string,  nombreFormato: string, estado: string) {
     dialogConfig.position = { top : '5%'};
 
     dialogConfig.data = this.datoPar;
-    this.dialog.open(EliminaFormato1Component, dialogConfig)
+    this.dialog.open(EliminaFormatosComponent, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Datoas Consulta:', data);
               if (data !== undefined) {

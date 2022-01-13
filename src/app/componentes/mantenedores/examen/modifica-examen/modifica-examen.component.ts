@@ -40,13 +40,13 @@ export class ModificaExamenComponent implements OnInit {
                // usuario: string;
   }
   codigoExamen = new FormControl(this.data.codigoExamen);
-  descripcion = new FormControl(this.data.descripcion, [Validators.required]);
-  sigla = new FormControl(this.data.sigla, [Validators.required]);
+  nombre = new FormControl(this.data.nombre, [Validators.required]);
+  sigla = new FormControl(this.data.Sigla, [Validators.required]);
   precio = new FormControl(this.data.precio, [Validators.required]);
 
   modifica: FormGroup = new FormGroup({
     codigoExamen: this.codigoExamen,
-    descripcion: this.descripcion,
+    nombre: this.nombre,
     sigla: this.sigla,
     precio: this.precio,
       // address: this.addressFormControl
@@ -56,8 +56,8 @@ export class ModificaExamenComponent implements OnInit {
 /*      if (campo === 'codigoExamen'){
         return this.codigoExamen.hasError('required') ? 'Debes ingresar Código Exámen' : '';
     }*/
-    if (campo === 'descripcion'){
-        return this.descripcion.hasError('required') ? 'Debes ingresar Descripción'  : '';
+    if (campo === 'nombre'){
+        return this.nombre.hasError('required') ? 'Debes ingresar Nombre'  : '';
     }
     if (campo === 'sigla'){
         return this.sigla.hasError('required') ? 'Debes ingresar Sigla' : '';
@@ -76,12 +76,12 @@ export class ModificaExamenComponent implements OnInit {
     this._dato = {
       _id: this.datoPar._id,
       codigoExamen: this.modifica.get('codigoExamen').value,
-      nombre: this.modifica.get('descrinombrepcion').value,
-      Sigla: this.modifica.get('Sigla').value,
+      nombre: this.modifica.get('nombre').value,
+      Sigla: this.modifica.get('sigla').value,
       precio: this.modifica.get('precio').value,
       usuarioModifica_id: this.datoPar.usuarioModifica_id
     };
-
+    console.log('modifica:', this._dato);
     this.servicioService.putDataExamen(this._dato)
     .subscribe(
       dato => {

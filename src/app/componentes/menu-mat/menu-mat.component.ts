@@ -132,12 +132,12 @@ menuItems: MenuItem[] = [
         {
           displayName: 'Exámen',
           iconName: 'star_rate',
-          route: 'propietario'
+          route: 'mantenedorExamen'
         },
         {
           displayName: 'Formatos',
           iconName: 'star_rate',
-          route: 'mantenedorFormato1'
+          route: 'mantenedorFormatos'
         }
         ]
       },

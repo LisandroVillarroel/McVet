@@ -4,10 +4,6 @@ export interface IExamen {
   nombre: string;
   Sigla: string;
   precio: number;
-  formato?:{
-        idFormato?: string;
-        nombreFormato?: string;
-    },
   usuarioCrea_id?: string;
   usuarioModifica_id: string;
   estado?: string;

@@ -62,11 +62,16 @@ import { AgregaExamenesFichasComponent } from './componentes/ingresosExamenFicha
 
 import { ExamenesIngresadosComponent } from './componentes/ingresosExamenFicha/examenes-ingresados.component';
 import { MaterialModule } from './material.module';
-import { Formato1Component } from './componentes/mantenedores/formato1/formato1.component';
-import { AgregaFormato1Component } from './componentes/mantenedores/formato1/agrega-formato1/agrega-formato1.component';
-import { ConsultaFormato1Component } from './componentes/mantenedores/formato1/consulta-formato1/consulta-formato1.component';
-import { EliminaFormato1Component } from './componentes/mantenedores/formato1/elimina-formato1/elimina-formato1.component';
-import { ModificaFormato1Component } from './componentes/mantenedores/formato1/modifica-formato1/modifica-formato1.component';
+import { Formato1Component } from './componentes/mantenedores/formatos/formato1/formato1.component';
+import { AgregaFormato1Component } from './componentes/mantenedores/formatos/formato1/agrega-formato1/agrega-formato1.component';
+import { ConsultaFormato1Component } from './componentes/mantenedores/formatos/formato1/consulta-formato1/consulta-formato1.component';
+import { EliminaFormato1Component } from './componentes/mantenedores/formatos/formato1/elimina-formato1/elimina-formato1.component';
+import { ModificaFormato1Component } from './componentes/mantenedores/formatos/formato1/modifica-formato1/modifica-formato1.component';
+import { FormatosComponent } from './componentes/mantenedores/formatos/formatos.component';
+import { ModificaFormatosComponent } from './componentes/mantenedores/formatos/modifica-formatos/modifica-formatos.component';
+import { EliminaFormatosComponent } from './componentes/mantenedores/formatos/elimina-formatos/elimina-formatos.component';
+import { ConsultaFormatosComponent } from './componentes/mantenedores/formatos/consulta-formatos/consulta-formatos.component';
+import { AgregaFormatosComponent } from './componentes/mantenedores/formatos/agrega-formatos/agrega-formatos.component';
 
 registerLocaleData(localeFr, 'es', localeFrExtra);
 
@@ -118,6 +123,16 @@ registerLocaleData(localeFr, 'es', localeFrExtra);
     EliminaFormato1Component,
 
     ModificaFormato1Component,
+
+    FormatosComponent,
+
+    ModificaFormatosComponent,
+
+    EliminaFormatosComponent,
+
+    ConsultaFormatosComponent,
+
+    AgregaFormatosComponent,
 
 
   ],
