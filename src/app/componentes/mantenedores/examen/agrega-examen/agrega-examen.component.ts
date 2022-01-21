@@ -33,16 +33,14 @@ export class AgregaExamenComponent implements OnInit {
 
     codigoExamen = new FormControl('', );
     nombre = new FormControl('', [Validators.required]);
-    Sigla = new FormControl('', [Validators.required]);
+    sigla = new FormControl('', [Validators.required]);
     precio = new FormControl('', [Validators.required]);
-    nombreFormato= new FormControl('', [Validators.required]);
 
     agregaExamen: FormGroup = new FormGroup({
       codigoExamen: this.codigoExamen,
       nombre: this.nombre,
-      Sigla: this.Sigla,
-      precio: this.precio,
-      nombreFormato: this.nombreFormato,
+      sigla: this.sigla,
+      precio: this.precio
 
       // address: this.addressFormControl
     });
@@ -56,16 +54,13 @@ export class AgregaExamenComponent implements OnInit {
       if (campo === 'nombre'){
           return this.nombre.hasError('required') ? 'Debes ingresar Nombre'  : '';
       }
-      if (campo === 'Sigla'){
-          return this.Sigla.hasError('required') ? 'Debes ingresar Sigla' : '';
+      if (campo === 'sigla'){
+          return this.sigla.hasError('required') ? 'Debes ingresar Sigla' : '';
       }
       if (campo === 'precio'){
         return this.precio.hasError('required') ? 'Debes ingresar Precio' : '';
       }
 
-      if (campo === 'nombreFormato'){
-        return this.nombreFormato.hasError('required') ? 'Debes Seleccionar Formato' : '';
-      }
 
       return '';
     }
@@ -78,7 +73,7 @@ export class AgregaExamenComponent implements OnInit {
     this.dato = {
       codigoExamen: this.agregaExamen.get('codigoExamen').value,
       nombre: this.agregaExamen.get('nombre').value,
-      Sigla: this.agregaExamen.get('Sigla').value,
+      sigla: this.agregaExamen.get('sigla').value,
       precio: this.agregaExamen.get('precio').value,
       usuarioCrea_id: this.usuario,
       usuarioModifica_id: this.usuario
@@ -87,7 +82,8 @@ export class AgregaExamenComponent implements OnInit {
     this.servicioService.postDataExamen(this.dato)
     .subscribe(
       dato => {
-        console.log('respuesta:', dato.codigo);
+        console.log('respuesta:', dato);
+        console.log('respuesta:', dato.mensaje);
         if (dato.codigo === 200) {
             Swal.fire(
             'Ya se agrego con Exito',
@@ -97,7 +93,7 @@ export class AgregaExamenComponent implements OnInit {
             this.dialogRef.close(1);
         }else{
           Swal.fire(
-            dato.mensaje,
+            dato.mensaje.message,
             'Click en Boton!',
             'error'
           );

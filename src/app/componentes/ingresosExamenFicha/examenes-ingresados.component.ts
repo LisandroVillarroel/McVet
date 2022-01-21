@@ -14,10 +14,7 @@ import { ICliente } from '@app/modelo/cliente-interface';
 import { AuthenticationService } from '@app/autentica/_services';
 import { JwtResponseI } from '@app/autentica/_models';
 import { ClienteService } from '@app/servicios/cliente.service';
-import { AgregaClienteComponent } from '../mantenedores/cliente/agrega-cliente/agrega-cliente.component';
-import { ModificaClienteComponent } from '../mantenedores/cliente/modifica-cliente/modifica-cliente.component';
-import { ConsultaClienteComponent } from '../mantenedores/cliente/consulta-cliente/consulta-cliente.component';
-import { EliminaClienteComponent } from '../mantenedores/cliente/elimina-cliente/elimina-cliente.component';
+import { AgregaExamenesFichasComponent } from './agrega-examen-ficha/agrega-examenes-fichas.component';
 
 @Component({
   selector: 'app-examenes-ingresados',
@@ -111,7 +108,7 @@ agregaNuevo() {
   //  };
 
 
-    this.dialog.open(AgregaClienteComponent, dialogConfig)
+    this.dialog.open(AgregaExamenesFichasComponent, dialogConfig)
     .afterClosed().subscribe(
      data => {console.log('Dialog output3333:', data);
               if (data !== undefined) {
@@ -120,7 +117,7 @@ agregaNuevo() {
       }
     );
   }
-
+/*
 actualizaCliente(id: string, rutCliente: string, razonSocial: string, nombreFantasia: string, direccion: string,
                  telefono: string, email: string, nombreContacto: string) {
     this.datoClientePar = {
@@ -225,7 +222,7 @@ eliminaCliente(id: string, rutCliente: string, razonSocial: string, nombreFantas
     );
 
   }
-
+*/
     private refreshTable() {
     // Refreshing table using paginator
     // Thanks yeager-j for tips

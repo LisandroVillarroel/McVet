@@ -40,7 +40,8 @@ export class EliminaExamenComponent implements OnInit {
       usuarioModifica_id: this.datoPar.usuarioModifica_id
     };
 */
-    this.servicioService.deleteDataExamen(this.dato)
+    console.log('elimina:',this.datoPar);
+    this.servicioService.deleteDataExamen(this.datoPar)
     .subscribe(
       dato => {
         console.log('respuesta:', dato['codigo']);

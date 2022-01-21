@@ -41,7 +41,7 @@ export class ModificaExamenComponent implements OnInit {
   }
   codigoExamen = new FormControl(this.data.codigoExamen);
   nombre = new FormControl(this.data.nombre, [Validators.required]);
-  sigla = new FormControl(this.data.Sigla, [Validators.required]);
+  sigla = new FormControl(this.data.sigla, [Validators.required]);
   precio = new FormControl(this.data.precio, [Validators.required]);
 
   modifica: FormGroup = new FormGroup({
@@ -77,7 +77,7 @@ export class ModificaExamenComponent implements OnInit {
       _id: this.datoPar._id,
       codigoExamen: this.modifica.get('codigoExamen').value,
       nombre: this.modifica.get('nombre').value,
-      Sigla: this.modifica.get('sigla').value,
+      sigla: this.modifica.get('sigla').value,
       precio: this.modifica.get('precio').value,
       usuarioModifica_id: this.datoPar.usuarioModifica_id
     };

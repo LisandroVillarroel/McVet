@@ -100,11 +100,9 @@ menuItems: MenuItem[] = [
 
   traeTituloModulo(valor:any){
    // this.tituloModulo = valor;
-   console.log('paso menu 2');
   }
 
   getMenu() {
-    console.log('paso menu 1',this.menuItems.filter((item) => item.disabled === false));
    return this.menuItems.filter((item) => item.disabled === false);
   }
 

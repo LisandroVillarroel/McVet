@@ -37,7 +37,6 @@ export class MenuListItemComponent implements OnInit {
 
 ) {
   if (this.depth === undefined) {
-    console.log('pao100');
     this.depth = 0;
   }
 
@@ -47,7 +46,6 @@ ngOnInit() {
 
   this.navService.currentUrl.subscribe((url: string) => {
     if (this.item.route && url) {
-      console.log('pao200',this.item.route);
       // console.log(`Checking '/${this.item.route}' against '${url}'`);
       this.expanded = url.indexOf(`/${this.item.route}`) === 0;
       this.ariaExpanded = this.expanded;
@@ -57,18 +55,15 @@ ngOnInit() {
 }
 
 onItemSelected($event: any, item: MenuItem) {
-  console.log('paso,',item);
-  console.log('largo itrm,', item.children?.length);
+
   if (item.route === 'cerrar'){
     console.log('paso1111');
     this.router.navigate(['/hospital']);
   }else{
   if (!item.children || !item.children?.length) {
-    console.log('paso 1');
     // this.router.navigate([item.route]);
     this.tituloModuloF.emit('  -  ( ' + item.displayName + ' )');
     this.tituloModuloF2.emit('  -  ( ' + item.displayName + ' )');
-    console.log('paso...',item.displayName );
     this.router.navigate(['' + item.route]);
   //  this.navService.closeNav();
   }

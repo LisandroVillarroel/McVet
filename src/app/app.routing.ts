@@ -11,6 +11,7 @@ import { ClienteComponent } from './componentes/mantenedores/cliente/cliente.com
 import { ExamenComponent } from './componentes/mantenedores/examen/examen.component';
 //import { FormatoComponent } from './componentes/mantenedores/formato1/formato1.component';
 import { FormatosComponent } from './componentes/mantenedores/formatos/formatos.component';
+import { ExamenesIngresadosComponent } from './componentes/ingresosExamenFicha/examenes-ingresados.component';
 //import { IngresoExamenComponent } from './componentes/ingresos/ingreso-examen/ingreso-examen.component';
 //import { SeleccionExamenComponent } from './componentes/ingresos/seleccion-examen/seleccion-examen.component';
 
@@ -27,13 +28,14 @@ const appRoutes: Routes = [
 ];
 
 const routes: Routes = [
-    {path: '', component: PortadaComponent, canActivate: [AuthGuard]},
-    { path: 'inicio', component: PortadaComponent, },
-    {path: 'mantenedorCliente', component: ClienteComponent, canActivate: [AuthGuard]},
-    { path: 'mantenedorPaciente', component: HomeComponent , canActivate: [AuthGuard]},
+    { path: '', component: PortadaComponent, canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent },
+    { path: 'inicio', component: PortadaComponent, },
 
+    { path: 'ingresoResultados', component: ExamenesIngresadosComponent, canActivate: [AuthGuard]},
 
+    { path: 'mantenedorCliente', component: ClienteComponent, canActivate: [AuthGuard]},
+    { path: 'mantenedorPaciente', component: HomeComponent , canActivate: [AuthGuard]},
     { path: 'mantenedorExamen', component: ExamenComponent, canActivate: [AuthGuard] },
     { path: 'mantenedorFormatos', component: FormatosComponent, canActivate: [AuthGuard] },
 

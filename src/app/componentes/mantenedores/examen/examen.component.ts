@@ -29,7 +29,7 @@ export class ExamenComponent implements OnInit {
  // id: string;
 
   // tslint:disable-next-line:max-line-length
-  displayedColumns: string[] = ['index', 'codigoExamen', 'nombre', 'Sigla', 'precio', 'formato:{nombreFormato}','opciones'];
+  displayedColumns: string[] = ['index', 'codigoExamen', 'nombre', 'sigla', 'precio','opciones'];
   dataSource: MatTableDataSource<IExamen>;
 
   @ViewChild(MatPaginator ) paginator: MatPaginator;
@@ -91,7 +91,7 @@ applyFilter(filterValue: string) {
 agregaNuevo() {
   //  agregaNuevo(empresaInterface_: EmpresaI) {
     // Nuevo
-    console.log('usu:', this.currentUsuario.usuarioDato._id);
+    console.log('usu:', this.currentUsuario.usuarioDato);
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -116,17 +116,17 @@ agregaNuevo() {
     );
   }
 
-actualiza(id: string, codigoExamen: string, nombre: string, Sigla: string, precio: number, nombreFormato:string) {
+actualiza(id: string, codigoExamen: string, nombre: string, sigla: string, precio: number) {
     this.datoPar = {
       _id: id,
       codigoExamen,
       nombre,
-      Sigla,
+      sigla,
       precio,
      // usuarioCrea_id: this.currentUsuario.usuarioDato.id,
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
     };
-
+    console.log('actualiza',this.datoPar);
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -147,12 +147,12 @@ actualiza(id: string, codigoExamen: string, nombre: string, Sigla: string, preci
     );
   }
 
-consulta(id: string, codigoExamen: string, nombre: string, Sigla: string, precio: number, nombreFormato: string) {
+consulta(id: string, codigoExamen: string, nombre: string, sigla: string, precio: number) {
     this.datoPar = {
       _id: id,
       codigoExamen,
       nombre,
-      Sigla,
+      sigla,
       precio,
       usuarioCrea_id: this.currentUsuario.usuarioDato._id,
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
@@ -177,12 +177,12 @@ consulta(id: string, codigoExamen: string, nombre: string, Sigla: string, precio
     );
  }
 
-elimina(id: string,  codigoExamen: string, nombre: string, Sigla: string, precio: number, nombreFormato: string) {
+elimina(id: string,  codigoExamen: string, nombre: string, sigla: string, precio: number) {
     this.datoPar = {
       _id: id,
       codigoExamen,
       nombre,
-      Sigla,
+      sigla,
       precio,
      // usuarioCrea_id: this.currentUsuario.usuarioDato.id
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
