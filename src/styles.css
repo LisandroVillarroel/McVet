@@ -119,3 +119,9 @@ height: calc(.5em + .75rem + 2px) !important; /*tamaño height de inpul*/
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-drawer-inner-container {
+  overflow: revert !important;
+
+}

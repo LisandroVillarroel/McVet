@@ -15,7 +15,7 @@ import { JwtInterceptor, ErrorInterceptor } from './autentica/_helpers';
 import { LoginComponent } from './autentica/login/login.component';
 import { RegisterComponent } from './autentica/register';
 
-import { RutModule } from 'rut-chileno'; // <- aqui debes importarlo
+//import { RutModule } from 'rut-chileno'; // <- aqui debes importarlo
 import { Ng2Rut, RutValidator } from 'ng2-rut';
 import { routing } from './app.routing';
 
@@ -30,7 +30,7 @@ import { EditableComponent } from './componentes/venta/editable/editable.compone
 
 import { PropietarioComponent } from './componentes/mantenedores/propietario/propietario.component' ;
 import { ModificaPropietarioComponent } from './componentes/mantenedores/propietario/modifica-propietario/modifica-propietario.component';
-import { AgregaPropietarioComponent } from './componentes/mantenedores/propietario/agrega-propietario/agrega-propietario.component';
+
 import { EliminaPropietarioComponent } from './componentes/mantenedores/propietario/elimina-propietario/elimina-propietario.component';
 import { ConsultaPropietarioComponent } from './componentes/mantenedores/propietario/consulta-propietario/consulta-propietario.component';
 
@@ -72,6 +72,7 @@ import { ModificaFormatosComponent } from './componentes/mantenedores/formatos/m
 import { EliminaFormatosComponent } from './componentes/mantenedores/formatos/elimina-formatos/elimina-formatos.component';
 import { ConsultaFormatosComponent } from './componentes/mantenedores/formatos/consulta-formatos/consulta-formatos.component';
 import { AgregaFormatosComponent } from './componentes/mantenedores/formatos/agrega-formatos/agrega-formatos.component';
+import { AgregaPropietarioComponent } from './componentes/mantenedores/propietario/agrega-propietario/agrega-propietario.component';
 
 registerLocaleData(localeFr, 'es', localeFrExtra);
 
@@ -127,7 +128,7 @@ registerLocaleData(localeFr, 'es', localeFrExtra);
         HttpClientModule,
         BrowserAnimationsModule,
         FormsModule,
-        RutModule,
+    //    RutModule,
         Ng2Rut,
         routing,
         //

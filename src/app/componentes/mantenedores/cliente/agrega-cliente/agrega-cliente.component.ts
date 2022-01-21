@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ClienteService } from '../../../../servicios/cliente.service';
 import {ICliente} from '../../../../modelo/cliente-interface';
 
-import { RutService } from 'rut-chileno';
+//import { RutService } from 'rut-chileno';
 
 import {RutValidator} from 'ng2-rut';
 import { validateRut, formatRut, RutFormat } from '@fdograph/rut-utilities';
@@ -26,11 +26,14 @@ export class AgregaClienteComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<AgregaClienteComponent>,
               @Inject(MAT_DIALOG_DATA) data,
               public servCliente: ClienteService,
-              public rutService: RutService,
+            //  public rutService: RutService,
               public rutValidator: RutValidator
               ) {
                this.usuario = data.usuario;
     }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
     rutCliente = new FormControl('', [Validators.required, this.validaRut]);
     razonSocial = new FormControl('', [Validators.required]);
@@ -52,10 +55,10 @@ export class AgregaClienteComponent implements OnInit {
       // address: this.addressFormControl
     });
 
-    getErrorMessage(campo: string) {
+  getErrorMessage(campo: string): "" | "Debes ingresar Rut" | "Rut Inválido" | "Debes ingresar Razón Social" | "Debes ingresar Nombre Fantasía" | "Debes ingresar Dirección" | "Debes ingresar Teléfono" | "Debes ingresar Email" | "Debes ingresar Nombre Contacto" {
       if (campo === 'rutCliente'){
           return this.rutCliente.hasError('required') ? 'Debes ingresar Rut' :
-        this.rutCliente.hasError('rutInvalido') ? 'Rut Inválido' : '';
+          this.rutCliente.hasError('rutInvalido') ? 'Rut Inválido' : '';
       }
       if (campo === 'razonSocial'){
           return this.razonSocial.hasError('required') ? 'Debes ingresar Razón Social'  : '';
@@ -103,8 +106,7 @@ export class AgregaClienteComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
+
 
   enviar() {
     this.datoCliente = {

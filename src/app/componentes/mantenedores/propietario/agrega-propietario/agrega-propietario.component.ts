@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { PropietarioService } from '../../../../servicios/propietario.service';
 import {IPropietario} from '../../../../modelo/propietario-interface';
 
-import { RutService } from 'rut-chileno';
+//import { RutService } from 'rut-chileno';
 
 import {RutValidator} from 'ng2-rut';
 import { validateRut, formatRut, RutFormat } from '@fdograph/rut-utilities';
@@ -26,7 +26,7 @@ export class AgregaPropietarioComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<AgregaPropietarioComponent>,
               @Inject(MAT_DIALOG_DATA) data,
               public servicioService: PropietarioService,
-              public rutService: RutService,
+          //    public rutService: RutService,
               public rutValidator: RutValidator
               ) {
                this.usuario = data.usuario;

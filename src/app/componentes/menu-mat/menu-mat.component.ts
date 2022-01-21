@@ -1,155 +1,113 @@
-import { Component, OnInit } from '@angular/core';
-
-import { JwtResponseI } from '../../autentica/_models';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnDestroy,Input } from '@angular/core';
+//import { IConsultaLoginPerfil, IInicio, IMenuLateral } from '@app/interface/inicio';
+import { Location } from '@angular/common';
+import { FormControl } from '@angular/forms';
+import { TooltipPosition } from '@angular/material/tooltip';
 
 import {MenuItem} from './../../modelo/menu-interface';
+import { JwtResponseI } from '@app/autentica/_models';
 
 @Component({
   selector: 'app-menu-mat',
   templateUrl: './menu-mat.component.html',
   styleUrls: ['./menu-mat.component.css']
 })
-export class MenuMatComponent  {
+export class MenuMatComponent implements OnDestroy {
+
+  positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
+
+  position = new FormControl(this.positionOptions[0]);
+
   currentUsuario: JwtResponseI;
-  /*
-  navItems: MenuItem[] = [
-    {
-      displayName: '',
-      iconName: 'more_vert',
-      children: [
-        {
-          displayName: 'Speakers',
-          iconName: 'group',
-          children: [
-            {
-              displayName: 'Michael Prentice',
-              iconName: 'person',
-              route: 'michael-prentice',
-              children: [
-                {
-                  displayName: 'Delight your Organization',
-                  iconName: 'star_rate',
-                  route: 'material-design'
-                }
-              ]
-            },
-            {
-              displayName: 'Stephen Fluin',
-              iconName: 'person',
-              route: 'stephen-fluin',
-              children: [
-                {
-                  displayName: 'What\'s up with the Web?',
-                  iconName: 'star_rate',
-                  route: 'what-up-web'
-                }
-              ]
-            },
-            {
-              displayName: 'Mike Brocchi',
-              iconName: 'person',
-              route: 'mike-brocchi',
-              children: [
-                {
-                  displayName: 'My ally, the CLI',
-                  iconName: 'star_rate',
-                  route: 'my-ally-cli'
-                },
-                {
-                  displayName: 'Become an Angular Tailor',
-                  iconName: 'star_rate',
-                  route: 'become-angular-tailer'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          displayName: 'Sessions',
-          iconName: 'speaker_notes',
-          children: [
-            {
-              displayName: 'Delight your Organization',
-              iconName: 'star_rate',
-              route: 'material-design'
-            },
-            {
-              displayName: 'What\'s up with the Web?',
-              iconName: 'star_rate',
-              route: 'what-up-web'
-            },
-            {
-              displayName: 'My ally, the CLI',
-              iconName: 'star_rate',
-              route: 'my-ally-cli'
-            },
-            {
-              displayName: 'Become an Angular Tailor',
-              iconName: 'star_rate',
-              route: 'become-angular-tailer'
-            }
-          ]
-        },
-        {
-          displayName: 'Feedback',
-          iconName: 'feedback',
-          route: 'feedback'
-        }
-      ]
-    }
-  ];
-*/
+
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private location: Location
+    /*private menuLateralService: MenuLateralService*/) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._MOBILEQUERYLISTENER = () => changeDetectorRef.detectChanges();
+    // deprecated: MediaQueryList.addListener(listener);
+
+    this.mobileQuery.addEventListener('change', this._MOBILEQUERYLISTENER);
+
+  }
+
+
+  mobileQuery: MediaQueryList;
+
+
 
 menuItems: MenuItem[] = [
-  {
-    displayName: '',
-    iconName: 'more_vert',
-    children: [
+
       {
         displayName: 'Inicio',
         iconName: 'feedback',
-        route: 'inicio'
+        route: 'inicio',
+        disabled: false
       },
       {
         displayName: 'Ingreso Resultados',
         iconName: 'feedback',
-        route: 'IngresoExamen'
+        route: 'IngresoExamen',
+        disabled: false
       },
       {
         displayName: 'Mantenedores',
         iconName: 'speaker_notes',
+        disabled: false,
         children: [
         {
             displayName: 'Cliente',
             iconName: 'star_rate',
-            route: 'mantenedorCliente'
+            route: 'mantenedorCliente',
+            disabled: false
         },
         {
           displayName: 'Propietario',
           iconName: 'star_rate',
-          route: 'propietario'
+          route: 'propietario',
+          disabled: false
         },
         {
           displayName: 'Exámen',
           iconName: 'star_rate',
-          route: 'mantenedorExamen'
+          route: 'mantenedorExamen',
+          disabled: false
         },
         {
           displayName: 'Formatos',
           iconName: 'star_rate',
-          route: 'mantenedorFormatos'
+          route: 'mantenedorFormatos',
+          disabled: false
         }
         ]
       },
       {
         displayName: 'Cerrar',
         iconName: '',
-        route: ''
+        route: '',
+        disabled: false
       },
     ]
-  }];
+  ;
 
-  constructor(  ) {  }
+  private _MOBILEQUERYLISTENER: () => void;
+
+  shouldRun = true;
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeEventListener('change', this._MOBILEQUERYLISTENER);
+  }
+
+  traeTituloModulo(valor:any){
+   // this.tituloModulo = valor;
+   console.log('paso menu 2');
+  }
+
+  getMenu() {
+    console.log('paso menu 1',this.menuItems.filter((item) => item.disabled === false));
+   return this.menuItems.filter((item) => item.disabled === false);
+  }
+
 /*
   fillerNav = [
     {name: 'Inicio', route: 'inicio', icon: ''},

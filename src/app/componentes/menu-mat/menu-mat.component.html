@@ -1,46 +1,64 @@
-<!--<button class="color-boton-menu text-center" mat-icon-button [matMenuTriggerFor]="menu">
-  <mat-icon class="text-center">more_vert</mat-icon>
 
-</button>
- <mat-menu #menu="matMenu">
+<!--Menu nuevo-->
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <span class="spacerDerecha"></span>
 
-    <button mat-menu-item  *ngFor="let nav of fillerNav">
+    <h6>{{"Italo Vallejos Gutiérrez"}}</h6>
+  </mat-toolbar>
 
-        <a class="nav-item nav-link"  routerLink='{{ nav.route }}' [routerLinkActive]="['active-link']">
-          <mat-icon *ngIf="nav.icon!=''">{{nav.icon}}</mat-icon>
-          <span *ngIf="nav.icon==''">{{nav.name}}</span>
-        </a>
+  <mat-divider></mat-divider>
 
-    </button>
-
-
-    <mat-sidenav #appDrawer mode="over" opened="false">
+  <mat-sidenav-container autosize class="example-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" opened="true"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+        <!--"https://source.unsplash.com/c_GmwfHBDzk/200x200"-->
+        <img class="avatar mat-elevation-z8" src="./../../../assets/imagenes/sinPerfil.jfif" />
+        <h4 class="name">MCVET</h4>
+      <p class="NAME">Veterinaria</p>
+
+          <app-menu-list-item *ngFor="let item of getMenu()" [item]="item" (tituloModuloF)="traeTituloModulo($event)"></app-menu-list-item>
+
+        <!--
+        <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+
+      <h4 class="name">John Smith</h4>
+      <p class="designation">Software Engineer</p>
+
+      <mat-divider></mat-divider>
+
+      <button mat-button class="menu-button">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+      </button>
+      <button mat-button class="menu-button">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+      </button>
+      <button mat-button class="menu-button">
+          <mat-icon>info</mat-icon>
+          <span>About</span>
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <button mat-button class="menu-button">
+          <mat-icon>help</mat-icon>
+          <span>Help</span>
+      </button>
+      -->
       </mat-nav-list>
     </mat-sidenav>
 
-  <button mat-menu-item (click)="logout()">
-    <mat-icon>exit_to_app</mat-icon>
-  </button>
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
+        <router-outlet></router-outlet>
+    </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
 
- </mat-menu>
--->
-  <span *ngFor="let item of menuItems">
-    <!-- Handle branch node buttons here -->
-    <span *ngIf="item.children && item.children.length > 0 && item.displayName !='Cerrar'">
-      <button mat-raised-button color="primary" [matMenuTriggerFor]="menu.childMenu">
-        {{item.displayName}}
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <app-menu-list-item #menu [items]="item.children"></app-menu-list-item>
-    </span>
-    <!-- Leaf node buttons here -->
-    <span *ngIf="(!item.children || item.children.length === 0) && item.displayName !='Cerrar'">
-      <button mat-button color="primary" [routerLink]="item.route">
-        {{item.displayName}}
-      </button>
-    </span>
-
-  </span>
-
+<div *ngIf="!shouldRun">Error al abrir modulo</div>

@@ -14,8 +14,9 @@ export class ErrorInterceptor implements HttpInterceptor {
             if (err.status === 401) {
                 // auto logout if 401 response returned from api
                 this.authenticationService.logout();
+              const newLocal = true;
 // tslint:disable-next-line: deprecation
-                location.reload(true);
+                location.reload();
             }
             const error = err.error.message || err.statusText;
             return throwError(error);

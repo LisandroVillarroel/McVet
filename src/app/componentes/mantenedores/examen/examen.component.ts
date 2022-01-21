@@ -4,7 +4,6 @@ import {HttpClient} from '@angular/common/http';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSnackBar} from '@angular/material//snack-bar';
 import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
 
 import { JwtResponseI } from '../../../autentica/_models';
@@ -40,7 +39,6 @@ export class ExamenComponent implements OnInit {
 constructor(private servicioService: ExamenService,
             public httpClient: HttpClient,
             public dialog: MatDialog,
-            private snackBar: MatSnackBar,
             private authenticationService: AuthenticationService
     ) {
       this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);

@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-import { RutService } from 'rut-chileno';
+//import { RutService } from 'rut-chileno';
 
 import {RutValidator} from 'ng2-rut';
 import { validateRut, formatRut, RutFormat } from '@fdograph/rut-utilities';
@@ -49,7 +49,7 @@ export class AgregaFormato1Component implements OnInit {
               @Inject(MAT_DIALOG_DATA) data,
               public servicioService: ExamenService,
               public formato1Service: Formato1Service,
-              public rutService: RutService,
+           //   public rutService: RutService,
               public rutValidator: RutValidator
               ) {
                this.usuario = data.usuario;

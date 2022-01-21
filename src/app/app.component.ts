@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from './autentica/_services';
@@ -12,15 +12,33 @@ import { JwtResponseI } from './autentica/_models';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  currentUsuario: JwtResponseI;
 
+
+  currentUsuario: JwtResponseI;
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
     ) {
         this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
+
     }
 
+/*
+    ngAfterViewInit() {
+      this.observer
+        .observe(['(max-width: 1800px)'])
+        .pipe(delay(1))
+        .subscribe((res) => {
+          if (res.matches) {
+            this.sidenav.mode = 'over';
+            this.sidenav.close();
+          } else {
+            this.sidenav.mode = 'side';
+            this.sidenav.open();
+          }
+        });
+    }
+*/
     ngOnInit() {
     //  if (JSON.parse(localStorage.getItem('currentUsuario')) != null) {
     //   this.currentUsuario.usuarioDato = JSON.parse(localStorage.getItem('currentUsuario')) || [];

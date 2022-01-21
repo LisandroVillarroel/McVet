@@ -4,7 +4,6 @@ import {HttpClient} from '@angular/common/http';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSnackBar} from '@angular/material//snack-bar';
 import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
 import {ICliente} from '../../../modelo/cliente-interface';
 import {ClienteService } from '../../../servicios/cliente.service';
@@ -12,11 +11,11 @@ import {ClienteService } from '../../../servicios/cliente.service';
 import { JwtResponseI } from '../../../autentica/_models';
 import { AuthenticationService } from '../../../autentica/_services';
 
+import Swal from 'sweetalert2';
 import { AgregaClienteComponent } from './agrega-cliente/agrega-cliente.component';
 import { ModificaClienteComponent } from './modifica-cliente/modifica-cliente.component';
 import { ConsultaClienteComponent } from './consulta-cliente/consulta-cliente.component';
 import { EliminaClienteComponent } from './elimina-cliente/elimina-cliente.component';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cliente',
@@ -41,7 +40,6 @@ export class ClienteComponent implements OnInit {
 constructor(private clienteService: ClienteService,
             public httpClient: HttpClient,
             public dialog: MatDialog,
-            private snackBar: MatSnackBar,
             private authenticationService: AuthenticationService
     ) {
       this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
@@ -120,8 +118,7 @@ agregaNuevo() {
     );
   }
 
-actualizaCliente(id: string, rutCliente: string, razonSocial: string, nombreFantasia: string, direccion: string,
-                 telefono: string, email: string, nombreContacto: string) {
+actualizaCliente(id: string, rutCliente: string, razonSocial: string, nombreFantasia: string, direccion: string, telefono: string, email: string, nombreContacto: string): void {
     this.datoClientePar = {
       _id: id,
       rutCliente,

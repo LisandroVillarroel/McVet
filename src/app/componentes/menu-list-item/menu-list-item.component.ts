@@ -1,37 +1,98 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {MenuItem} from './../../modelo/menu-interface';
 import {Router} from '@angular/router';
 import {MenuService} from './../../servicios/menu.service';
 import { AuthenticationService } from '../../autentica/_services';
 import { JwtResponseI } from '../../autentica/_models';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-menu-list-item',
   templateUrl: './menu-list-item.component.html',
-  styleUrls: ['./menu-list-item.component.css']
+  styleUrls: ['./menu-list-item.component.css'],
+  animations: [
+    trigger('indicatorRotate', [
+      state('collapsed', style({transform: 'rotate(0deg)'})),
+      state('expanded', style({transform: 'rotate(180deg)'})),
+      transition('expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
+      ),
+    ])
+  ]
 })
 export class MenuListItemComponent implements OnInit {
 
-  currentUsuario: JwtResponseI;
-  expanded: boolean;
-  @Input() items: MenuItem[];
-  @ViewChild('childMenu', {static: true}) public childMenu: any;
 
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService
+  expanded: boolean=false;
+  @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
+  @Input()
+  item!: MenuItem;
+  @Input()
+  depth!: number;
+
+  @Output() tituloModuloF = new EventEmitter();
+  @Output() tituloModuloF2 = new EventEmitter();
+  @Output() tituloModuloF3 = new EventEmitter();
+  constructor(public router: Router, private navService: MenuService
+
 ) {
-    this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
+  if (this.depth === undefined) {
+    console.log('pao100');
+    this.depth = 0;
+  }
+
 }
 
-  ngOnInit() {
-  }
+ngOnInit() {
 
-  logout() {
-    console.log('paso logout 1');
-      this.authenticationService.logout();
-      console.log('paso logout 2');
-      this.router.navigate(['./login']);
-      console.log('paso logout 3');
+  this.navService.currentUrl.subscribe((url: string) => {
+    if (this.item.route && url) {
+      console.log('pao200',this.item.route);
+      // console.log(`Checking '/${this.item.route}' against '${url}'`);
+      this.expanded = url.indexOf(`/${this.item.route}`) === 0;
+      this.ariaExpanded = this.expanded;
+      // console.log(`${this.item.route} is expanded: ${this.expanded}`);
+    }
+  });
+}
+
+onItemSelected($event: any, item: MenuItem) {
+  console.log('paso,',item);
+  console.log('largo itrm,', item.children?.length);
+  if (item.route === 'cerrar'){
+    console.log('paso1111');
+    this.router.navigate(['/hospital']);
+  }else{
+  if (!item.children || !item.children?.length) {
+    console.log('paso 1');
+    // this.router.navigate([item.route]);
+    this.tituloModuloF.emit('  -  ( ' + item.displayName + ' )');
+    this.tituloModuloF2.emit('  -  ( ' + item.displayName + ' )');
+    console.log('paso...',item.displayName );
+    this.router.navigate(['' + item.route]);
+  //  this.navService.closeNav();
   }
+  if (item.children && item.children?.length) {
+    this.tituloModuloF.emit('  -  ( ' + item.displayName + ' )');
+    this.tituloModuloF2.emit('  -  ( ' + item.displayName + ' )');
+    this.expanded = !this.expanded;
+  }
+}
+
+}
+
+traeTituloModulo(valor:any){
+  this.tituloModuloF.emit(valor);
+  this.tituloModuloF2.emit(valor);
+}
+
+traeTituloModulo2(valor:any){
+  this.tituloModuloF.emit(valor);
+}
+
+getMenuChildren() {
+  return this.item.children?.filter((item) => item.disabled === false);
+}
+
+
 }
