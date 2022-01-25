@@ -1,6 +1,6 @@
 <!-- nav -->
 
-<!--<div *ngIf="currentUsuario">-
+<!--<div *ngIf="currentUsuario">
   <div class="row color-fondo-barra-menu bodebotom" >
       <div class="col-12 " >
           <app-menu-mat></app-menu-mat>
@@ -72,4 +72,6 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 -->
-<app-menu-mat></app-menu-mat>
+<div *ngIf="currentUsuario">
+  <app-menu-mat></app-menu-mat>
+</div>

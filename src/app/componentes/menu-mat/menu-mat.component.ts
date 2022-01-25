@@ -47,7 +47,7 @@ menuItems: MenuItem[] = [
       {
         displayName: 'Ingreso Resultados',
         iconName: 'feedback',
-        route: 'IngresoExamen',
+        route: 'ingresoResultados',
         disabled: false
       },
       {

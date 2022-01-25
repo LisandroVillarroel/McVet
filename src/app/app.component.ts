@@ -47,7 +47,10 @@ export class AppComponent implements OnInit {
       console.log('0: ', this.authenticationService.getCurrentUser());
        if (this.authenticationService.getCurrentUser() != null) {
         this.currentUsuario.usuarioDato = this.authenticationService.getCurrentUser() ;
-
+      }
+      else
+      {
+        this.router.navigate(['/login']);
       }
     }
 

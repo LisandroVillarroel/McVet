@@ -5,16 +5,15 @@ import {HttpClient} from '@angular/common/http';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSnackBar} from '@angular/material//snack-bar';
 import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
 
 import Swal from 'sweetalert2';
 
-import { ICliente } from '@app/modelo/cliente-interface';
 import { AuthenticationService } from '@app/autentica/_services';
 import { JwtResponseI } from '@app/autentica/_models';
-import { ClienteService } from '@app/servicios/cliente.service';
 import { AgregaExamenesFichasComponent } from './agrega-examen-ficha/agrega-examenes-fichas.component';
+import { IFicha } from '@app/modelo/ficha-interface';
+import { FichaService } from '@app/servicios/ficha.service';
 
 @Component({
   selector: 'app-examenes-ingresados',
@@ -23,46 +22,44 @@ import { AgregaExamenesFichasComponent } from './agrega-examen-ficha/agrega-exam
 })
 export class ExamenesIngresadosComponent implements OnInit {
 
-  datoClientePar: ICliente;
+  datoFichaPar: IFicha;
   currentUsuario: JwtResponseI;
-  exampleDatabase: ClienteService;
  // id: string;
 
   // tslint:disable-next-line:max-line-length
-  displayedColumns: string[] = ['index', 'rutCliente', 'razonSocial', 'nombreFantasia', 'direccion', 'telefono', 'email', 'nombreContacto', 'opciones'];
-  dataSource: MatTableDataSource<ICliente>;
+  displayedColumns: string[] = ['index', 'numeroFicha','cliente:{nombreFantasia}', 'nombrePaciente', 'examen:{nombre}', 'opciones'];
+  dataSource: MatTableDataSource<IFicha>;
 
   @ViewChild(MatPaginator ) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
 
-constructor(private clienteService: ClienteService,
+constructor(private fichaService: FichaService,
             public httpClient: HttpClient,
             public dialog: MatDialog,
-            private snackBar: MatSnackBar,
             private authenticationService: AuthenticationService
     ) {
       this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
-      this.dataSource = new MatTableDataSource<ICliente>();
+      this.dataSource = new MatTableDataSource<IFicha>();
 
   }
 
 
 ngOnInit() {
-    console.log('pasa emp 1');
+    console.log('pasa ficha 1');
     if (this.authenticationService.getCurrentUser() != null) {
       this.currentUsuario.usuarioDato = this.authenticationService.getCurrentUser() ;
     }
-    this.getListCliente();
+    this.getListFicha();
   }
 
-getListCliente(): void {
-    console.log('pasa emp 2');
-    this.clienteService
-      .getDataCliente()
+getListFicha(): void {
+    console.log('pasa ficha 2');
+    this.fichaService
+      .getDataFicha()
       .subscribe(res => {
-        console.log('cliente: ', res['data']);
-        this.dataSource.data = res['data'] as ICliente[];
+        console.log('ficha: ', res);
+        this.dataSource.data = res['data'] as any[];
       },
       // console.log('yo:', res as PerfilI[]),
       error => {
@@ -98,9 +95,9 @@ agregaNuevo() {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '50%';
-    dialogConfig.height = '70%';
-    dialogConfig.position = { top : '5%'};
+    dialogConfig.width = '80%';
+    dialogConfig.height = '850%';
+    dialogConfig.position = { top : '2%'};
     dialogConfig.data = {usuario: this.currentUsuario.usuarioDato._id};
   //  dialogConfig.data = {
   //    idProducto: idProdP,
@@ -230,7 +227,7 @@ eliminaCliente(id: string, rutCliente: string, razonSocial: string, nombreFantas
    // this.dataSource.paginator._changePageSize(this.paginator.pageSize);
    // this.noticia=this.servicio.getNoticias();
 
-   this.getListCliente();
+   this.getListFicha();
    this.dataSource.paginator._changePageSize(this.paginator.pageSize);
   }
 }
