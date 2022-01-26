@@ -74,6 +74,18 @@ menuItems: MenuItem[] = [
           disabled: false
         },
         {
+          displayName: 'Especie',
+          iconName: 'star_rate',
+          route: 'mantenedorEspecie',
+          disabled: false
+        },
+        {
+          displayName: 'Raza',
+          iconName: 'star_rate',
+          route: 'mantenedorRaza',
+          disabled: false
+        },
+        {
           displayName: 'Formatos',
           iconName: 'star_rate',
           route: 'mantenedorFormatos',

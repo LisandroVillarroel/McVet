@@ -2,19 +2,19 @@ export interface IFicha {
   _id?: string;
   numeroFicha?: number;
   cliente?: IFichaCliente;
-  propietario?: IPropietario
+  nombrePropietario?: string;
   nombrePaciente?: string;
-  fechaNacimientoPaciente?: string;
+  edadPaciente?: number;
   especie?: string;
   raza?: string;
   sexo?: string;
-  dRSolicitante?: IdRSolicitante;
+  doctorSolicitante?: string;
   examen?:IFichaExamen;
   telefono?: string;
   email?: string;
   usuarioCrea_id: string;
   usuarioModifica_id: string;
-  estado: string;
+  estado?: string;
 }
 
 export interface IFichaCliente {
@@ -36,10 +36,6 @@ export interface IPropietario {
     email?: string;
 }
 
-export interface IdRSolicitante {
-  iDdRSolicitante?: string;
-  NombreDrSolicitante?: string;
-}
 
 
 export interface IFichaExamen {

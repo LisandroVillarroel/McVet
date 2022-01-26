@@ -48,7 +48,7 @@ export class EspecieService {
     );
   }
 
-  // PUT
+
   deleteDataEspecie(dato): Observable<any> {
     console.log('id:', dato._id);
     return this.http.delete<IEspecie>(`${environment.apiUrl}/especie/${dato._id}/${dato.usuarioModifica_id}`, { headers: this.headers })

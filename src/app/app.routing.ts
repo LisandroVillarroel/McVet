@@ -12,6 +12,8 @@ import { ExamenComponent } from './componentes/mantenedores/examen/examen.compon
 //import { FormatoComponent } from './componentes/mantenedores/formato1/formato1.component';
 import { FormatosComponent } from './componentes/mantenedores/formatos/formatos.component';
 import { ExamenesIngresadosComponent } from './componentes/ingresosExamenFicha/examenes-ingresados.component';
+import { RazaComponent } from './componentes/mantenedores/raza/raza.component';
+import { EspecieComponent } from './componentes/mantenedores/especie/especie.component';
 //import { IngresoExamenComponent } from './componentes/ingresos/ingreso-examen/ingreso-examen.component';
 //import { SeleccionExamenComponent } from './componentes/ingresos/seleccion-examen/seleccion-examen.component';
 
@@ -37,6 +39,9 @@ const routes: Routes = [
     { path: 'mantenedorCliente', component: ClienteComponent, canActivate: [AuthGuard]},
     { path: 'mantenedorPaciente', component: HomeComponent , canActivate: [AuthGuard]},
     { path: 'mantenedorExamen', component: ExamenComponent, canActivate: [AuthGuard] },
+    { path: 'mantenedorEspecie', component: EspecieComponent, canActivate: [AuthGuard] },
+    { path: 'mantenedorRaza', component: RazaComponent, canActivate: [AuthGuard] },
+
     { path: 'mantenedorFormatos', component: FormatosComponent, canActivate: [AuthGuard] },
 
     {path: 'propietario', component: PropietarioComponent, canActivate: [AuthGuard]},

@@ -14,6 +14,8 @@ import { RazaService } from '@app/servicios/raza.service';
 import { EspecieService } from '@app/servicios/especie.service';
 import { IEspecie } from '@app/modelo/especie-interface';
 import { IRaza } from '@app/modelo/raza-interface';
+import { IFicha } from '@app/modelo/ficha-interface';
+import { FichaService } from '@app/servicios/ficha.service';
 
 @Component({
   selector: 'app-agrega-examenes-fichas',
@@ -22,10 +24,24 @@ import { IRaza } from '@app/modelo/raza-interface';
 })
 export class AgregaExamenesFichasComponent implements OnInit {
 
+  cliente: {
+    idCliente?:string;
+    rutCliente?: string;
+    razonSocial?: string;
+    nombreFantasia?: string;
+  }
+
+  examen: {
+    idExamen:string;
+    codigoExamen: string;
+    nombre: string;
+  }
+  usuario: string;
   form: FormGroup;
   datoExamen: IExamen[];
   datoUsuario: IUsuario[];
   datoCliente: ICliente[];
+  datoFicha: IFicha;
 
   datoEspecie: IEspecie[];
   datoRaza: IRaza[];
@@ -34,14 +50,16 @@ export class AgregaExamenesFichasComponent implements OnInit {
 
   datoSexo = [{ nombre: 'Hembra', id: 'Hembra'}, { nombre: 'Macho', id: 'Macho'}];
 
-  constructor(//private dialogRef: MatDialogRef<SeleccionExamenComponent>,
-          //    @Inject(MAT_DIALOG_DATA) data,
+  constructor(private dialogRef: MatDialogRef<AgregaExamenesFichasComponent>,
+              @Inject(MAT_DIALOG_DATA) data,
               private examenService: ExamenService,
               private usuarioService: UsuarioService,
               private clienteService: ClienteService,
               private especieService: EspecieService,
-              private razaService: RazaService
+              private razaService: RazaService,
+              private fichaService: FichaService
               ) {
+                this.usuario = data.usuario;
                 this.cargaCliente();
                 this.cargaExamen();
                 this.cargaUsuario();
@@ -135,7 +153,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
     this.usuarioService
     .getDataUsuario()
     .subscribe(res => {
-      console.log('examen:', res['data'])
+      console.log('usuario:', res['data'])
       this.datoUsuario = res['data'] ;
     },
     // console.log('yo:', res as PerfilI[]),
@@ -155,7 +173,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
     this.clienteService
     .getDataCliente()
     .subscribe(res => {
-      console.log('examen:', res['data'])
+      console.log('cliente:', res['data'])
       this.datoCliente = res['data'] ;
     },
     // console.log('yo:', res as PerfilI[]),
@@ -174,7 +192,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
     this.especieService
     .getDataEspecie()
     .subscribe(res => {
-      console.log('examen:', res['data'])
+      console.log('especie:', res['data'])
       this.datoEspecie = res['data'] ;
     },
     // console.log('yo:', res as PerfilI[]),
@@ -193,7 +211,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
     this.razaService
     .getDataRaza()
     .subscribe(res => {
-      console.log('examen:', res['data'])
+      console.log('raza:', res['data'])
       this.datoRaza = res['data'] ;
     },
     // console.log('yo:', res as PerfilI[]),
@@ -212,15 +230,94 @@ export class AgregaExamenesFichasComponent implements OnInit {
   }
 
   seleccionaExamen(p){
+    /*
+    console.log('datos examen selec:',p)
+    this.examen= {
+      idExamen:p._id,
+      codigoExamen: p.codigoExamen,
+      nombre: p.nombre
+    }
+    */
     return;
   }
 
   seleccionaCliente(p){
+    /*
+    this.cliente= {
+      idCliente:p._id,
+      rutCliente: p.rutCliente,
+      razonSocial: p.razonSocial,
+      nombreFantasia: p.nombreFantasia
+    }
+    */
     return;
   }
 
 
   enviar() {
+
+    console.log('examen:',this.agregaCabeceraExamen.get('idExamen').value.codigoExamen)
+    console.log('cliente:',this.agregaCabeceraExamen.get('idCliente').value)
+
+    this.examen= {
+      idExamen: this.agregaCabeceraExamen.get('idExamen').value._id,
+      codigoExamen: this.agregaCabeceraExamen.get('idExamen').value.codigoExamen,
+      nombre: this.agregaCabeceraExamen.get('idExamen').value.nombre
+    }
+
+    this.cliente= {
+      idCliente:this.agregaCabeceraExamen.get('idCliente').value._id,
+      rutCliente: this.agregaCabeceraExamen.get('idCliente').value.rutCliente,
+      razonSocial: this.agregaCabeceraExamen.get('idCliente').value.razonSocial,
+      nombreFantasia: this.agregaCabeceraExamen.get('idCliente').value.nombreFantasia
+    }
+
+    this.datoFicha = {
+
+  cliente: this.cliente,
+  nombrePropietario: this.agregaCabeceraExamen.get('nombrePropietario').value.toUpperCase(),
+  nombrePaciente: this.agregaCabeceraExamen.get('nombrePaciente').value.toUpperCase(),
+  edadPaciente: this.agregaCabeceraExamen.get('edad').value,
+  especie: this.agregaCabeceraExamen.get('idEspecie').value.toUpperCase(),
+  raza: this.agregaCabeceraExamen.get('idRaza').value.toUpperCase(),
+  sexo: this.agregaCabeceraExamen.get('sexo').value.toUpperCase(),
+  doctorSolicitante: this.agregaCabeceraExamen.get('docSolicitante').value.toUpperCase(),
+  examen:this.examen,
+  telefono: null,
+  email: null,
+  usuarioCrea_id: this.usuario,
+  usuarioModifica_id: this.usuario,
+
+  };
+  console.log('agrega 1:', this.datoFicha);
+
+  this.fichaService.postDataFicha(this.datoFicha)
+  .subscribe(
+    dato => {
+      console.log('respuesta:', dato.codigo);
+      if (dato.codigo === 200) {
+          Swal.fire(
+          'Se agregó con Éxito',
+          'Click en Botón!',
+          'success'
+        ); // ,
+          this.dialogRef.close(1);
+      }else{
+        Swal.fire(
+          dato.mensaje,
+          'Click en Boton!',
+          'error'
+        );
+        this.dialogRef.close(1);
+      }
+    }
+    // console.log('yo:', res as PerfilI[]),
+   /// error => {
+   ///   console.log('error agregar:', error);
+   /// }
+    // this.dialogRef.close(this.form.value);
+  // console.log(this.datoCotiza);
+  );
 
 
   }

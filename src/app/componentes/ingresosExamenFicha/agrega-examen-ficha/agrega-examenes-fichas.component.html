@@ -12,8 +12,8 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select [formControl]="idCliente" placeholder="Seleccione Cliente" required>
-      <mat-option *ngFor="let _cliente of datoCliente" [value]="_cliente._id">
+    <mat-select [formControl]="idCliente" placeholder="Seleccione Cliente" (selectionChange)="seleccionaCliente($event.value)" required>
+      <mat-option *ngFor="let _cliente of datoCliente" [value]="_cliente">
         {{_cliente.nombreFantasia}}
       </mat-option>
     </mat-select>
@@ -88,8 +88,8 @@
     </div>
 
     <mat-form-field>
-      <mat-select [formControl]="idExamen" placeholder="Seleccione Exámen" required>
-        <mat-option *ngFor="let _examen of datoExamen" [value]="_examen._id">
+      <mat-select [formControl]="idExamen" placeholder="Seleccione Exámen" (selectionChange)="seleccionaExamen($event.value)"  required>
+        <mat-option *ngFor="let _examen of datoExamen" [value]="_examen">
           {{_examen.nombre}}
         </mat-option>
       </mat-select>

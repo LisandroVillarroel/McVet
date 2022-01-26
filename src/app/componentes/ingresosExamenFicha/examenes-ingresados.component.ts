@@ -96,7 +96,7 @@ agregaNuevo() {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '80%';
-    dialogConfig.height = '850%';
+    dialogConfig.height = '85%';
     dialogConfig.position = { top : '2%'};
     dialogConfig.data = {usuario: this.currentUsuario.usuarioDato._id};
   //  dialogConfig.data = {

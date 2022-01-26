@@ -73,6 +73,16 @@ import { EliminaFormatosComponent } from './componentes/mantenedores/formatos/el
 import { ConsultaFormatosComponent } from './componentes/mantenedores/formatos/consulta-formatos/consulta-formatos.component';
 import { AgregaFormatosComponent } from './componentes/mantenedores/formatos/agrega-formatos/agrega-formatos.component';
 import { AgregaPropietarioComponent } from './componentes/mantenedores/propietario/agrega-propietario/agrega-propietario.component';
+import { EspecieComponent } from './componentes/mantenedores/especie/especie.component';
+import { AgregaEspecieComponent }   from './componentes/mantenedores/especie/agrega-especie/agrega-especie.component';
+import { ConsultaEspecieComponent } from './componentes/mantenedores/especie/consulta-especie/consulta-especie.component';
+import { ModificaEspecieComponent } from './componentes/mantenedores/especie/modifica-especie/modifica-especie.component';
+import { EliminaEspecieComponent } from './componentes/mantenedores/especie/elimina-especie/elimina-especie.component';
+import { RazaComponent } from './componentes/mantenedores/raza/raza.component';
+import { AgregaRazaComponent } from './componentes/mantenedores/raza/agrega-raza/agrega-raza.component';
+import { ConsultaRazaComponent } from './componentes/mantenedores/raza/consulta-raza/consulta-raza.component';
+import { EliminaRazaComponent } from './componentes/mantenedores/raza/elimina-raza/elimina-raza.component';
+import { ModificaRazaComponent } from './componentes/mantenedores/raza/modifica-raza/modifica-raza.component';
 
 registerLocaleData(localeFr, 'es', localeFrExtra);
 
@@ -121,6 +131,16 @@ registerLocaleData(localeFr, 'es', localeFrExtra);
         EliminaFormatosComponent,
         ConsultaFormatosComponent,
         AgregaFormatosComponent,
+        EspecieComponent,
+        AgregaEspecieComponent,
+        ConsultaEspecieComponent,
+        ModificaEspecieComponent,
+        EliminaEspecieComponent,
+        RazaComponent,
+        AgregaRazaComponent,
+        ConsultaRazaComponent,
+        EliminaRazaComponent,
+        ModificaRazaComponent,
     ],
     imports: [
         BrowserModule,

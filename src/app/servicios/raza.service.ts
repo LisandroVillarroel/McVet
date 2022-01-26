@@ -47,7 +47,7 @@ export class RazaService {
     );
   }
 
-  // PUT
+
   deleteDataRaza(dato): Observable<any> {
     console.log('id:', dato._id);
     return this.http.delete<IRaza>(`${environment.apiUrl}/raza/${dato._id}/${dato.usuarioModifica_id}`, { headers: this.headers })
