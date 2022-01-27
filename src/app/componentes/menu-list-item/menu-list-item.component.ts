@@ -39,6 +39,7 @@ export class MenuListItemComponent implements OnInit {
   if (this.depth === undefined) {
     this.depth = 0;
   }
+  console.log('menu',this.item)
 
 }
 

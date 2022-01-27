@@ -23,8 +23,8 @@
 }
 
 .anchoTitulo {
-  width: 50%;
-  align-items: center;
+  width: 100%;
+  text-align: center;
 }
 
 .anchoSubTitulo {
@@ -39,7 +39,7 @@
 }
 
 
-.col-md-2, .col-md-3, .col-md-6{
+.col-md-2, .col-md-3, .col-md-4, .col-md-6{
 padding-right: 0px !important;
 padding-left: 0px !important;
 }
@@ -53,7 +53,23 @@ padding-left: 0px !important;
 
 }
 
+h4{
 
+  margin:0%;
+
+}
+
+.alineaVertical{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+
+   margin-right:0%;
+   margin-left:0%;
+}
 
 .mat-dialog-content{
   margin: auto;
