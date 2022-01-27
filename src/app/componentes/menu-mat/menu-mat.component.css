@@ -36,6 +36,26 @@ padding: 0 5px !important;
 
 }
 */
+.bodebotom{
+  border-bottom-color:rgb(255, 102, 0) !important;
+   border-bottom-style:solid;
+   border-bottom-width:2px;
+}
+
+.tamañoLetra{
+  font-size: 12px;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 35px!important;
+}
+
+mat-divider[_ngcontent-mwk-c65] {
+  margin-top: 11px !important;
+  margin-bottom: 1px !important;
+  background-color: #ffffff80;
+}
+
 .example-container {
   display: flex;
   flex-direction: column;
@@ -86,17 +106,18 @@ mat-toolbar {
 
 mat-sidenav {
   margin: 16px;
-  width: 200px;
+  width: 15%;
   border-right: none;
-  background: #898a8ac9;
+  background: #118383;
   color: white;
   border-radius: 10px;
-  padding: 16px;
+  padding: 1px;
   text-align: center;
 }
 
 .content {
-  height: calc(100vh - 98px);
+  min-height: calc(100vh - 98px); /* largo de pantalla*/
+
   border-radius: 10px;
   margin: 16px;
   margin-left: 32px;
@@ -104,7 +125,8 @@ mat-sidenav {
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  color: lightgray;
+  color: rgb(61, 61, 61);
+  padding: 0 1px !important;
 }
 
 mat-sidenav-container {

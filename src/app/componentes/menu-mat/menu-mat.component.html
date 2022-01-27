@@ -1,11 +1,11 @@
 
 <!--Menu nuevo-->
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
-  <mat-toolbar color="primary" class="example-toolbar">
+  <mat-toolbar color="primary" class="example-toolbar bodebotom">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <span class="spacerDerecha"></span>
 
-    <h6>{{"Italo Vallejos Gutiérrez"}}</h6>
+    <div class="text-uppercase align-self-center tamañoLetra"><mat-icon class="align-self-center">face</mat-icon> {{currentUsuario.usuarioDato.nombres}} {{currentUsuario.usuarioDato.apellidoPaterno}}</div>
   </mat-toolbar>
 
   <mat-divider></mat-divider>
@@ -16,7 +16,7 @@
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
         <!--"https://source.unsplash.com/c_GmwfHBDzk/200x200"-->
-        <img class="avatar mat-elevation-z8" src="./../../../assets/imagenes/sinPerfil.jfif" />
+        <img class="avatar mat-elevation-z8" src="./../../../assets/imagenes/imgMcVet.jpg" />
         <h4 class="name">MCVET</h4>
       <p class="NAME">Veterinaria</p>
 

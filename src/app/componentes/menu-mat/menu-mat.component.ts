@@ -7,6 +7,7 @@ import { TooltipPosition } from '@angular/material/tooltip';
 
 import {MenuItem} from './../../modelo/menu-interface';
 import { JwtResponseI } from '@app/autentica/_models';
+import { AuthenticationService } from '@app/autentica/_services';
 
 @Component({
   selector: 'app-menu-mat',
@@ -21,14 +22,15 @@ export class MenuMatComponent implements OnDestroy {
 
   currentUsuario: JwtResponseI;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private location: Location
-    /*private menuLateralService: MenuLateralService*/) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private location: Location,
+    private authenticationService: AuthenticationService,) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._MOBILEQUERYLISTENER = () => changeDetectorRef.detectChanges();
     // deprecated: MediaQueryList.addListener(listener);
 
     this.mobileQuery.addEventListener('change', this._MOBILEQUERYLISTENER);
 
+    this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
   }
 
 
@@ -40,54 +42,54 @@ menuItems: MenuItem[] = [
 
       {
         displayName: 'Inicio',
-        iconName: 'feedback',
+        iconName: 'home',
         route: 'inicio',
         disabled: false
       },
       {
         displayName: 'Ingreso Resultados',
-        iconName: 'feedback',
+        iconName: 'local_hospital',
         route: 'ingresoResultados',
         disabled: false
       },
       {
         displayName: 'Mantenedores',
-        iconName: 'speaker_notes',
+        iconName: 'list',
         disabled: false,
         children: [
         {
             displayName: 'Cliente',
-            iconName: 'star_rate',
+            iconName: 'forward',
             route: 'mantenedorCliente',
             disabled: false
         },
         {
           displayName: 'Propietario',
-          iconName: 'star_rate',
+          iconName: 'forward',
           route: 'propietario',
           disabled: false
         },
         {
           displayName: 'Exámen',
-          iconName: 'star_rate',
+          iconName: 'forward',
           route: 'mantenedorExamen',
           disabled: false
         },
         {
           displayName: 'Especie',
-          iconName: 'star_rate',
+          iconName: 'forward',
           route: 'mantenedorEspecie',
           disabled: false
         },
         {
           displayName: 'Raza',
-          iconName: 'star_rate',
+          iconName: 'forward',
           route: 'mantenedorRaza',
           disabled: false
         },
         {
           displayName: 'Formatos',
-          iconName: 'star_rate',
+          iconName: 'forward',
           route: 'mantenedorFormatos',
           disabled: false
         }
@@ -95,7 +97,7 @@ menuItems: MenuItem[] = [
       },
       {
         displayName: 'Cerrar',
-        iconName: '',
+        iconName: 'exit_to_app',
         route: '',
         disabled: false
       },

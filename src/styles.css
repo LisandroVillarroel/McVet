@@ -18,8 +18,8 @@ mat-dialog-container {
   /* Mantenedores Material*/
     /* Titulos Mantenedores*/
   .mat-dialog-title{
-    color: rgb(255, 102, 0) !important;
-    background-color: black !important;
+    color: black !important;
+    background-color: #118383 !important;
     font-size: 14px!important;
     text-align: center;
   }
@@ -35,10 +35,11 @@ mat-dialog-container {
   tr.mat-header-row {
     height: 45px !important;
   }
+  /*Cambia color cabecera table*/
     th.mat-header-cell,mat-header-cell{
-      color: rgb(255, 102, 0) !important;
-      background-color: black !important;
-      font-size: 11px!important;
+      color: black !important;
+      background-color: #118383 !important;
+      font-size: 10px!important;
 
     }
 
@@ -64,9 +65,9 @@ mat-dialog-container {
     font-size: 18px !important;
 
   }
-
+/*iconos*/
   button.mat-accent{
-    color:rgb(255, 102, 0) !important;;
+    color:#42b629 !important;;
   }
   button.mat-accent:hover{
     color:black !important;
