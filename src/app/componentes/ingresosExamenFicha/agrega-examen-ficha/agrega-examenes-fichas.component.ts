@@ -50,6 +50,8 @@ export class AgregaExamenesFichasComponent implements OnInit {
 
   datoSexo = [{ nombre: 'Hembra', id: 'Hembra'}, { nombre: 'Macho', id: 'Macho'}];
 
+  hemograma=false;
+
   constructor(private dialogRef: MatDialogRef<AgregaExamenesFichasComponent>,
               @Inject(MAT_DIALOG_DATA) data,
               private examenService: ExamenService,
@@ -230,6 +232,8 @@ export class AgregaExamenesFichasComponent implements OnInit {
   }
 
   seleccionaExamen(p){
+    if (p.nombre.toUpperCase()=="HEMOGRAMA")
+        this.hemograma=true;
     /*
     console.log('datos examen selec:',p)
     this.examen= {

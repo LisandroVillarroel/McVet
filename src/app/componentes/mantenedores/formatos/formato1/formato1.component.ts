@@ -10,7 +10,7 @@ import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog
 import { JwtResponseI } from '../../../../autentica/_models';
 import { AuthenticationService } from '../../../../autentica/_services';
 
-import { AgregaFormato1Component } from './agrega-formato1/agrega-formato1.component';
+import { AgregaFormato1Component } from '../../../ingresosExamenFicha/agrega-examen-ficha/examenes/agrega-formato1/agrega-formato1.component';
 import { ModificaFormato1Component } from './modifica-formato1/modifica-formato1.component';
 import { ConsultaFormato1Component } from './consulta-formato1/consulta-formato1.component';
 import { EliminaFormato1Component } from './elimina-formato1/elimina-formato1.component';

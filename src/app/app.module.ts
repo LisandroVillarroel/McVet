@@ -24,10 +24,6 @@ import { MenuMatComponent } from './componentes/menu-mat/menu-mat.component';
 import { MenuListItemComponent } from './componentes/menu-list-item/menu-list-item.component';
 import { PortadaComponent } from './componentes/portada/portada.component';
 
-import { PuntoVentaComponent } from './componentes/venta/punto-venta/punto-venta.component';
-import { DetalleVentaComponent } from './componentes/venta/detalle-venta/detalle-venta.component';
-import { EditableComponent } from './componentes/venta/editable/editable.component';
-
 import { PropietarioComponent } from './componentes/mantenedores/propietario/propietario.component' ;
 import { ModificaPropietarioComponent } from './componentes/mantenedores/propietario/modifica-propietario/modifica-propietario.component';
 
@@ -44,7 +40,6 @@ import { AutoFocusDirective } from './directivas/auto-focus.directive';
 import { EditModeDirective } from './directivas/edit-mode.directive';
 import { ViewModeDirective } from './directivas/view-mode.directive';
 import { FocusableDirective } from './directivas/focusable.directive';
-import { EditableOnEnterDirective } from './directivas/edit-on-enter.directive';
 
 import { ClienteComponent } from './componentes/mantenedores/cliente/cliente.component';
 import { AgregaClienteComponent } from './componentes/mantenedores/cliente/agrega-cliente/agrega-cliente.component';
@@ -63,7 +58,7 @@ import { AgregaExamenesFichasComponent } from './componentes/ingresosExamenFicha
 import { ExamenesIngresadosComponent } from './componentes/ingresosExamenFicha/examenes-ingresados.component';
 import { MaterialModule } from './material.module';
 import { Formato1Component } from './componentes/mantenedores/formatos/formato1/formato1.component';
-import { AgregaFormato1Component } from './componentes/mantenedores/formatos/formato1/agrega-formato1/agrega-formato1.component';
+import { AgregaFormato1Component } from './componentes/ingresosExamenFicha/agrega-examen-ficha/examenes/agrega-formato1/agrega-formato1.component';
 import { ConsultaFormato1Component } from './componentes/mantenedores/formatos/formato1/consulta-formato1/consulta-formato1.component';
 import { EliminaFormato1Component } from './componentes/mantenedores/formatos/formato1/elimina-formato1/elimina-formato1.component';
 import { ModificaFormato1Component } from './componentes/mantenedores/formatos/formato1/modifica-formato1/modifica-formato1.component';
@@ -95,14 +90,10 @@ registerLocaleData(localeFr, 'es', localeFrExtra);
         RegisterComponent,
         MenuMatComponent,
         PortadaComponent,
-        PuntoVentaComponent,
-        DetalleVentaComponent,
-        EditableComponent,
         AutoFocusDirective,
         EditModeDirective,
         ViewModeDirective,
         FocusableDirective,
-        EditableOnEnterDirective,
         PropietarioComponent,
         AgregaPropietarioComponent,
         ModificaPropietarioComponent,

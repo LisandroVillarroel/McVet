@@ -5,7 +5,6 @@ import { LoginComponent } from './autentica/login/login.component';
 import { RegisterComponent } from './autentica/register';
 import { AuthGuard } from './autentica/_guards';
 import { PortadaComponent } from './componentes/portada/portada.component';
-import { PuntoVentaComponent } from './componentes/venta/punto-venta/punto-venta.component';
 import { PropietarioComponent } from './componentes/mantenedores/propietario/propietario.component';
 import { ClienteComponent } from './componentes/mantenedores/cliente/cliente.component';
 import { ExamenComponent } from './componentes/mantenedores/examen/examen.component';
@@ -23,7 +22,6 @@ const appRoutes: Routes = [
     { path: 'inicio', component: PortadaComponent, },
     { path: 'home', component: HomeComponent , canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent },
-    { path: 'PuntoVenta', component: PuntoVentaComponent, canActivate: [AuthGuard] },
     { path: 'propietario', component: PropietarioComponent, canActivate: [AuthGuard]},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
