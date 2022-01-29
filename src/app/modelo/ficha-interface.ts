@@ -5,8 +5,8 @@ export interface IFicha {
   nombrePropietario?: string;
   nombrePaciente?: string;
   edadPaciente?: number;
-  especie?: string;
-  raza?: string;
+  especie?: IFichaEspecie;
+  raza?: IFichaRaza;
   sexo?: string;
   doctorSolicitante?: string;
   examen?:IFichaExamen;
@@ -41,5 +41,15 @@ export interface IPropietario {
 export interface IFichaExamen {
   idExamen:string;
   codigoExamen: string;
+  nombre: string;
+}
+
+export interface IFichaEspecie {
+  idEspecie:string;
+  nombre: string;
+}
+
+export interface IFichaRaza {
+  idRaza:string;
   nombre: string;
 }

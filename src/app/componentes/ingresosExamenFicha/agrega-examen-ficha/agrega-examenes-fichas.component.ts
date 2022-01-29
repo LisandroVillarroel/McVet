@@ -36,6 +36,17 @@ export class AgregaExamenesFichasComponent implements OnInit {
     codigoExamen: string;
     nombre: string;
   }
+
+  especie: {
+    idEspecie:string;
+    nombre: string;
+  }
+
+  raza: {
+    idRaza:string;
+    nombre: string;
+  }
+
   usuario: string;
   form: FormGroup;
   datoExamen: IExamen[];
@@ -242,6 +253,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
       nombre: p.nombre
     }
     */
+   this.enviar()
     return;
   }
 
@@ -276,14 +288,24 @@ export class AgregaExamenesFichasComponent implements OnInit {
       nombreFantasia: this.agregaCabeceraExamen.get('idCliente').value.nombreFantasia
     }
 
+    this.especie= {
+      idEspecie: this.agregaCabeceraExamen.get('idEspecie').value._id,
+      nombre: this.agregaCabeceraExamen.get('idEspecie').value.nombre.toUpperCase()
+    }
+
+    this.raza= {
+      idRaza: this.agregaCabeceraExamen.get('idRaza').value._id,
+      nombre: this.agregaCabeceraExamen.get('idRaza').value.nombre.toUpperCase()
+    }
+
     this.datoFicha = {
 
   cliente: this.cliente,
   nombrePropietario: this.agregaCabeceraExamen.get('nombrePropietario').value.toUpperCase(),
   nombrePaciente: this.agregaCabeceraExamen.get('nombrePaciente').value.toUpperCase(),
   edadPaciente: this.agregaCabeceraExamen.get('edad').value,
-  especie: this.agregaCabeceraExamen.get('idEspecie').value.toUpperCase(),
-  raza: this.agregaCabeceraExamen.get('idRaza').value.toUpperCase(),
+  especie: this.especie,
+  raza: this.raza,
   sexo: this.agregaCabeceraExamen.get('sexo').value.toUpperCase(),
   doctorSolicitante: this.agregaCabeceraExamen.get('docSolicitante').value.toUpperCase(),
   examen:this.examen,
@@ -294,7 +316,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
 
   };
   console.log('agrega 1:', this.datoFicha);
-
+/*
   this.fichaService.postDataFicha(this.datoFicha)
   .subscribe(
     dato => {
@@ -315,14 +337,8 @@ export class AgregaExamenesFichasComponent implements OnInit {
         this.dialogRef.close(1);
       }
     }
-    // console.log('yo:', res as PerfilI[]),
-   /// error => {
-   ///   console.log('error agregar:', error);
-   /// }
-    // this.dialogRef.close(this.form.value);
-  // console.log(this.datoCotiza);
   );
-
+*/
 
   }
 

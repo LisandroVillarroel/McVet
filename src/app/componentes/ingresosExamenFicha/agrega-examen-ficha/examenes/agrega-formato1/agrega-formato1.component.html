@@ -52,7 +52,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="resultado" [formControl]="srHematocrito" >
+          <input matInput placeholder="" [formControl]="srHematocrito" [ngStyle]="{'font-weight':srHematocritoFlag==true?'bold':'normal'}" (blur)="srHematocritoFormula()">
           <mat-error *ngIf="srHematocrito.invalid">{{getErrorMessage('srHematocrito')}}</mat-error>
         </mat-form-field>
 
@@ -67,13 +67,14 @@
         24 - 45
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-2 border border-dark border-top-0 alineaVertical font-weight-bold">
         Eritrocitos
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="srEritrocitos" >
+          <input matInput placeholder="Ingrese Valor" [formControl]="srEritrocitos" [ngStyle]="{'font-weight':srEritrocitosFlag==true?'bold':'normal'}" (blur)="srEritrocitosFormula()">
           <mat-error *ngIf="srEritrocitos.invalid">{{getErrorMessage('srEritrocitos')}}</mat-error>
         </mat-form-field>
       </div>
@@ -95,7 +96,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="srHemoglobina" >
+          <input matInput placeholder="Ingrese Valor" [formControl]="srHemoglobina" [ngStyle]="{'font-weight':srHemoglobinaFlag==true?'bold':'normal'}" (blur)="srHemoglobinaFormula()">
           <mat-error *ngIf="srHemoglobina.invalid">{{getErrorMessage('srHemoglobina')}}</mat-error>
         </mat-form-field>
 
@@ -118,7 +119,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="srVcm" >
+          <input matInput placeholder="Ingrese Valor" [formControl]="srVcm" [ngStyle]="{'font-weight':srVcmFlag==true?'bold':'normal'}" (blur)="srVcmFormula()">
           <mat-error *ngIf="srVcm.invalid">{{getErrorMessage('srVcm')}}</mat-error>
         </mat-form-field>
 
@@ -141,7 +142,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="srChcm" >
+          <input matInput placeholder="Ingrese Valor" [formControl]="srChcm" [ngStyle]="{'font-weight':srChcmFlag==true?'bold':'normal'}" (blur)="srChcmFormula()">
           <mat-error *ngIf="srChcm.invalid">{{getErrorMessage('srChcm')}}</mat-error>
         </mat-form-field>
 
@@ -164,7 +165,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="srHcm" >
+          <input matInput placeholder="Ingrese Valor" [formControl]="srHcm" [ngStyle]="{'font-weight':srHcmFlag==true?'bold':'normal'}" (blur)="srHcmFormula()">
           <mat-error *ngIf="srHcm.invalid">{{getErrorMessage('srHcm')}}</mat-error>
         </mat-form-field>
 
@@ -187,7 +188,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="srReticulocitos" >
+          <input matInput placeholder="Ingrese Valor" [formControl]="srReticulocitos" [ngStyle]="{'font-weight':srReticulocitosFlag==true?'bold':'normal'}" (blur)="srReticulocitosFormula()">
           <mat-error *ngIf="srReticulocitos.invalid">{{getErrorMessage('srReticulocitos')}}</mat-error>
         </mat-form-field>
       </div>
@@ -209,7 +210,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="srPlaquetas" >
+          <input matInput placeholder="Ingrese Valor" [formControl]="srPlaquetas" [ngStyle]="{'font-weight':srPlaquetasFlag==true?'bold':'normal'}" (blur)="srPlaquetasFormula()">
           <mat-error *ngIf="srPlaquetas.invalid">{{getErrorMessage('srPlaquetas')}}</mat-error>
         </mat-form-field>
       </div>
@@ -224,7 +225,7 @@
       </div>
 
     </div>
-
+<!--
     <div class="row">
       <div class="col-md-2 border border-dark border-top-0 alineaVertical font-weight-bold">
         TOTAL
@@ -243,6 +244,7 @@
       </div>
 
     </div>
+    -->
   </div>|
 
   <div>
@@ -302,14 +304,14 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="resultado" [formControl]="sbLeucocitos" (selectionChange)="sbCambioFormula()">
+          <input matInput placeholder="resultado" [formControl]="sbLeucocitos" (blur)="sbCambioFormula()">
           <mat-error *ngIf="sbLeucocitos.invalid">{{getErrorMessage('sbLeucocitos')}}</mat-error>
         </mat-form-field>
 
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="resultado" [formControl]="sbLeucocitos2" (selectionChange)="sbCambioFormula()">
+          <input matInput placeholder="resultado" [formControl]="sbLeucocitos2" (blur)="sbCambioFormula()">
           <mat-error *ngIf="sbLeucocitos2.invalid">{{getErrorMessage('sbLeucocitos2')}}</mat-error>
         </mat-form-field>
       </div>
@@ -326,7 +328,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="sbNeutrofilos" (selectionChange)="sbCambioFormula()">
+          <input matInput placeholder="Ingrese Valor" [formControl]="sbNeutrofilos" (blur)="sbCambioFormula()">
           <mat-error *ngIf="sbNeutrofilos.invalid">{{getErrorMessage('sbNeutrofilos')}}</mat-error>
         </mat-form-field>
       </div>
@@ -348,7 +350,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="sbLinfocitos" (selectionChange)="sbCambioFormula()">
+          <input matInput placeholder="Ingrese Valor" [formControl]="sbLinfocitos" (blur)="sbCambioFormula()">
           <mat-error *ngIf="sbLinfocitos.invalid">{{getErrorMessage('sbLinfocitos')}}</mat-error>
         </mat-form-field>
 
@@ -371,7 +373,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="sbMonocitos" (selectionChange)="sbCambioFormula()">
+          <input matInput placeholder="Ingrese Valor" [formControl]="sbMonocitos" (blur)="sbCambioFormula()">
           <mat-error *ngIf="sbMonocitos.invalid">{{getErrorMessage('sbMonocitos')}}</mat-error>
         </mat-form-field>
 
@@ -394,7 +396,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="sbEosinofilos" (selectionChange)="sbCambioFormula()" >
+          <input matInput placeholder="Ingrese Valor" [formControl]="sbEosinofilos" (blur)="sbCambioFormula()">
           <mat-error *ngIf="sbEosinofilos.invalid">{{getErrorMessage('sbEosinofilos')}}</mat-error>
         </mat-form-field>
 
@@ -419,7 +421,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="sbBasofilos" (selectionChange)="sbCambioFormula()">
+          <input matInput placeholder="Ingrese Valor" [formControl]="sbBasofilos" (blur)="sbCambioFormula()">
           <mat-error *ngIf="sbBasofilos.invalid">{{getErrorMessage('sbBasofilos')}}</mat-error>
         </mat-form-field>
 
@@ -442,7 +444,7 @@
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
         <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="Ingrese Valor" [formControl]="sbBaciliformes" (selectionChange)="sbCambioFormula()">
+          <input matInput placeholder="Ingrese Valor" [formControl]="sbBaciliformes" (blur)="sbCambioFormula()">
           <mat-error *ngIf="sbBaciliformes.invalid">{{getErrorMessage('sbBaciliformes')}}</mat-error>
         </mat-form-field>
       </div>
