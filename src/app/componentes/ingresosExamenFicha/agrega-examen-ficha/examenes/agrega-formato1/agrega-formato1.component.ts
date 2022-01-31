@@ -71,7 +71,6 @@ export class AgregaFormato1Component implements OnInit {
     srPlaquetas = new FormControl('');
 
 
-    sbLeucocitos = new FormControl('');
     sbLeucocitos2 = new FormControl('');
     sbNeutrofilos = new FormControl('');
     sbLinfocitos = new FormControl('');
@@ -80,6 +79,9 @@ export class AgregaFormato1Component implements OnInit {
     sbBasofilos = new FormControl('');
     sbBaciliformes = new FormControl('');
 
+    obsEritrocitos = new FormControl('');
+    obsLeucocitos = new FormControl('');
+    obsPlaquetas = new FormControl('');
 
     agregaFormato1: FormGroup = new FormGroup({
      // examen: this.examen,
@@ -92,15 +94,17 @@ export class AgregaFormato1Component implements OnInit {
      srReticulocitos: this.srReticulocitos,
      srPlaquetas: this.srPlaquetas,
 
-     sbLeucocitos: this.sbLeucocitos,
      sbLeucocitos2: this.sbLeucocitos2,
      sbNeutrofilos: this.sbNeutrofilos,
      sbLinfocitos: this.sbLinfocitos,
      sbMonocitos: this.sbMonocitos,
      sbEosinofilos: this.sbEosinofilos,
      sbBasofilos: this.sbBasofilos,
-     sbBaciliformes: this.sbBaciliformes
-      // address: this.addressFormControl
+     sbBaciliformes: this.sbBaciliformes,
+
+     obsEritrocitos: this.obsEritrocitos,
+     obsLeucocitos: this.obsLeucocitos,
+     obsPlaquetas: this.obsPlaquetas
     });
 
     getErrorMessage(campo: string) {
@@ -218,8 +222,8 @@ srHematocritoFormula(){
       if (this.agregaFormato1.get('srHematocrito').value<24 || this.agregaFormato1.get('srHematocrito').value>45){this.srHematocritoFlag=true}
       else{this.srHematocritoFlag=false}
   }
-  this.sbTotal=this.agregaFormato1.get('srHematocrito').value+this.agregaFormato1.get('srEritrocitos').value+this.agregaFormato1.get('srHemoglobina').value+this.agregaFormato1.get('srVcm').value+this.agregaFormato1.get('srChcm').value+this.agregaFormato1.get('srHcm').value+this.agregaFormato1.get('srReticulocitos').value+this.agregaFormato1.get('srPlaquetas').value+
-  this.agregaFormato1.get('sbNeutrofilos').value+this.agregaFormato1.get('sbLinfocitos').value+this.agregaFormato1.get('sbMonocitos').value+this.agregaFormato1.get('sbEosinofilos').value+this.agregaFormato1.get('sbBasofilos').value+this.agregaFormato1.get('sbBaciliformes').value
+
+  this.sumaTotal();
 }
 
 srEritrocitosFormula(){
@@ -233,8 +237,7 @@ srEritrocitosFormula(){
       if (this.agregaFormato1.get('srEritrocitos').value<5 || this.agregaFormato1.get('srEritrocitos').value>10){this.srEritrocitosFlag=true}
       else{this.srEritrocitosFlag=false}
   }
-  this.sbTotal=this.agregaFormato1.get('srHematocrito').value+this.agregaFormato1.get('srEritrocitos').value+this.agregaFormato1.get('srHemoglobina').value+this.agregaFormato1.get('srVcm').value+this.agregaFormato1.get('srChcm').value+this.agregaFormato1.get('srHcm').value+this.agregaFormato1.get('srReticulocitos').value+this.agregaFormato1.get('srPlaquetas').value+
-  this.agregaFormato1.get('sbNeutrofilos').value+this.agregaFormato1.get('sbLinfocitos').value+this.agregaFormato1.get('sbMonocitos').value+this.agregaFormato1.get('sbEosinofilos').value+this.agregaFormato1.get('sbBasofilos').value+this.agregaFormato1.get('sbBaciliformes').value
+  this.sumaTotal();
 }
 
 srHemoglobinaFormula(){
@@ -248,8 +251,7 @@ srHemoglobinaFormula(){
       if (this.agregaFormato1.get('srHemoglobina').value<8 || this.agregaFormato1.get('srHemoglobina').value>15){this.srHemoglobinaFlag=true}
       else{this.srHemoglobinaFlag=false}
   }
-  this.sbTotal=this.agregaFormato1.get('srHematocrito').value+this.agregaFormato1.get('srEritrocitos').value+this.agregaFormato1.get('srHemoglobina').value+this.agregaFormato1.get('srVcm').value+this.agregaFormato1.get('srChcm').value+this.agregaFormato1.get('srHcm').value+this.agregaFormato1.get('srReticulocitos').value+this.agregaFormato1.get('srPlaquetas').value+
-  this.agregaFormato1.get('sbNeutrofilos').value+this.agregaFormato1.get('sbLinfocitos').value+this.agregaFormato1.get('sbMonocitos').value+this.agregaFormato1.get('sbEosinofilos').value+this.agregaFormato1.get('sbBasofilos').value+this.agregaFormato1.get('sbBaciliformes').value
+  this.sumaTotal();
 }
 
 srVcmFormula(){
@@ -263,8 +265,7 @@ srVcmFormula(){
       if (this.agregaFormato1.get('srVcm').value<39 || this.agregaFormato1.get('srVcm').value>55){this.srVcmFlag=true}
       else{this.srVcmFlag=false}
   }
-  this.sbTotal=this.agregaFormato1.get('srHematocrito').value+this.agregaFormato1.get('srEritrocitos').value+this.agregaFormato1.get('srHemoglobina').value+this.agregaFormato1.get('srVcm').value+this.agregaFormato1.get('srChcm').value+this.agregaFormato1.get('srHcm').value+this.agregaFormato1.get('srReticulocitos').value+this.agregaFormato1.get('srPlaquetas').value+
-  this.agregaFormato1.get('sbNeutrofilos').value+this.agregaFormato1.get('sbLinfocitos').value+this.agregaFormato1.get('sbMonocitos').value+this.agregaFormato1.get('sbEosinofilos').value+this.agregaFormato1.get('sbBasofilos').value+this.agregaFormato1.get('sbBaciliformes').value
+  this.sumaTotal();
 }
 
 
@@ -279,8 +280,7 @@ srChcmFormula(){
       if (this.agregaFormato1.get('srChcm').value<30 || this.agregaFormato1.get('srChcm').value>36){this.srChcmFlag=true}
       else{this.srChcmFlag=false}
   }
-  this.sbTotal=this.agregaFormato1.get('srHematocrito').value+this.agregaFormato1.get('srEritrocitos').value+this.agregaFormato1.get('srHemoglobina').value+this.agregaFormato1.get('srVcm').value+this.agregaFormato1.get('srChcm').value+this.agregaFormato1.get('srHcm').value+this.agregaFormato1.get('srReticulocitos').value+this.agregaFormato1.get('srPlaquetas').value+
-  this.agregaFormato1.get('sbNeutrofilos').value+this.agregaFormato1.get('sbLinfocitos').value+this.agregaFormato1.get('sbMonocitos').value+this.agregaFormato1.get('sbEosinofilos').value+this.agregaFormato1.get('sbBasofilos').value+this.agregaFormato1.get('sbBaciliformes').value
+  this.sumaTotal();
 }
 
 srHcmFormula(){
@@ -294,8 +294,7 @@ srHcmFormula(){
       if (this.agregaFormato1.get('srHcm').value<13 || this.agregaFormato1.get('srHcm').value>17){this.srHcmFlag=true}
       else{this.srHcmFlag=false}
   }
-    this.sbTotal=this.agregaFormato1.get('srHematocrito').value+this.agregaFormato1.get('srEritrocitos').value+this.agregaFormato1.get('srHemoglobina').value+this.agregaFormato1.get('srVcm').value+this.agregaFormato1.get('srChcm').value+this.agregaFormato1.get('srHcm').value+this.agregaFormato1.get('srReticulocitos').value+this.agregaFormato1.get('srPlaquetas').value+
-    this.agregaFormato1.get('sbNeutrofilos').value+this.agregaFormato1.get('sbLinfocitos').value+this.agregaFormato1.get('sbMonocitos').value+this.agregaFormato1.get('sbEosinofilos').value+this.agregaFormato1.get('sbBasofilos').value+this.agregaFormato1.get('sbBaciliformes').value
+  this.sumaTotal();
 }
 
 srReticulocitosFormula(){
@@ -309,8 +308,7 @@ srReticulocitosFormula(){
       if (this.agregaFormato1.get('srReticulocitos').value<0.2 || this.agregaFormato1.get('srReticulocitos').value>1.6){this.srReticulocitosFlag=true}
       else{this.srReticulocitosFlag=false}
   }
-    this.sbTotal=this.agregaFormato1.get('srHematocrito').value+this.agregaFormato1.get('srEritrocitos').value+this.agregaFormato1.get('srHemoglobina').value+this.agregaFormato1.get('srVcm').value+this.agregaFormato1.get('srChcm').value+this.agregaFormato1.get('srHcm').value+this.agregaFormato1.get('srReticulocitos').value+this.agregaFormato1.get('srPlaquetas').value+
-    this.agregaFormato1.get('sbNeutrofilos').value+this.agregaFormato1.get('sbLinfocitos').value+this.agregaFormato1.get('sbMonocitos').value+this.agregaFormato1.get('sbEosinofilos').value+this.agregaFormato1.get('sbBasofilos').value+this.agregaFormato1.get('sbBaciliformes').value
+  this.sumaTotal();
 }
 
 srPlaquetasFormula(){
@@ -324,8 +322,7 @@ srPlaquetasFormula(){
       if (this.agregaFormato1.get('srPlaquetas').value<300 || this.agregaFormato1.get('srPlaquetas').value>800){this.srPlaquetasFlag=true}
       else{this.srPlaquetasFlag=false}
   }
-    this.sbTotal=this.agregaFormato1.get('srHematocrito').value+this.agregaFormato1.get('srEritrocitos').value+this.agregaFormato1.get('srHemoglobina').value+this.agregaFormato1.get('srVcm').value+this.agregaFormato1.get('srChcm').value+this.agregaFormato1.get('srHcm').value+this.agregaFormato1.get('srReticulocitos').value+this.agregaFormato1.get('srPlaquetas').value+
-    this.agregaFormato1.get('sbNeutrofilos').value+this.agregaFormato1.get('sbLinfocitos').value+this.agregaFormato1.get('sbMonocitos').value+this.agregaFormato1.get('sbEosinofilos').value+this.agregaFormato1.get('sbBasofilos').value+this.agregaFormato1.get('sbBaciliformes').value
+  this.sumaTotal();
 }
 
 
@@ -338,12 +335,21 @@ sbCambioFormula(){
     this.sbBasofilosFormula = (this.agregaFormato1.get('sbLeucocitos2').value*this.agregaFormato1.get('sbBasofilos').value)/100;
     this.sbBaciliformesFormula = (this.agregaFormato1.get('sbLeucocitos2').value*this.agregaFormato1.get('sbBaciliformes').value)/100;
 
-    this.sbTotal=this.agregaFormato1.get('srHematocrito').value+this.agregaFormato1.get('srEritrocitos').value+this.agregaFormato1.get('srHemoglobina').value+this.agregaFormato1.get('srVcm').value+this.agregaFormato1.get('srChcm').value+this.agregaFormato1.get('srHcm').value+this.agregaFormato1.get('srReticulocitos').value+this.agregaFormato1.get('srPlaquetas').value+
-    this.agregaFormato1.get('sbNeutrofilos').value+this.agregaFormato1.get('sbLinfocitos').value+this.agregaFormato1.get('sbMonocitos').value+this.agregaFormato1.get('sbEosinofilos').value+this.agregaFormato1.get('sbBasofilos').value+this.agregaFormato1.get('sbBaciliformes').value
+    this.sumaTotal();
   }
 
+  sumaTotal(){
+    this.sbTotal=this.retorna0NaN(parseFloat(this.agregaFormato1.get('srHematocrito').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('srEritrocitos').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('srHemoglobina').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('srVcm').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('srChcm').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('srHcm').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('srReticulocitos').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('srPlaquetas').value))+
+    this.retorna0NaN(parseFloat(this.agregaFormato1.get('sbNeutrofilos').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('sbLinfocitos').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('sbMonocitos').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('sbEosinofilos').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('sbBasofilos').value))+this.retorna0NaN(parseFloat(this.agregaFormato1.get('sbBaciliformes').value))
+  }
 
+  retorna0NaN(valor){
+    if (isNaN(valor))
+       return 0;
+    else
+       return valor;
 
+  }
 
 
 }

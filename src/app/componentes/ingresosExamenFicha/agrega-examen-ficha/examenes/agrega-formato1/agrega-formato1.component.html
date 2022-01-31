@@ -1,6 +1,6 @@
 
 <mat-dialog-content [formGroup]="agregaFormato1" name="agregaFormato1" class="agrega-container">
-<!---
+<!--
   <div class="row">
     <div class="col-md-12 text-center">
       <mat-form-field class="ancho">
@@ -245,9 +245,11 @@
 
     </div>
     -->
-  </div>|
+  </div>
 
+  <br>
   <div>
+
     <h4>SERIE BLANCA</h4>
 
     <div class="row anchoTitulo">
@@ -296,17 +298,11 @@
       </div>
     </div>
 
-
-
     <div class="row" >
       <div class="col-md-2 border border-dark border-top-0 alineaVertical font-weight-bold">
         Leucocitos
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
-        <mat-form-field class="anchoTituloLinea1">
-          <input matInput placeholder="resultado" [formControl]="sbLeucocitos" (blur)="sbCambioFormula()">
-          <mat-error *ngIf="sbLeucocitos.invalid">{{getErrorMessage('sbLeucocitos')}}</mat-error>
-        </mat-form-field>
 
       </div>
       <div class="col-md-2 border border-dark border-left-0 border-top-0">
@@ -413,8 +409,6 @@
 
     </div>
 
-
-
     <div class="row">
       <div class="col-md-2 border border-dark border-top-0 alineaVertical font-weight-bold">
         Basófilos
@@ -464,10 +458,10 @@
       <div class="col-md-2 border border-dark border-top-0 alineaVertical font-weight-bold">
         TOTAL
       </div>
-      <div class="col-md-2 border border-dark border-left-0 border-top-0 alineaVertical">
+      <div class="col-md-2 border border-dark border-left-0 border-top-0 alineaVertical font-weight-bold">
         {{sbTotal}}
       </div>
-      <div class="col-md-2 border border-dark border-left-0 border-top-0 alineaVertical">
+   <!--   <div class="col-md-2 border border-dark border-left-0 border-top-0 alineaVertical">
 
       </div>
       <div class="col-md-3 border border-dark border-left-0 border-top-0 alineaVertical">
@@ -476,7 +470,40 @@
       <div class="col-md-3 border border-dark border-left-0 border-top-0 alineaVertical">
 
       </div>
+-->
+    </div>
+  </div>
 
+  <br>
+
+  <h4>OBSERVACIONES:</h4>
+  <div>
+    <div class="row">
+      <div class="col-md-2 border border-dark alineaVertical font-weight-bold">ERITROCITOS:</div>
+      <div class="col-md-3 border border-dark border-left-0 alineaVertical font-weight-bold">
+        <mat-form-field class="anchoTituloLinea1">
+          <input matInput placeholder="resultado" [formControl]="obsEritrocitos" (blur)="sbCambioFormula()">
+          <mat-error *ngIf="obsEritrocitos.invalid">{{getErrorMessage('obsEritrocitos')}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 border border-dark border-top-0 alineaVertical font-weight-bold">LEUCOCITOS:</div>
+      <div class="col-md-3 border border-dark border-top-0 border-left-0 alineaVertical font-weight-bold">
+        <mat-form-field class="anchoTituloLinea1">
+          <input matInput placeholder="resultado" [formControl]="obsLeucocitos" (blur)="sbCambioFormula()">
+          <mat-error *ngIf="obsLeucocitos.invalid">{{getErrorMessage('obsLeucocitos')}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 border border-dark border-top-0 alineaVertical font-weight-bold">PLAQUETAS:</div>
+      <div class="col-md-3 border border-dark border-top-0 border-left-0 alineaVertical font-weight-bold">
+        <mat-form-field class="anchoTituloLinea1">
+          <input matInput placeholder="resultado" [formControl]="obsPlaquetas" (blur)="sbCambioFormula()">
+          <mat-error *ngIf="obsPlaquetas.invalid">{{getErrorMessage('obsPlaquetas')}}</mat-error>
+        </mat-form-field>
+      </div>
     </div>
   </div>
 </mat-dialog-content>

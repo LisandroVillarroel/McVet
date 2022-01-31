@@ -78,6 +78,15 @@ import { AgregaRazaComponent } from './componentes/mantenedores/raza/agrega-raza
 import { ConsultaRazaComponent } from './componentes/mantenedores/raza/consulta-raza/consulta-raza.component';
 import { EliminaRazaComponent } from './componentes/mantenedores/raza/elimina-raza/elimina-raza.component';
 import { ModificaRazaComponent } from './componentes/mantenedores/raza/modifica-raza/modifica-raza.component';
+import { DoctorSolicitanteComponent } from './componentes/mantenedores/doctor-solicitante/doctor-solicitante.component';
+import { AgregaDoctorSolicitanteComponent } from './componentes/mantenedores/doctor-solicitante/agrega-doctor-solicitante/agrega-doctor-solicitante.component';
+import { ConsultaDoctorSolicitanteComponent } from './componentes/mantenedores/doctor-solicitante/consulta-doctor-solicitante/consulta-doctor-solicitante.component';
+import { ModificaDoctorSolicitanteComponent } from './componentes/mantenedores/doctor-solicitante/modifica-doctor-solicitante/modifica-doctor-solicitante.component';
+import { EliminaDoctorSolicitanteComponent } from './componentes/mantenedores/doctor-solicitante/elimina-doctor-solicitante/elimina-doctor-solicitante.component';
+import { FichaComponent } from './componentes/fichaExamen/ficha/ficha.component';
+import { AgregaFichaComponent } from './componentes/fichaExamen/ficha/agrega-ficha/agrega-ficha.component';
+import { ModificaFichaComponent } from './componentes/fichaExamen/ficha/modifica-ficha/modifica-ficha.component';
+import { ConsultaFichaComponent } from './componentes/fichaExamen/ficha/consulta-ficha/consulta-ficha.component';
 
 registerLocaleData(localeFr, 'es', localeFrExtra);
 
@@ -132,6 +141,15 @@ registerLocaleData(localeFr, 'es', localeFrExtra);
         ConsultaRazaComponent,
         EliminaRazaComponent,
         ModificaRazaComponent,
+        DoctorSolicitanteComponent,
+        AgregaDoctorSolicitanteComponent,
+        ConsultaDoctorSolicitanteComponent,
+        ModificaDoctorSolicitanteComponent,
+        EliminaDoctorSolicitanteComponent,
+        FichaComponent,
+        AgregaFichaComponent,
+        ModificaFichaComponent,
+        ConsultaFichaComponent,
     ],
     imports: [
         BrowserModule,
