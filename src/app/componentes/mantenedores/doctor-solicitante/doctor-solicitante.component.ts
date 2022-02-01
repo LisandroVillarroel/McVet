@@ -6,6 +6,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material/dialog';
 
+import * as _ from 'lodash';
 
 import { JwtResponseI } from '../../../autentica/_models';
 import { AuthenticationService } from '../../../autentica/_services';
@@ -47,15 +48,35 @@ constructor(private doctorSolicitanteService: DoctorSolicitanteService,
       this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
       this.dataSource = new MatTableDataSource<IDoctorSolicitante>();
 
+      // Permite fintrar en nodos o sub campos
+      this.dataSource.filterPredicate = (data: any, filter) => {
+        const dataStr =JSON.stringify(data).toLowerCase();
+        return dataStr.indexOf(filter) != -1;
+      }
+
+
   }
 
 
-ngOnInit() {
+
+async ngOnInit() {
     console.log('pasa emp 1');
+
+
+
     if (this.authenticationService.getCurrentUser() != null) {
       this.currentUsuario.usuarioDato = this.authenticationService.getCurrentUser() ;
     }
-    this.getListDoctorSolicitante();
+    await this.getListDoctorSolicitante();
+
+    // Permite ordenar cuando es estructura anidada
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch(property) {
+        case 'cliente:{nombreFantasia}': return item.cliente.nombreFantasia;
+        default: return item[property];
+      }
+    };
+    this.dataSource.sort = this.sort;
   }
 
   getListDoctorSolicitante()  {
@@ -83,9 +104,11 @@ ngOnInit() {
 ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = _.get;
   }
 
 applyFilter(filterValue: string) {
+
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {

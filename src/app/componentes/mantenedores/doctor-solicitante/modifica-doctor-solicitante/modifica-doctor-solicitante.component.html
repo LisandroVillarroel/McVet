@@ -9,7 +9,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select [formControl]="idCliente" placeholder="Seleccione Cliente" required>
+    <mat-select [formControl]="idCliente" placeholder="Seleccione Cliente" [compareWith]="comparaSelecciona" required>
       <mat-option *ngFor="let _cliente of datoCliente" [value]="_cliente">
         {{_cliente.nombreFantasia}}
       </mat-option>

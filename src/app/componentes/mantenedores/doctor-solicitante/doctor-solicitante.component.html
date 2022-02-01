@@ -11,7 +11,7 @@
 
 <div class="mat-elevation-z8">
 
-  <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+  <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort >
 
      <!-- ID Index -->
      <ng-container matColumnDef="index">
@@ -50,15 +50,15 @@
 
       <td mat-cell *matCellDef="let row; let i=index;" style=' width: 15%; text-align: center'>
 
-        <button mat-icon-button color="accent" style="size:5px" (click)="actualizaDoctorSolicitante(row._id, row.nombre,row.cliente.IdCliente,row.cliente.nombreFantasia)">
+        <button mat-icon-button color="accent" style="size:5px" (click)="actualizaDoctorSolicitante(row._id, row.nombre,row.cliente.idCliente,row.cliente.nombreFantasia)">
           <mat-icon>edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="accent" (click)="consultaDoctorSolicitante(row._id, row.nombre,row.cliente.IdCliente,row.cliente.nombreFantasia)">
+        <button mat-icon-button color="accent" (click)="consultaDoctorSolicitante(row._id, row.nombre,row.cliente.idCliente,row.cliente.nombreFantasia)">
           <mat-icon>search</mat-icon>
         </button>
 
-        <button mat-icon-button color="accent" (click)="eliminaDoctorSolicitante(row._id, row.nombre,row.cliente.IdCliente,row.cliente.nombreFantasia)">
+        <button mat-icon-button color="accent" (click)="eliminaDoctorSolicitante(row._id, row.nombre,row.cliente.idCliente,row.cliente.nombreFantasia)">
           <mat-icon>delete</mat-icon>
         </button>
 

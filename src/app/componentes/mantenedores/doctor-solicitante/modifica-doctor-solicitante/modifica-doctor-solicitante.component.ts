@@ -31,7 +31,7 @@ export class ModificaDoctorSolicitanteComponent implements OnInit {
                   console.log('dato update: ', data);
     }
     nombre = new FormControl(this.data.nombre, [Validators.required]);
-    idCliente = new FormControl(this.data.cliente._id, [Validators.required]);
+    idCliente = new FormControl(this.data.cliente.idCliente, [Validators.required]);
 
     modificaDoctorSolicitante: FormGroup = new FormGroup({
       nombre: this.nombre,
@@ -121,4 +121,12 @@ export class ModificaDoctorSolicitanteComponent implements OnInit {
       this.dialogRef.close();
     }
 
+    comparaSelecciona(v1: any, v2: any): boolean {
+      return compareFn(v1, v2);
+    }
+
+  }
+
+  function compareFn(v1: any, v2: any): boolean {
+    return v1 && v2 ? v1.value === v2.value : v1 === v2;
   }
