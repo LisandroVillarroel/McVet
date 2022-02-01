@@ -8,6 +8,6 @@ export interface IDoctorSolicitante {
 }
 
 export interface ICliente_ {
-  IdCliente: string;
+  idCliente: string;
   nombreFantasia: string;
 }

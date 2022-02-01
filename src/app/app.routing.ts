@@ -13,6 +13,7 @@ import { FormatosComponent } from './componentes/mantenedores/formatos/formatos.
 import { ExamenesIngresadosComponent } from './componentes/ingresosExamenFicha/examenes-ingresados.component';
 import { RazaComponent } from './componentes/mantenedores/raza/raza.component';
 import { EspecieComponent } from './componentes/mantenedores/especie/especie.component';
+import { DoctorSolicitanteComponent } from './componentes/mantenedores/doctor-solicitante/doctor-solicitante.component';
 //import { IngresoExamenComponent } from './componentes/ingresos/ingreso-examen/ingreso-examen.component';
 //import { SeleccionExamenComponent } from './componentes/ingresos/seleccion-examen/seleccion-examen.component';
 
@@ -42,7 +43,7 @@ const routes: Routes = [
 
     { path: 'mantenedorFormatos', component: FormatosComponent, canActivate: [AuthGuard] },
 
-    {path: 'propietario', component: PropietarioComponent, canActivate: [AuthGuard]},
+    {path: 'doctorSolicitante', component: DoctorSolicitanteComponent, canActivate: [AuthGuard]},
 
 
     { path: '**', redirectTo: '' }

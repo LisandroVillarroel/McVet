@@ -64,9 +64,9 @@ menuItems: MenuItem[] = [
             disabled: false
         },
         {
-          displayName: 'Propietario',
+          displayName: 'Doctor Solicitante',
           iconName: 'forward',
-          route: 'propietario',
+          route: 'doctorSolicitante',
           disabled: false
         },
         {

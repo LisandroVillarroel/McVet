@@ -32,7 +32,7 @@ export class DoctorSolicitanteComponent implements OnInit {
   currentUsuario: JwtResponseI;
 
   // tslint:disable-next-line:max-line-length
-  displayedColumns: string[] = ['index', 'nombre', 'cliente:{IdCliente}','cliente:{nombreFantasia}','opciones'];
+  displayedColumns: string[] = ['index', 'nombre','cliente:{nombreFantasia}','opciones'];
   dataSource: MatTableDataSource<IDoctorSolicitante>;
 
   @ViewChild(MatPaginator ) paginator: MatPaginator;
@@ -58,8 +58,8 @@ ngOnInit() {
     this.getListDoctorSolicitante();
   }
 
-getListDoctorSolicitante(): void {
-    console.log('pasa emp 2');
+  getListDoctorSolicitante()  {
+    console.log('pasa solicitante 2');
     this.doctorSolicitanteService
       .getDataDoctorSolicitante()
       .subscribe(res => {
@@ -76,6 +76,7 @@ getListDoctorSolicitante(): void {
        );
       }
     ); // (this.dataSource.data = res as PerfilI[])
+
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
@@ -124,7 +125,7 @@ actualizaDoctorSolicitante(id: string, nombre: string, idCliente:string, nombreF
     this.datoDoctorSolicitantePar = {
       _id: id,
       cliente:{
-        IdCliente: idCliente,
+        idCliente: idCliente,
         nombreFantasia: nombreFantasia,
       },
       nombre,
@@ -157,7 +158,7 @@ consultaDoctorSolicitante(id: string, nombre: string, idCliente:string, nombreFa
     this.datoDoctorSolicitantePar = {
       _id: id,
       cliente:{
-        IdCliente: idCliente,
+        idCliente: idCliente,
         nombreFantasia: nombreFantasia,
       },
       nombre,
@@ -188,7 +189,7 @@ eliminaDoctorSolicitante(id: string, nombre: string,idCliente:string, nombreFant
     this.datoDoctorSolicitantePar = {
       _id: id,
       cliente:{
-        IdCliente: idCliente,
+        idCliente: idCliente,
         nombreFantasia: nombreFantasia,
       },
       nombre,
@@ -215,14 +216,14 @@ eliminaDoctorSolicitante(id: string, nombre: string,idCliente:string, nombreFant
 
   }
 
-    private refreshTable() {
+    async refreshTable() {
     // Refreshing table using paginator
     // Thanks yeager-j for tips
     // https://github.com/marinantonio/angular-mat-table-crud/issues/12
    // this.dataSource.paginator._changePageSize(this.paginator.pageSize);
    // this.noticia=this.servicio.getNoticias();
 
-   this.getListDoctorSolicitante();
+   const respuesta = await this.getListDoctorSolicitante();
    this.dataSource.paginator._changePageSize(this.paginator.pageSize);
   }
 }

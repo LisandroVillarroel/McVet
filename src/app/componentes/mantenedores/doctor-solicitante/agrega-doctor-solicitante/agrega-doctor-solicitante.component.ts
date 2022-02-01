@@ -78,16 +78,13 @@ export class AgregaDoctorSolicitanteComponent implements OnInit {
     enviar() {
 
       this.cliente= {
-        IdCliente:this.agregaDoctorSolicitante.get('idCliente').value._id,
+        idCliente:this.agregaDoctorSolicitante.get('idCliente').value._id,
         nombreFantasia: this.agregaDoctorSolicitante.get('idCliente').value.nombreFantasia
       }
 
       this.dato = {
         nombre: this.agregaDoctorSolicitante.get('nombre').value,
-        cliente:{
-          IdCliente: this.agregaDoctorSolicitante.get('nombre').value,
-        nombreFantasia: this.agregaDoctorSolicitante.get('nombre').value,
-        },
+        cliente:this.cliente,
         usuarioCrea_id: this.usuario,
         usuarioModifica_id: this.usuario
       };
@@ -95,7 +92,7 @@ export class AgregaDoctorSolicitanteComponent implements OnInit {
       this.doctorSolicitanteService.postDataDoctorSolicitante(this.dato)
       .subscribe(
         dato => {
-          console.log('respuesta:', dato);
+          console.log('respuesta agrega:', dato);
           console.log('respuesta:', dato.mensaje);
           if (dato.codigo === 200) {
               Swal.fire(
@@ -110,7 +107,7 @@ export class AgregaDoctorSolicitanteComponent implements OnInit {
               'Click en Botón!',
               'error'
             );
-            this.dialogRef.close(1);
+           // this.dialogRef.close(1);
           }
         }
       );
