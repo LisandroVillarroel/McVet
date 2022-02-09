@@ -56,7 +56,7 @@ ngOnInit() {
 getListFicha(): void {
     console.log('pasa ficha 2');
     this.fichaService
-      .getDataFicha()
+      .getDataFicha(this.currentUsuario.usuarioDato.empresa_Id,'Ingresado')
       .subscribe(res => {
         console.log('ficha: ', res);
         this.dataSource.data = res['data'] as any[];
@@ -98,7 +98,7 @@ agregaNuevo() {
     dialogConfig.width = '80%';
     dialogConfig.height = '85%';
     dialogConfig.position = { top : '2%'};
-    dialogConfig.data = {usuario: this.currentUsuario.usuarioDato._id};
+    dialogConfig.data = {usuario: this.currentUsuario.usuarioDato._id, empresa_Id:this.currentUsuario.usuarioDato.empresa_Id};
   //  dialogConfig.data = {
   //    idProducto: idProdP,
   //    titulo: tituloP

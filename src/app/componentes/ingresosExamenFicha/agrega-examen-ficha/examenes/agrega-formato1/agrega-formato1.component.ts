@@ -51,7 +51,7 @@ export class AgregaFormato1Component implements OnInit {
   sbBaciliformesFormula=0;
 
   constructor(private dialogRef: MatDialogRef<AgregaFormato1Component>,
-              @Inject(MAT_DIALOG_DATA) data,
+              @Inject(MAT_DIALOG_DATA) public data:any,
               public servicioService: ExamenService,
               public formato1Service: Formato1Service,
            //   public rutService: RutService,
@@ -132,7 +132,7 @@ export class AgregaFormato1Component implements OnInit {
 
   cargaExamen(){
     this.servicioService
-      .getDataExamen()
+      .getDataExamen(this.data.empresa_Id)
       .subscribe(res => {
         console.log('rescata examen todo: ', res['data']);
         this.datoExamen = res['data'];
@@ -214,7 +214,7 @@ export class AgregaFormato1Component implements OnInit {
 srHematocritoFormula(){
   console.log('paso1 falg:',this.srHematocritoFlag)
 
-  if (this.datoFichaRecibe.especie.nombre.toUpperCase()=="CANINO"){
+  if (this.datoFichaRecibe.fichaC.especie.nombre.toUpperCase()=="CANINO"){
       if (this.agregaFormato1.get('srHematocrito').value<37 || this.agregaFormato1.get('srHematocrito').value>50){this.srHematocritoFlag=true}
       else{this.srHematocritoFlag=false}
   }
@@ -228,7 +228,7 @@ srHematocritoFormula(){
 
 srEritrocitosFormula(){
 
-  if (this.datoFichaRecibe.especie.nombre.toUpperCase()=="CANINO"){
+  if (this.datoFichaRecibe.fichaC.especie.nombre.toUpperCase()=="CANINO"){
     console.log('valor eritrocitos:',this.agregaFormato1.get('srEritrocitos').value);
       if (this.agregaFormato1.get('srEritrocitos').value<5.5 || this.agregaFormato1.get('srEritrocitos').value>8.5){this.srEritrocitosFlag=true}
       else{this.srEritrocitosFlag=false}
@@ -242,7 +242,7 @@ srEritrocitosFormula(){
 
 srHemoglobinaFormula(){
 
-  if (this.datoFichaRecibe.especie.nombre.toUpperCase()=="CANINO"){
+  if (this.datoFichaRecibe.fichaC.especie.nombre.toUpperCase()=="CANINO"){
     console.log('valor srHemoglobina:',this.agregaFormato1.get('srHemoglobina').value);
       if (this.agregaFormato1.get('srHemoglobina').value<12 || this.agregaFormato1.get('srHemoglobina').value>18){this.srHemoglobinaFlag=true}
       else{this.srHemoglobinaFlag=false}
@@ -256,7 +256,7 @@ srHemoglobinaFormula(){
 
 srVcmFormula(){
 
-  if (this.datoFichaRecibe.especie.nombre.toUpperCase()=="CANINO"){
+  if (this.datoFichaRecibe.fichaC.especie.nombre.toUpperCase()=="CANINO"){
     console.log('valor srVcm:',this.agregaFormato1.get('srVcm').value);
       if (this.agregaFormato1.get('srVcm').value<60 || this.agregaFormato1.get('srVcm').value>70){this.srVcmFlag=true}
       else{this.srVcmFlag=false}
@@ -271,7 +271,7 @@ srVcmFormula(){
 
 srChcmFormula(){
 
-  if (this.datoFichaRecibe.especie.nombre.toUpperCase()=="CANINO"){
+  if (this.datoFichaRecibe.fichaC.especie.nombre.toUpperCase()=="CANINO"){
     console.log('valor srChcm:',this.agregaFormato1.get('srChcm').value);
       if (this.agregaFormato1.get('srChcm').value<32 || this.agregaFormato1.get('srChcm').value>36){this.srChcmFlag=true}
       else{this.srChcmFlag=false}
@@ -285,7 +285,7 @@ srChcmFormula(){
 
 srHcmFormula(){
 
-  if (this.datoFichaRecibe.especie.nombre.toUpperCase()=="CANINO"){
+  if (this.datoFichaRecibe.fichaC.especie.nombre.toUpperCase()=="CANINO"){
     console.log('valor srHcm:',this.agregaFormato1.get('srHcm').value);
       if (this.agregaFormato1.get('srHcm').value<19.5 || this.agregaFormato1.get('srHcm').value>24.5){this.srHcmFlag=true}
       else{this.srHcmFlag=false}
@@ -299,7 +299,7 @@ srHcmFormula(){
 
 srReticulocitosFormula(){
 
-  if (this.datoFichaRecibe.especie.nombre.toUpperCase()=="CANINO"){
+  if (this.datoFichaRecibe.fichaC.especie.nombre.toUpperCase()=="CANINO"){
     console.log('valor srReticulocitos:',this.agregaFormato1.get('srReticulocitos').value);
       if (this.agregaFormato1.get('srReticulocitos').value<0 || this.agregaFormato1.get('srReticulocitos').value>1.5){this.srReticulocitosFlag=true}
       else{this.srReticulocitosFlag=false}
@@ -313,7 +313,7 @@ srReticulocitosFormula(){
 
 srPlaquetasFormula(){
 
-  if (this.datoFichaRecibe.especie.nombre.toUpperCase()=="CANINO"){
+  if (this.datoFichaRecibe.fichaC.especie.nombre.toUpperCase()=="CANINO"){
     console.log('valor srPlaquetas:',this.agregaFormato1.get('srPlaquetas').value);
       if (this.agregaFormato1.get('srPlaquetas').value<200 || this.agregaFormato1.get('srPlaquetas').value>500){this.srPlaquetasFlag=true}
       else{this.srPlaquetasFlag=false}

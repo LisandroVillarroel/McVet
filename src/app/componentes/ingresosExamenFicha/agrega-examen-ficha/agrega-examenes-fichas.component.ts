@@ -64,7 +64,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
   hemograma=false;
 
   constructor(private dialogRef: MatDialogRef<AgregaExamenesFichasComponent>,
-              @Inject(MAT_DIALOG_DATA) data,
+              @Inject(MAT_DIALOG_DATA) public data:any,
               private examenService: ExamenService,
               private usuarioService: UsuarioService,
               private clienteService: ClienteService,
@@ -145,7 +145,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
 
   cargaExamen(){
     this.examenService
-    .getDataExamen()
+    .getDataExamen(this.data.empresa_Id)
     .subscribe(res => {
       console.log('examen:', res['data'])
       this.datoExamen = res['data'] ;
@@ -184,7 +184,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
 
   cargaCliente(){
     this.clienteService
-    .getDataCliente()
+    .getDataCliente(this.data.empresa_Id)
     .subscribe(res => {
       console.log('cliente:', res['data'])
       this.datoCliente = res['data'] ;
@@ -203,7 +203,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
 
   cargaEspecie(){
     this.especieService
-    .getDataEspecie()
+    .getDataEspecie(this.data.empresa_Id)
     .subscribe(res => {
       console.log('especie:', res['data'])
       this.datoEspecie = res['data'] ;
@@ -222,7 +222,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
 
   cargaRaza(){
     this.razaService
-    .getDataRaza()
+    .getDataRaza(this.data.empresa_Id)
     .subscribe(res => {
       console.log('raza:', res['data'])
       this.datoRaza = res['data'] ;
@@ -297,7 +297,7 @@ export class AgregaExamenesFichasComponent implements OnInit {
       idRaza: this.agregaCabeceraExamen.get('idRaza').value._id,
       nombre: this.agregaCabeceraExamen.get('idRaza').value.nombre.toUpperCase()
     }
-
+/**
     this.datoFicha = {
 
   cliente: this.cliente,
@@ -315,7 +315,8 @@ export class AgregaExamenesFichasComponent implements OnInit {
   usuarioModifica_id: this.usuario,
 
   };
-  console.log('agrega 1:', this.datoFicha);
+*/
+/// console.log('agrega 1:', this.datoFicha);
 /*
   this.fichaService.postDataFicha(this.datoFicha)
   .subscribe(

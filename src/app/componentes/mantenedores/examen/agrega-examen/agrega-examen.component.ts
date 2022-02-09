@@ -10,6 +10,8 @@ import { validateRut, formatRut, RutFormat } from '@fdograph/rut-utilities';
 import Swal from 'sweetalert2';
 import { ExamenService } from '@app/servicios/examen.service';
 import { IExamen } from '@app/modelo/examen-interface';
+import { AuthenticationService } from '@app/autentica/_services';
+import { JwtResponseI } from '@app/autentica/_models';
 
 @Component({
   selector: 'app-agrega-examen',
@@ -22,35 +24,44 @@ export class AgregaExamenComponent implements OnInit {
   usuario: string;
   dato: IExamen;
 
+  currentUsuario: JwtResponseI;
+
   constructor(private dialogRef: MatDialogRef<AgregaExamenComponent>,
               @Inject(MAT_DIALOG_DATA) data,
               public servicioService: ExamenService,
             //  public rutService: RutService,
-              public rutValidator: RutValidator
+              public rutValidator: RutValidator,
+              private authenticationService: AuthenticationService
               ) {
+
+                this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
                this.usuario = data.usuario;
     }
 
-    codigoExamen = new FormControl('', );
+    codigoExamen = new FormControl('', [Validators.required]);
     nombre = new FormControl('', [Validators.required]);
     sigla = new FormControl('', [Validators.required]);
     precio = new FormControl('', [Validators.required]);
+    codigoInterno = new FormControl('', [Validators.required]);
 
     agregaExamen: FormGroup = new FormGroup({
       codigoExamen: this.codigoExamen,
       nombre: this.nombre,
       sigla: this.sigla,
-      precio: this.precio
+      precio: this.precio,
+      codigoInterno: this.codigoInterno
 
       // address: this.addressFormControl
     });
 
     getErrorMessage(campo: string) {
-      /*
+
       if (campo === 'codigoExamen'){
-          return this.codigoExamen.hasError('required') ? 'Debes ingresar Exámen' : '';
+          return this.codigoExamen.hasError('required') ? 'Debes ingresar Código Exámen' : '';
       }
-      */
+      if (campo === 'codigoInterno'){
+        return this.codigoInterno.hasError('required') ? 'Debes ingresar Codigo Interno' : '';
+      }
       if (campo === 'nombre'){
           return this.nombre.hasError('required') ? 'Debes ingresar Nombre'  : '';
       }
@@ -72,11 +83,13 @@ export class AgregaExamenComponent implements OnInit {
   enviar() {
     this.dato = {
       codigoExamen: this.agregaExamen.get('codigoExamen').value,
+      codigoInterno: this.agregaExamen.get('codigoInterno').value,
       nombre: this.agregaExamen.get('nombre').value,
       sigla: this.agregaExamen.get('sigla').value,
       precio: this.agregaExamen.get('precio').value,
       usuarioCrea_id: this.usuario,
-      usuarioModifica_id: this.usuario
+      usuarioModifica_id: this.usuario,
+      empresa_Id: this.currentUsuario.usuarioDato.empresa_Id
     };
     console.log('agrega 1:', this.dato);
     this.servicioService.postDataExamen(this.dato)
@@ -86,18 +99,27 @@ export class AgregaExamenComponent implements OnInit {
         console.log('respuesta:', dato.mensaje);
         if (dato.codigo === 200) {
             Swal.fire(
-            'Ya se agrego con Exito',
+            'Se agregó con Éxito',
             'Click en Boton!',
             'success'
           ); // ,
             this.dialogRef.close(1);
         }else{
-          Swal.fire(
-            dato.mensaje.message,
-            'Click en Boton!',
-            'error'
-          );
-          this.dialogRef.close(1);
+          if (dato.codigo!=500){
+            Swal.fire(
+              dato.mensaje,
+              '',
+              'error'
+            );
+          }
+          else{
+            console.log('Error Exámen:', dato);
+            Swal.fire(
+              '',
+              'ERROR SISTEMA',
+              'error'
+            );
+          }
         }
       }
     );

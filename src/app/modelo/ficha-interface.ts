@@ -1,22 +1,26 @@
 export interface IFicha {
   _id?: string;
-  numeroFicha?: number;
-  cliente?: IFichaCliente;
-  nombrePropietario?: string;
-  nombrePaciente?: string;
-  edadPaciente?: number;
-  especie?: IFichaEspecie;
-  raza?: IFichaRaza;
-  sexo?: string;
-  doctorSolicitante?: string;
-  examen?:IFichaExamen;
-  telefono?: string;
-  email?: string;
-  usuarioCrea_id: string;
+  fichaC:{
+    numeroFicha?: string;
+    cliente?:IFichaCliente;
+    nombrePropietario?: string;
+    nombrePaciente?: string;
+    edadPaciente?: string;
+    especie?: IFichaEspecie;
+    raza?: IFichaRaza;
+    sexo?: string;
+    doctorSolicitante?:IFichaDoctorSolicitante;
+    examen?:IFichaExamen;
+  },
+  usuarioAsignado?:IFichaUsuarioAsignado;
+  estadoFicha?:string;
+  empresa_Id?: string;
+  usuarioCrea_id?: string;
   usuarioModifica_id: string;
+  fechaHora_crea?:Date;
+
   estado?: string;
 }
-
 export interface IFichaCliente {
   idCliente?:string;
   rutCliente?: string;
@@ -24,25 +28,12 @@ export interface IFichaCliente {
   nombreFantasia?: string;
 }
 
-export interface IPropietario {
-    rutPropietario?: string;
-    nombres?: string;
-    apellidoPaterno?: string;
-    apellidoMaterno?: string;
-    region?: string;
-    comuna?: string;
-    direccion?: string;
-    telefono?: string;
-    email?: string;
-}
-
-
-
 export interface IFichaExamen {
   idExamen:string;
   codigoExamen: string;
   nombre: string;
 }
+
 
 export interface IFichaEspecie {
   idEspecie:string;
@@ -52,4 +43,16 @@ export interface IFichaEspecie {
 export interface IFichaRaza {
   idRaza:string;
   nombre: string;
+}
+
+export interface IFichaDoctorSolicitante {
+  idDoctorSolicitante: string;
+  nombreDoctorSolicitante: string;
+}
+
+export interface IFichaUsuarioAsignado {
+    idUsuario: string;
+    usuario: string;
+    rutUsuario: string;
+    nombreCompleto: string;
 }

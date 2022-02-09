@@ -7,7 +7,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Ingrese Razón Social" [formControl]="razonSocial" oninput="this.value = this.value.toUpperCase()" required>
+    <input matInput placeholder="Ingrese Razón Social" [formControl]="razonSocial"  required>
     <mat-error *ngIf="razonSocial.invalid">{{getErrorMessage('razonSocial')}}</mat-error>
   </mat-form-field>
 
@@ -43,6 +43,6 @@
       <button mat-raised-button color="warn" (click)="cerrar()" mat-dialog-close  [disabled]=false>Cerrar</button>
     </div>
     <div class="col-md-6">
-      <button class="colorFondoBoton" mat-raised-button  (click)="enviar()"  mat-dialog-close [disabled]="agregaCliente.invalid">ENVIAR</button>
+      <button class="colorFondoBoton" mat-raised-button  (click)="enviar()"  [disabled]="agregaCliente.invalid">ENVIAR</button>
     </div>
 </mat-dialog-actions>

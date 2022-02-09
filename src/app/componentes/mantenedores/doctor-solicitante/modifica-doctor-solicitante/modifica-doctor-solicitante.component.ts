@@ -56,7 +56,7 @@ export class ModificaDoctorSolicitanteComponent implements OnInit {
 
     cargaCliente(){
       this.clienteService
-      .getDataCliente()
+      .getDataCliente(this.data.empresa_Id)
       .subscribe(res => {
         console.log('cliente:', res['data'])
         this.datoCliente = res['data'] ;
@@ -99,12 +99,21 @@ export class ModificaDoctorSolicitanteComponent implements OnInit {
             ),
             this.dialogRef.close(1);
           }else{
-            Swal.fire(
-              dato.mensaje,
-              'Click en Botón!',
-              'error'
-            );
-            this.dialogRef.close(1);
+            if (dato.codigo!=500){
+              Swal.fire(
+                dato.mensaje,
+                '',
+                'error'
+              );
+            }
+            else{
+              console.log('Error Doctor Solicitante:', dato);
+              Swal.fire(
+                '',
+                'ERROR SISTEMA',
+                'error'
+              );
+            }
 
           }
         }

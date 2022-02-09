@@ -2,6 +2,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { JwtResponseI } from '@app/autentica/_models';
+import { AuthenticationService } from '@app/autentica/_services';
 import { IRaza } from '@app/modelo/raza-interface';
 import { RazaService } from '@app/servicios/raza.service';
 
@@ -20,10 +22,14 @@ export class AgregaRazaComponent implements OnInit {
   usuario: string;
   dato: IRaza;
 
+  currentUsuario: JwtResponseI;
+
   constructor(private dialogRef: MatDialogRef<AgregaRazaComponent>,
               @Inject(MAT_DIALOG_DATA) data,
-              public razaService: RazaService,
+              private razaService: RazaService,
+              private authenticationService: AuthenticationService
               ) {
+                this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
                this.usuario = data.usuario;
     }
 
@@ -51,7 +57,8 @@ export class AgregaRazaComponent implements OnInit {
     this.dato = {
       nombre: this.agregaRaza.get('nombre').value,
       usuarioCrea_id: this.usuario,
-      usuarioModifica_id: this.usuario
+      usuarioModifica_id: this.usuario,
+      empresa_Id: this.currentUsuario.usuarioDato.empresa_Id
     };
     console.log('agrega 1:', this.dato);
     this.razaService.postDataRaza(this.dato)
@@ -61,18 +68,27 @@ export class AgregaRazaComponent implements OnInit {
         console.log('respuesta:', dato.mensaje);
         if (dato.codigo === 200) {
             Swal.fire(
-            'Ya se agrego con Éxito',
-            'Click en Botón!',
+            'Se agregó con Éxito',
+            '',
             'success'
           ); // ,
             this.dialogRef.close(1);
         }else{
-          Swal.fire(
-            dato.mensaje.message,
-            'Click en Botón!',
-            'error'
-          );
-          this.dialogRef.close(1);
+          if (dato.codigo!=500){
+            Swal.fire(
+              dato.mensaje,
+              '',
+              'error'
+            );
+          }
+          else{
+            console.log('Error Raza:', dato);
+            Swal.fire(
+              '',
+              'ERROR SISTEMA',
+              'error'
+            );
+          }
         }
       }
     );

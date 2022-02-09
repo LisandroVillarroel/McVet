@@ -67,7 +67,7 @@ mat-dialog-container {
   }
 /*iconos*/
   button.mat-accent{
-    color:#42b629 !important;;
+    color:#dced4f !important;;
   }
   button.mat-accent:hover{
     color:black !important;
@@ -125,4 +125,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-drawer-inner-container {
   overflow: revert !important;
 
+}
+
+/*Icono ordena tabla*/
+.mat-sort-header-arrow {
+  color: #dced4f;
 }

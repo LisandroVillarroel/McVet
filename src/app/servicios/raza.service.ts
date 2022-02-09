@@ -57,8 +57,8 @@ export class RazaService {
     );
   }
 
-  getDataRaza() {
-    return this.http.get(`${environment.apiUrl}/razaTodo`, { headers: this.headers })
+  getDataRaza(empresaId) {
+    return this.http.get(`${environment.apiUrl}/razaTodo/${empresaId}`, { headers: this.headers })
     .pipe(
       retry(1),
       catchError(this.errorHandl)

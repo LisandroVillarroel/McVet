@@ -58,8 +58,8 @@ export class EspecieService {
     );
   }
 
-  getDataEspecie() {
-    return this.http.get(`${environment.apiUrl}/especieTodo`, { headers: this.headers })
+  getDataEspecie(empresaId) {
+    return this.http.get(`${environment.apiUrl}/especieTodo/${empresaId}`, { headers: this.headers })
     .pipe(
       retry(1),
       catchError(this.errorHandl)

@@ -59,7 +59,7 @@ ngOnInit() {
 getListCliente(): void {
     console.log('pasa emp 2');
     this.clienteService
-      .getDataCliente()
+      .getDataCliente(this.currentUsuario.usuarioDato.empresa_Id)
       .subscribe(res => {
         console.log('cliente: ', res['data']);
         this.dataSource.data = res['data'] as ICliente[];
@@ -222,14 +222,14 @@ eliminaCliente(id: string, rutCliente: string, razonSocial: string, nombreFantas
 
   }
 
-    private refreshTable() {
+   async refreshTable() {
     // Refreshing table using paginator
     // Thanks yeager-j for tips
     // https://github.com/marinantonio/angular-mat-table-crud/issues/12
    // this.dataSource.paginator._changePageSize(this.paginator.pageSize);
    // this.noticia=this.servicio.getNoticias();
 
-   this.getListCliente();
+   await this.getListCliente();
    this.dataSource.paginator._changePageSize(this.paginator.pageSize);
   }
 }

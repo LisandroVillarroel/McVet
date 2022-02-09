@@ -79,6 +79,7 @@ export class ModificaExamenComponent implements OnInit {
       nombre: this.modifica.get('nombre').value,
       sigla: this.modifica.get('sigla').value,
       precio: this.modifica.get('precio').value,
+      empresa_Id: this.datoPar.empresa_Id,
       usuarioModifica_id: this.datoPar.usuarioModifica_id
     };
     console.log('modifica:', this._dato);
@@ -88,18 +89,28 @@ export class ModificaExamenComponent implements OnInit {
         console.log('respuesta:', dato['codigo']);
         if (dato['codigo'] === 200) {
             Swal.fire(
-            'Ya se grabó con Exito',
-            'Click en Boton!',
+            'Se grabó con Éxito',
+            '',
             'success'
           ),
           this.dialogRef.close(1);
         }else{
-          Swal.fire(
-            dato.mensaje,
-            'Click en Boton!',
-            'error'
-          );
-          this.dialogRef.close(1);
+          if (dato.codigo!=500){
+            Swal.fire(
+              dato.mensaje,
+              '',
+              'error'
+            );
+          }
+          else{
+            console.log('Error Exámen:', dato);
+            Swal.fire(
+              '',
+              'ERROR SISTEMA',
+              'error'
+            );
+          }
+
 
         }
       }

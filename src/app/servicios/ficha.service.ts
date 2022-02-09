@@ -25,7 +25,8 @@ export class FichaService {
   // }
 
   // POST
-  postDataFicha(dato): Observable<any> {
+    postDataFicha(dato): Observable<any> {
+    console.log('envia agregar ficha:', JSON.stringify(dato));
     return this.http.post<IFicha>(`${environment.apiUrl}/ficha`, JSON.stringify(dato), { headers: this.headers })
     .pipe(
       retry(1),
@@ -53,8 +54,8 @@ export class FichaService {
     );
   }
 
-  getDataFicha() {
-    return this.http.get(`${environment.apiUrl}/fichaTodo`, { headers: this.headers })
+  getDataFicha(empresaId,estadoFicha) {
+    return this.http.get(`${environment.apiUrl}/fichaTodo/${empresaId}/${estadoFicha}`, { headers: this.headers })
     .pipe(
       retry(1),
       catchError(this.errorHandl)

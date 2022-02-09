@@ -87,6 +87,7 @@ import { FichaComponent } from './componentes/fichaExamen/ficha/ficha.component'
 import { AgregaFichaComponent } from './componentes/fichaExamen/ficha/agrega-ficha/agrega-ficha.component';
 import { ModificaFichaComponent } from './componentes/fichaExamen/ficha/modifica-ficha/modifica-ficha.component';
 import { ConsultaFichaComponent } from './componentes/fichaExamen/ficha/consulta-ficha/consulta-ficha.component';
+import { EliminaFichaComponent } from './componentes/fichaExamen/ficha/elimina-ficha/elimina-ficha.component';
 
 registerLocaleData(localeFr, 'es', localeFrExtra);
 
@@ -150,6 +151,7 @@ registerLocaleData(localeFr, 'es', localeFrExtra);
         AgregaFichaComponent,
         ModificaFichaComponent,
         ConsultaFichaComponent,
+        EliminaFichaComponent,
     ],
     imports: [
         BrowserModule,

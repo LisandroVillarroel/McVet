@@ -57,7 +57,7 @@ ngOnInit() {
 getList(): void {
     console.log('pasa exámen 1');
     this.servicioService
-      .getDataExamen()
+      .getDataExamen(this.currentUsuario.usuarioDato.empresa_Id)
       .subscribe(res => {
         console.log('pasa exámen 2', res);
         this.dataSource.data = res['data'] as IExamen[];
@@ -123,7 +123,6 @@ actualiza(id: string, codigoExamen: string, nombre: string, sigla: string, preci
       nombre,
       sigla,
       precio,
-     // usuarioCrea_id: this.currentUsuario.usuarioDato.id,
       usuarioModifica_id: this.currentUsuario.usuarioDato._id
     };
     console.log('actualiza',this.datoPar);

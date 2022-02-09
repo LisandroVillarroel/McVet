@@ -60,7 +60,7 @@ ngOnInit() {
 getListRaza(): void {
     console.log('pasa emp 2');
     this.razaService
-      .getDataRaza()
+      .getDataRaza(this.currentUsuario.usuarioDato.empresa_Id)
       .subscribe(res => {
         console.log('raza: ', res['data']);
         this.dataSource.data = res['data'] as IRaza[];

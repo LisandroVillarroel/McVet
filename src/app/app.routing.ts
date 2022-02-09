@@ -14,6 +14,7 @@ import { ExamenesIngresadosComponent } from './componentes/ingresosExamenFicha/e
 import { RazaComponent } from './componentes/mantenedores/raza/raza.component';
 import { EspecieComponent } from './componentes/mantenedores/especie/especie.component';
 import { DoctorSolicitanteComponent } from './componentes/mantenedores/doctor-solicitante/doctor-solicitante.component';
+import { FichaComponent } from './componentes/fichaExamen/ficha/ficha.component';
 //import { IngresoExamenComponent } from './componentes/ingresos/ingreso-examen/ingreso-examen.component';
 //import { SeleccionExamenComponent } from './componentes/ingresos/seleccion-examen/seleccion-examen.component';
 
@@ -33,7 +34,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'inicio', component: PortadaComponent, },
 
-    { path: 'ingresoResultados', component: ExamenesIngresadosComponent, canActivate: [AuthGuard]},
+    { path: 'ingresoFicha', component: FichaComponent, canActivate: [AuthGuard]},
 
     { path: 'mantenedorCliente', component: ClienteComponent, canActivate: [AuthGuard]},
     { path: 'mantenedorPaciente', component: HomeComponent , canActivate: [AuthGuard]},

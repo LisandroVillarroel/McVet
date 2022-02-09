@@ -11,6 +11,8 @@ import {RutValidator} from 'ng2-rut';
 import { validateRut, formatRut, RutFormat } from '@fdograph/rut-utilities';
 
 import Swal from 'sweetalert2';
+import { AuthenticationService } from '@app/autentica/_services';
+import { JwtResponseI } from '@app/autentica/_models';
 
 @Component({
   selector: 'app-agrega-cliente',
@@ -23,16 +25,20 @@ export class AgregaClienteComponent implements OnInit {
   usuario: string;
   datoCliente: ICliente;
 
+  currentUsuario: JwtResponseI;
+
   constructor(private dialogRef: MatDialogRef<AgregaClienteComponent>,
               @Inject(MAT_DIALOG_DATA) data,
               public servCliente: ClienteService,
             //  public rutService: RutService,
-              public rutValidator: RutValidator
+              public rutValidator: RutValidator,
+              private authenticationService: AuthenticationService
               ) {
+                this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
                this.usuario = data.usuario;
     }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit() {
+
   }
 
     rutCliente = new FormControl('', [Validators.required, this.validaRut]);
@@ -40,7 +46,7 @@ export class AgregaClienteComponent implements OnInit {
     nombreFantasia = new FormControl('', [Validators.required]);
     direccion = new FormControl('', [Validators.required]);
     telefono = new FormControl('', [Validators.required]);
-    email = new FormControl('', [Validators.required]);
+    email = new FormControl('', [Validators.required, Validators.email, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")]);
     nombreContacto = new FormControl('', [Validators.required]);
 
     agregaCliente: FormGroup = new FormGroup({
@@ -118,7 +124,8 @@ export class AgregaClienteComponent implements OnInit {
       email: this.agregaCliente.get('email').value.toUpperCase(),
       nombreContacto: this.agregaCliente.get('nombreContacto').value.toUpperCase(),
       usuarioCrea_id: this.usuario,
-      usuarioModifica_id: this.usuario
+      usuarioModifica_id: this.usuario,
+      empresa_Id: this.currentUsuario.usuarioDato.empresa_Id
     };
     console.log('agrega 1:', this.datoCliente);
     this.servCliente.postDataCliente(this.datoCliente)
@@ -127,18 +134,27 @@ export class AgregaClienteComponent implements OnInit {
         console.log('respuesta:', dato.codigo);
         if (dato.codigo === 200) {
             Swal.fire(
-            'Ya se agrego con Exito',
-            'Click en Boton!',
+            'Se agregó con Éxito',
+            '',
             'success'
           ); // ,
             this.dialogRef.close(1);
         }else{
-          Swal.fire(
-            dato.mensaje,
-            'Click en Boton!',
-            'error'
-          );
-          this.dialogRef.close(1);
+          if (dato.codigo!=500){
+            Swal.fire(
+              dato.mensaje,
+              '',
+              'error'
+            );
+          }
+          else{
+            console.log('Error Cliente:', dato);
+            Swal.fire(
+              '',
+              'ERROR SISTEMA',
+              'error'
+            );
+          }
         }
       }
       // console.log('yo:', res as PerfilI[]),

@@ -57,7 +57,7 @@ export class ModificaEspecieComponent implements OnInit {
         console.log('respuesta:', dato['codigo']);
         if (dato['codigo'] === 200) {
             Swal.fire(
-            'Ya se grabó con Éxito',
+            'Se grabó con Éxito',
             'Click en Botón!',
             'success'
           ),

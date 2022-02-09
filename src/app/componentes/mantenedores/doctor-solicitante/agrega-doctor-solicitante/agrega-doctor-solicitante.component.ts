@@ -1,6 +1,8 @@
   import { Component, OnInit, Inject } from '@angular/core';
   import { FormGroup, FormControl, Validators } from '@angular/forms';
   import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { JwtResponseI } from '@app/autentica/_models';
+import { AuthenticationService } from '@app/autentica/_services';
 import { ICliente } from '@app/modelo/cliente-interface';
   import { ICliente_, IDoctorSolicitante } from '@app/modelo/doctorSolicitante-interface';
 import { ClienteService } from '@app/servicios/cliente.service';
@@ -22,11 +24,15 @@ export class AgregaDoctorSolicitanteComponent implements OnInit {
     cliente:ICliente_
     datoCliente:ICliente;
 
+    currentUsuario: JwtResponseI;
+
     constructor(private dialogRef: MatDialogRef<AgregaDoctorSolicitanteComponent>,
                 @Inject(MAT_DIALOG_DATA) data,
                 private doctorSolicitanteService: DoctorSolicitanteService,
                 private clienteService: ClienteService,
+                private authenticationService: AuthenticationService
                 ) {
+                  this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
                  this.usuario = data.usuario;
                  this.cargaCliente();
       }
@@ -58,7 +64,7 @@ export class AgregaDoctorSolicitanteComponent implements OnInit {
 
     cargaCliente(){
       this.clienteService
-      .getDataCliente()
+      .getDataCliente(this.currentUsuario.usuarioDato.empresa_Id)
       .subscribe(res => {
         console.log('cliente:', res['data'])
         this.datoCliente = res['data'] ;
@@ -86,7 +92,8 @@ export class AgregaDoctorSolicitanteComponent implements OnInit {
         nombre: this.agregaDoctorSolicitante.get('nombre').value,
         cliente:this.cliente,
         usuarioCrea_id: this.usuario,
-        usuarioModifica_id: this.usuario
+        usuarioModifica_id: this.usuario,
+        empresa_Id: this.currentUsuario.usuarioDato.empresa_Id
       };
       console.log('agrega 1:', this.dato);
       this.doctorSolicitanteService.postDataDoctorSolicitante(this.dato)
@@ -96,18 +103,27 @@ export class AgregaDoctorSolicitanteComponent implements OnInit {
           console.log('respuesta:', dato.mensaje);
           if (dato.codigo === 200) {
               Swal.fire(
-              'Ya se agrego con Éxito',
+              'Se agregó con Éxito',
               'Click en Botón!',
               'success'
             ); // ,
               this.dialogRef.close(1);
           }else{
-            Swal.fire(
-              dato.mensaje.message,
-              'Click en Botón!',
-              'error'
-            );
-           // this.dialogRef.close(1);
+            if (dato.codigo!=500){
+              Swal.fire(
+                dato.mensaje,
+                '',
+                'error'
+              );
+            }
+            else{
+              console.log('Error Doctor Solicitante:', dato);
+              Swal.fire(
+                '',
+                'ERROR SISTEMA',
+                'error'
+              );
+            }
           }
         }
       );

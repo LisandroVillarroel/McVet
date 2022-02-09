@@ -96,12 +96,21 @@ export class ModificaClienteComponent implements OnInit {
           ),
           this.dialogRef.close(1);
         }else{
-          Swal.fire(
-            dato.mensaje,
-            'Click en Boton!',
-            'error'
-          );
-          this.dialogRef.close(1);
+          if (dato.codigo!=500){
+            Swal.fire(
+              dato.mensaje,
+              '',
+              'error'
+            );
+          }
+          else{
+            console.log('Error Cliente:', dato);
+            Swal.fire(
+              '',
+              'ERROR SISTEMA',
+              'error'
+            );
+          }
 
         }
       }

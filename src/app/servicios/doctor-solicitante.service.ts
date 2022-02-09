@@ -58,8 +58,17 @@ export class DoctorSolicitanteService {
     );
   }
 
-  getDataDoctorSolicitante() {
-    return this.http.get(`${environment.apiUrl}/doctorSolicitanteTodo`, { headers: this.headers })
+
+  getDataClienteDoctorSolicitante(idCliente) {
+    return this.http.get(`${environment.apiUrl}/doctorSolicitanteCliente/${idCliente}`, { headers: this.headers })
+    .pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
+  getDataDoctorSolicitante(empresaId) {
+    return this.http.get(`${environment.apiUrl}/doctorSolicitanteTodo/${empresaId}`, { headers: this.headers })
     .pipe(
       retry(1),
       catchError(this.errorHandl)

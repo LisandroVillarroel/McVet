@@ -57,8 +57,8 @@ export class ExamenService {
     );
   }
 
-  getDataExamen() {
-    return this.http.get(`${environment.apiUrl}/examenTodo`, { headers: this.headers })
+  getDataExamen(empresaId) {
+    return this.http.get(`${environment.apiUrl}/examenTodo/${empresaId}`, { headers: this.headers })
     .pipe(
       retry(1),
       catchError(this.errorHandl)

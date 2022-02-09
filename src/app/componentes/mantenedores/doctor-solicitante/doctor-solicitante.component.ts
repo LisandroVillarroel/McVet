@@ -82,7 +82,7 @@ async ngOnInit() {
   getListDoctorSolicitante()  {
     console.log('pasa solicitante 2');
     this.doctorSolicitanteService
-      .getDataDoctorSolicitante()
+      .getDataDoctorSolicitante(this.currentUsuario.usuarioDato.empresa_Id)
       .subscribe(res => {
         console.log('Doctor: ', res['data']);
         this.dataSource.data = res['data'] as IDoctorSolicitante[];
@@ -153,7 +153,8 @@ actualizaDoctorSolicitante(id: string, nombre: string, idCliente:string, nombreF
       },
       nombre,
       usuarioCrea_id: this.currentUsuario.usuarioDato._id,
-      usuarioModifica_id: this.currentUsuario.usuarioDato._id
+      usuarioModifica_id: this.currentUsuario.usuarioDato._id,
+      empresa_Id:this.currentUsuario.usuarioDato.empresa_Id
     };
 
     const dialogConfig = new MatDialogConfig();

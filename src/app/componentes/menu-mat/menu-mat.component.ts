@@ -23,7 +23,7 @@ export class MenuMatComponent implements OnDestroy {
   currentUsuario: JwtResponseI;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private location: Location,
-    private authenticationService: AuthenticationService,) {
+    private authenticationService: AuthenticationService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._MOBILEQUERYLISTENER = () => changeDetectorRef.detectChanges();
     // deprecated: MediaQueryList.addListener(listener);
@@ -47,9 +47,9 @@ menuItems: MenuItem[] = [
         disabled: false
       },
       {
-        displayName: 'Ingreso Resultados',
+        displayName: 'Ingreso Ficha',
         iconName: 'local_hospital',
-        route: 'ingresoResultados',
+        route: 'ingresoFicha',
         disabled: false
       },
       {

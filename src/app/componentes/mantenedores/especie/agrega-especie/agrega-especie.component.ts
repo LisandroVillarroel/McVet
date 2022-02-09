@@ -5,6 +5,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { IEspecie } from '@app/modelo/especie-interface';
 import { EspecieService } from '@app/servicios/especie.service';
+import { JwtResponseI } from '@app/autentica/_models';
+import { AuthenticationService } from '@app/autentica/_services';
 
 
 @Component({
@@ -18,10 +20,14 @@ export class AgregaEspecieComponent implements OnInit {
   usuario: string;
   dato: IEspecie;
 
+  currentUsuario: JwtResponseI;
+
   constructor(private dialogRef: MatDialogRef<AgregaEspecieComponent>,
               @Inject(MAT_DIALOG_DATA) data,
-              public especieService: EspecieService,
+              private especieService: EspecieService,
+              private authenticationService: AuthenticationService
               ) {
+                this.authenticationService.currentUsuario.subscribe(x => this.currentUsuario = x);
                this.usuario = data.usuario;
     }
 
@@ -49,7 +55,8 @@ export class AgregaEspecieComponent implements OnInit {
     this.dato = {
       nombre: this.agregaEspecie.get('nombre').value,
       usuarioCrea_id: this.usuario,
-      usuarioModifica_id: this.usuario
+      usuarioModifica_id: this.usuario,
+      empresa_Id: this.currentUsuario.usuarioDato.empresa_Id
     };
     console.log('agrega 1:', this.dato);
     this.especieService.postDataEspecie(this.dato)
@@ -59,18 +66,27 @@ export class AgregaEspecieComponent implements OnInit {
         console.log('respuesta:', dato.mensaje);
         if (dato.codigo === 200) {
             Swal.fire(
-            'Ya se agrego con Éxito',
-            'Click en Botón!',
+            'Se agregó con Éxito',
+            '',
             'success'
           ); // ,
             this.dialogRef.close(1);
         }else{
-          Swal.fire(
-            dato.mensaje.message,
-            'Click en Botón!',
-            'error'
-          );
-          this.dialogRef.close(1);
+          if (dato.codigo!=500){
+            Swal.fire(
+              dato.mensaje,
+              '',
+              'error'
+            );
+          }
+          else{
+            console.log('Error Especie:', dato);
+            Swal.fire(
+              '',
+              'ERROR SISTEMA',
+              'error'
+            );
+          }
         }
       }
     );

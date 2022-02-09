@@ -57,9 +57,9 @@ export class ClienteService {
     );
   }
 
-  getDataCliente() {
+  getDataCliente(empresaId) {
 
-    return this.http.get(`${environment.apiUrl}/clienteTodo`, { headers: this.headers })
+    return this.http.get(`${environment.apiUrl}/clienteTodo/${empresaId}`, { headers: this.headers })
     .pipe(
       retry(1),
       catchError(this.errorHandl)
